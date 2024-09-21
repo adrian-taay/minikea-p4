@@ -20,7 +20,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScrollNavbar);
   }, []);
 
-  console.log(isFloatingNavbar);
+  // console.log(isFloatingNavbar);
 
   const LeftSideWrapper = (
     <section className="flex-start flex-1">

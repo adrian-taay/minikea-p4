@@ -16,11 +16,8 @@ export default function Products() {
     async function getProducts() {
       try {
         const response = await axios(
-          // `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`
           `https://dummyjson.com/products/category/mens-shirts?limit=${limit}&skip=${offset}`
         );
-
-        // setData(response.data.products);
 
         setData((d) => [...d, ...response.data.products]);
         return;
