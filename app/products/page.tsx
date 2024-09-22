@@ -1,13 +1,13 @@
 "use client";
 
 import ProductCard from "@/components/products/product-card";
-import { useShoppingCart } from "@/lib/useShoppingCart";
+import { useUserStore } from "@/lib/useUserStore";
 import { DummyProductType } from "@/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Products() {
-  const cart = useShoppingCart((state) => state.cart);
+  const cart = useUserStore((state) => state.cart);
   const [offset, setOffset] = useState(0);
   const limit = 8;
   const [data, setData] = useState([] as DummyProductType[]);

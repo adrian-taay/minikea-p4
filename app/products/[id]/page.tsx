@@ -1,4 +1,4 @@
-import AddItemBtn from "@/components/buttons/AddItemBtn";
+import AddItemBtnWrapper from "@/components/add-item-buttons/AddItemBtnWrapper";
 import { DummyProductType } from "@/types";
 import axios from "axios";
 import Image from "next/image";
@@ -26,7 +26,7 @@ export default async function SingleProductPage({
             loading="lazy"
           />
         </div>
-        <AddItemBtn item={productDetail} />
+        <AddItemBtnWrapper item={productDetail} />
       </div>
     );
   } catch (err) {

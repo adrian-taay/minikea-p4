@@ -1,14 +1,18 @@
 "use client";
 
-import { useShoppingCart } from "@/lib/useShoppingCart";
+import { useUserStore } from "@/lib/useUserStore";
 import React from "react";
 
 export default function CartPage() {
-  const cart = useShoppingCart((state) => state.cart);
-  const removeItem = useShoppingCart((state) => state.removeItem);
-  const incrementItemQty = useShoppingCart((state) => state.incrementItemQty);
-  const decrementItemQty = useShoppingCart((state) => state.decrementItemQty);
-  const clearCart = useShoppingCart((state) => state.clearCart);
+  const cart = useUserStore((state) => state.cart);
+  const removeFromCart = useUserStore((state) => state.removeFromCart);
+  const incrementCartItemQty = useUserStore(
+    (state) => state.incrementCartItemQty
+  );
+  const decrementCartItemQty = useUserStore(
+    (state) => state.decrementCartItemQty
+  );
+  const clearCart = useUserStore((state) => state.clearCart);
 
   return (
     <div>
@@ -19,9 +23,9 @@ export default function CartPage() {
           <span>{item.title}</span>
           <span className="font-bold px-3">{item.quantity}</span>
           <span>{item.price}</span>
-          <button onClick={() => decrementItemQty(item.id)}>-</button>
-          <button onClick={() => incrementItemQty(item.id)}>+</button>
-          <button onClick={() => removeItem(item.id)}>Remove</button>
+          <button onClick={() => decrementCartItemQty(item.id)}>-</button>
+          <button onClick={() => incrementCartItemQty(item.id)}>+</button>
+          <button onClick={() => removeFromCart(item.id)}>Remove</button>
         </div>
       ))}
       <button onClick={() => clearCart()}>Clear Cart</button>

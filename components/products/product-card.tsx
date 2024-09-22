@@ -1,14 +1,13 @@
 import { DummyProductType } from "@/types";
 import Image from "next/image";
 import React from "react";
-import { useShoppingCart } from "@/lib/useShoppingCart";
+import AddItemBtn from "../add-item-buttons/AddItemBtn";
 
 export default function ProductCard({
   cardData,
 }: {
   cardData: DummyProductType;
 }) {
-  const addItem = useShoppingCart((state) => state.addItem);
   const productTitle = (
     <div className="flex flex-col items-center">
       <span>{cardData.category}</span>
@@ -30,9 +29,7 @@ export default function ProductCard({
         />
       </div>
       {productTitle}
-      <button className="p-4" onClick={() => addItem(cardData)}>
-        Add To Cart
-      </button>
+      <AddItemBtn item={cardData} qty={1} />
     </div>
   );
 }
