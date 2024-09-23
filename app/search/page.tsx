@@ -12,8 +12,6 @@ export default function SearchPage({
 }) {
   const query = searchParams?.q || "";
 
-  // console.log("query at page:", query);
-
   return (
     <div>
       <SearchBar />
