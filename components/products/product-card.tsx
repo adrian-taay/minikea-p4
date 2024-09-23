@@ -2,6 +2,7 @@ import { DummyProductType } from "@/types";
 import Image from "next/image";
 import React from "react";
 import AddItemBtn from "../add-item-buttons/AddItemBtn";
+import Link from "next/link";
 
 export default function ProductCard({
   cardData,
@@ -28,7 +29,9 @@ export default function ProductCard({
           loading="lazy"
         />
       </div>
-      {productTitle}
+      <Link href={`/products/${cardData.id}`} className="font-bold">
+        {productTitle}
+      </Link>
       <AddItemBtn item={cardData} qty={1} />
     </div>
   );

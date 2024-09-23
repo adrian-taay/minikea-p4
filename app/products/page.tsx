@@ -1,48 +1,33 @@
-"use client";
-
 import ProductCard from "@/components/products/product-card";
-import { useUserStore } from "@/lib/useUserStore";
 import { DummyProductType } from "@/types";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
-export default function Products() {
-  const cart = useUserStore((state) => state.cart);
-  const [offset, setOffset] = useState(0);
-  const limit = 8;
-  const [data, setData] = useState([] as DummyProductType[]);
+export default async function Products() {
+  try {
+    const [furnitureResponse, homeDecorResponse, kitchenResponse] =
+      await Promise.all([
+        axios("https://dummyjson.com/products/category/furniture"),
+        axios("https://dummyjson.com/products/category/home-decoration"),
+        axios("https://dummyjson.com/products/category/kitchen-accessories"),
+      ]);
 
-  useEffect(() => {
-    async function getProducts() {
-      try {
-        const response = await axios(
-          `https://dummyjson.com/products/category/mens-shirts?limit=${limit}&skip=${offset}`
-        );
+    const furniture: DummyProductType[] = furnitureResponse.data.products;
+    const homeDecor: DummyProductType[] = homeDecorResponse.data.products;
+    const kitchen: DummyProductType[] = kitchenResponse.data.products;
 
-        setData((d) => [...d, ...response.data.products]);
-        return;
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    const data = [...furniture, ...homeDecor, ...kitchen];
 
-    getProducts();
-  }, [offset]);
-
-  return (
-    <div>
-      <h1>Shopping Cart</h1>
-      <div className="flex bg-slate-400 h-[50px]">
-        {cart.map((item, index) => (
-          <span key={index}>{item.title}</span>
-        ))}
+    return (
+      <div>
+        <h1>Products</h1>
+        <div className="flex gap-4 flex-wrap">
+          {data?.map((item, index) => (
+            <ProductCard cardData={item} key={index} />
+          ))}
+        </div>
       </div>
-      <div className="flex gap-4 flex-wrap">
-        {data?.map((item, index) => (
-          <ProductCard cardData={item} key={index} />
-        ))}
-      </div>
-      <button onClick={() => setOffset((o) => o + limit)}>Show More</button>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.log(error);
+  }
 }
