@@ -1,5 +1,6 @@
 import ProductCard from "@/components/products/product-card";
 import ProductPagination from "@/components/products/product-pagination";
+import ProductSort from "@/components/products/product-sort";
 import { DummyProductType } from "@/types";
 import axios from "axios";
 import React from "react";
@@ -18,9 +19,18 @@ export default async function CategoryPage({
   params: { category: string };
   searchParams?: {
     page?: string;
+    sortBy?: string;
+    order?: string;
   };
 }) {
   const pageQuery = searchParams?.page || 1;
+  const sortByQuery = searchParams?.sortBy;
+  const orderQuery = searchParams?.order;
+
+  const addSortQuery =
+    sortByQuery && orderQuery
+      ? `&sortBy=${sortByQuery}&order=${orderQuery}`
+      : "";
 
   const limit = 6;
   const determineSkip =
@@ -28,7 +38,7 @@ export default async function CategoryPage({
 
   try {
     const response = await axios(
-      `https://dummyjson.com/products/category/${params.category}?skip=${determineSkip}&limit=${limit}`
+      `https://dummyjson.com/products/category/${params.category}?skip=${determineSkip}&limit=${limit}${addSortQuery}`
     );
 
     const data: ResponseType = response.data;
@@ -38,6 +48,7 @@ export default async function CategoryPage({
       <div>
         <h1>Products</h1>
         <p>Total Products: {data.total}</p>
+        <ProductSort />
         <div className="flex gap-4 flex-wrap">
           {data?.products.map((item, index) => (
             <ProductCard cardData={item} key={index} />

@@ -1,5 +1,5 @@
-import React from "react";
+import { redirect } from "next/navigation";
 
-export default function CategoryPageWrapper() {
-  return <div>CategoryPageWrapper</div>;
+export default function RedirectToProduct() {
+  return redirect("/products");
 }

@@ -25,7 +25,13 @@ export default function ProductPagination({
 
     params.set("page", page);
 
-    replace(`${pathname}?${params.toString()}`);
+    const queryString: string[] = [];
+
+    params.forEach((value, key) => {
+      queryString.push(`${key}=${value}`);
+    });
+
+    replace(`${pathname}?${queryString.join("&")}`);
   }
 
   const previousButton = (
