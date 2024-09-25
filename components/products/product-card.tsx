@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import AddItemBtn from "../add-item-buttons/AddItemBtn";
 import Link from "next/link";
+import ToggleWishlistBtn from "../add-item-buttons/ToggleWishlistBtn";
 
 export default function ProductCard({
   cardData,
@@ -33,6 +34,7 @@ export default function ProductCard({
         {productTitle}
       </Link>
       <AddItemBtn item={cardData} qty={1} />
+      <ToggleWishlistBtn cardData={cardData} />
     </div>
   );
 }

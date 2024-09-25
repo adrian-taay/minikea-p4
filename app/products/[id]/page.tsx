@@ -4,6 +4,17 @@ import axios from "axios";
 import Image from "next/image";
 import React from "react";
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const response = await axios(`https://dummyjson.com/products/${params.id}`);
+
+  const meta: DummyProductType = response.data;
+
+  return {
+    title: `${meta.title} | Minikea`,
+    description: meta.description,
+  };
+}
+
 export default async function SingleProductPage({
   params,
 }: {

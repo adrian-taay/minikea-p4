@@ -6,6 +6,21 @@ import { DummyProductType } from "@/types";
 import axios from "axios";
 import React from "react";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { category: string };
+}) {
+  const pageTitle = params.category
+    .split("-")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return {
+    title: `Browse ${pageTitle} | Minikea`,
+  };
+}
+
 type ResponseType = {
   products: DummyProductType[];
   total: number;
