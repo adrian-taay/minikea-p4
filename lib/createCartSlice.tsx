@@ -7,6 +7,7 @@ export type CartItem = {
   quantity: number;
   price: number;
   stock: number;
+  thumbnail: string;
 };
 
 export type CartSlice = {
@@ -53,6 +54,7 @@ export const createCartSlice: StateCreator<
             quantity: qty,
             price: item.price,
             stock: item.stock,
+            thumbnail: item.thumbnail,
           },
         ],
       };

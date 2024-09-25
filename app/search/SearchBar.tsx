@@ -8,6 +8,8 @@ export default function SearchBar() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  console.log(pathname);
+
   const handleSearchInput = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {

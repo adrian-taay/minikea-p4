@@ -2,11 +2,30 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import UserAuthButton from "../user-auth-buttons/UserAuthButton";
+import React, { useEffect, useRef, useState } from "react";
+import UserAuthButton from "./UserAuthButton";
+import ShoppingCartIcon from "./ShoppingCartIcon";
+import NavbarSearchBar from "../products/product-search";
+import { Titillium_Web } from "next/font/google";
+import { CiMenuBurger } from "react-icons/ci";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
+import NavDrawerContents from "./NavDrawerContents";
+
+const titillium = Titillium_Web({
+  weight: ["400", "600", "700"],
+  subsets: ["latin"],
+});
 
 export default function Navbar() {
   const [isFloatingNavbar, setIsFloatingNavbar] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef(null);
 
   useEffect(() => {
     function handleScrollNavbar() {
@@ -16,45 +35,85 @@ export default function Navbar() {
         setIsFloatingNavbar(false);
       }
     }
-
     window.addEventListener("scroll", handleScrollNavbar);
-
     return () => window.removeEventListener("scroll", handleScrollNavbar);
   }, []);
 
-  // console.log(isFloatingNavbar);
+  const NavDrawer = (
+    <>
+      <button ref={btnRef} onClick={onOpen}>
+        <CiMenuBurger size={18} />
+      </button>
+      <Drawer
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader>
+            <span
+              className={clsx(
+                "tracking-widest",
+                "font-semibold",
+                titillium.className
+              )}
+            >
+              MINIKEA
+            </span>
+          </DrawerHeader>
+          <NavDrawerContents />
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
 
   const LeftSideWrapper = (
     <section className="flex-start flex-1">
-      <Link href={"/search"}>Search</Link>
+      <div className="max-md:block hidden">{NavDrawer}</div>
+      <div className="hidden md:block w-3/4">
+        <NavbarSearchBar />
+      </div>
     </section>
   );
 
   const LogoWrapper = (
-    <Link href={"/"} className="flex-center flex-1">
+    <Link
+      href={"/"}
+      className={clsx(
+        "flex-center",
+        "flex-1",
+        titillium.className,
+        "font-semibold",
+        "text-3xl",
+        "tracking-widest"
+      )}
+    >
       MINIKEA
     </Link>
   );
 
   const RightSideWrapper = (
-    <section className="flex-end flex-1">
-      <Link href={"/cart"}>Cart</Link>
+    <section className="flex-end flex-1 gap-4">
+      <ShoppingCartIcon />
       <UserAuthButton />
     </section>
   );
 
   return (
-    <nav>
+    <nav className="z-10">
       <nav
         className={clsx(
           "w-full",
           "flex-between",
           "px-7",
-          "bg-stone-200",
+          "bg-white",
+          "border-b",
           "transition-all",
           "ease-in-out",
-          isFloatingNavbar && "fixed top-0",
-          isFloatingNavbar ? "py-3" : "py-8"
+          isFloatingNavbar && "fixed top-0 shadow-md",
+          isFloatingNavbar ? "py-3" : "py-5"
         )}
       >
         {LeftSideWrapper}

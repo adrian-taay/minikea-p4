@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import SnackbarWrapper from "@/utils/snackbar-provider";
+import { ChakraUIProvider } from "@/utils/chakraui-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,9 +33,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col justify-between h-screen`}
       >
         <SnackbarWrapper>
-          <Navbar />
-          {children}
-          <Footer />
+          <ChakraUIProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </ChakraUIProvider>
         </SnackbarWrapper>
       </body>
     </html>
