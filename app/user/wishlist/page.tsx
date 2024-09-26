@@ -12,7 +12,7 @@ export default function WishlistPage() {
     <div className="flex flex-col">
       {wishlist.map((item, index) => (
         <div key={index} className="flex gap-4">
-          <Link href={item.id}>{item.title}</Link>
+          <Link href={`/products/${String(item.id)}`}>{item.title}</Link>
           <span
             onClick={() => removeFromWishlist(item.id)}
             className="cursor-pointer"

@@ -2,6 +2,7 @@
 
 import { UserItem } from "@/lib/createAuthSlice";
 import { useUserStore } from "@/lib/useUserStore";
+import { Button, Input } from "@chakra-ui/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
@@ -38,23 +39,29 @@ export default function LoginPage() {
     }
   }
 
-  return (
-    <div>
-      <label htmlFor="username-input">Enter Username:</label>
-      <input
-        type="text"
-        value={username}
-        name="username-input"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <label htmlFor="password-input">Enter Password:</label>
-      <input
-        type="text"
-        value={password}
-        name="password-input"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={() => loginUser(username, password)}>Login</button>
-    </div>
+  const LoginForm = (
+    <section className="flex flex-col bg-slate-100 p-5 gap-4">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="username-input">Enter Username:</label>
+        <Input
+          type="text"
+          value={username}
+          name="username-input"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="password-input">Enter Password:</label>
+        <Input
+          type="password"
+          value={password}
+          name="password-input"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <Button onClick={() => loginUser(username, password)}>Login</Button>
+    </section>
   );
+
+  return <div className="w-full flex-center h-full">{LoginForm}</div>;
 }

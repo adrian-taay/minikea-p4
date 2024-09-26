@@ -13,11 +13,11 @@ export default function ToggleWishlistBtn({
   const addToWishlist = useUserStore((state) => state.addToWishlist);
   const removeFromWishlist = useUserStore((state) => state.removeFromWishlist);
 
-  const findWishlistItem = wishlist.some((item) => item.id === cardData.sku);
+  const findWishlistItem = wishlist.some((item) => item.id === cardData.id);
 
   function handleToggle() {
     if (findWishlistItem) {
-      removeFromWishlist(cardData.sku);
+      removeFromWishlist(cardData.id);
     } else {
       addToWishlist(cardData);
     }

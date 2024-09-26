@@ -1,34 +1,35 @@
-"use client";
-
-import { useUserStore } from "@/lib/useUserStore";
 import React from "react";
+import CartItemView from "./CartItemView";
+import WishlistItemView from "./WishlistItemView";
+import Link from "next/link";
+import CheckoutSummary from "./CheckoutSummary";
 
 export default function CartPage() {
-  const cart = useUserStore((state) => state.cart);
-  const removeFromCart = useUserStore((state) => state.removeFromCart);
-  const incrementCartItemQty = useUserStore(
-    (state) => state.incrementCartItemQty
+  const CartItemViewWrapper = (
+    <>
+      <h1 className="font-semibold text-2xl my-8">Your Cart</h1>
+      <CartItemView />
+    </>
   );
-  const decrementCartItemQty = useUserStore(
-    (state) => state.decrementCartItemQty
+
+  const WishlistItemViewWrapper = (
+    <>
+      <h1 className="font-semibold text-xl mt-8">
+        It&#39;s about time you bought these!
+      </h1>
+      <p className="w-4/5">
+        Clear your wishlist. Add them to cart. You deserve a clean wishlist!
+      </p>
+      <WishlistItemView />
+      <Link href={"/user/wishlist"}>See your wishlist</Link>
+    </>
   );
-  const clearCart = useUserStore((state) => state.clearCart);
 
   return (
-    <div>
-      <h1 className="h1-bold">Shopping Cart</h1>
-      {cart.map((item, index) => (
-        <div key={index}>
-          <span>{item.id}</span>
-          <span>{item.title}</span>
-          <span className="font-bold px-3">{item.quantity}</span>
-          <span>{item.price}</span>
-          <button onClick={() => decrementCartItemQty(item.id)}>-</button>
-          <button onClick={() => incrementCartItemQty(item.id)}>+</button>
-          <button onClick={() => removeFromCart(item.id)}>Remove</button>
-        </div>
-      ))}
-      <button onClick={() => clearCart()}>Clear Cart</button>
+    <div className="w-full">
+      {CartItemViewWrapper}
+      {WishlistItemViewWrapper}
+      <CheckoutSummary />
     </div>
   );
 }

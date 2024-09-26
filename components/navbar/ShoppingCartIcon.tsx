@@ -61,20 +61,28 @@ export default function ShoppingCartIcon() {
   );
 
   return (
-    <div onClick={() => router.push("/cart")} className="flex items-center">
-      <Menu isOpen={isOpen} gutter={4}>
-        <MenuButton onMouseEnter={onOpen} onMouseLeave={onClose}>
-          {CartIcon}
-        </MenuButton>
-        <MenuList
-          className="w-full"
-          onMouseEnter={onOpen}
-          onMouseLeave={onClose}
-        >
-          {CartList}
-          {ViewCartLink}
-        </MenuList>
-      </Menu>
-    </div>
+    <>
+      <div className="max-sm:block hidden" onClick={() => router.push("/cart")}>
+        {CartIcon}
+      </div>
+      <div
+        className="hidden md:flex items-center"
+        onClick={() => router.push("/cart")}
+      >
+        <Menu isOpen={isOpen} gutter={4}>
+          <MenuButton onMouseEnter={onOpen} onMouseLeave={onClose}>
+            {CartIcon}
+          </MenuButton>
+          <MenuList
+            className="w-full"
+            onMouseEnter={onOpen}
+            onMouseLeave={onClose}
+          >
+            {CartList}
+            {ViewCartLink}
+          </MenuList>
+        </Menu>
+      </div>
+    </>
   );
 }

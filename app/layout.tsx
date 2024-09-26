@@ -35,7 +35,7 @@ export default function RootLayout({
         <SnackbarWrapper>
           <ChakraUIProvider>
             <Navbar />
-            {children}
+            <div className="flex-1">{children}</div>
             <Footer />
           </ChakraUIProvider>
         </SnackbarWrapper>

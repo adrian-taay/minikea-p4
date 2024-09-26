@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  AccordionIcon,
 } from "@chakra-ui/react";
 import NavbarSearchBar from "../products/product-search";
 import Link from "next/link";
@@ -22,8 +23,9 @@ export default function NavDrawerContents() {
     <div>
       <Accordion allowToggle>
         <AccordionItem>
-          <AccordionButton className="font-semibold">
-            My Account
+          <AccordionButton className="font-semibold flex justify-between">
+            <span>My Account</span>
+            <AccordionIcon />
           </AccordionButton>
           <AccordionPanel className="flex flex-col gap-2">
             {menuLinks.map((item) => (

@@ -49,6 +49,7 @@ export default function Navbar() {
         placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
+        isFullHeight={true}
       >
         <DrawerOverlay />
         <DrawerContent>

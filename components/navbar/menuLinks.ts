@@ -16,14 +16,14 @@ export const menuLinks = [
 export const productCategoryLinks = [
   {
     title: "Furniture",
-    href: "furniture",
+    href: "/products/category/furniture",
   },
   {
     title: "Home Decors",
-    href: "home-decorations",
+    href: "/products/category/home-decoration",
   },
   {
     title: "Kitchen Accessories",
-    href: "kitchen-accessories",
+    href: "/products/category/kitchen-accessories",
   },
 ];
