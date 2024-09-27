@@ -1,21 +1,16 @@
 import { DummyProductType } from "@/types";
 import { StateCreator } from "zustand";
 
-export type CartItem = {
-  id: string;
-  title: string;
+export type CartItem = DummyProductType & {
   quantity: number;
-  price: number;
-  stock: number;
-  thumbnail: string;
 };
 
 export type CartSlice = {
   cart: CartItem[];
   addToCart: (item: DummyProductType, qty: number) => void;
-  removeFromCart: (id: string) => void;
-  incrementCartItemQty: (id: string) => void;
-  decrementCartItemQty: (id: string) => void;
+  removeFromCart: (id: number) => void;
+  incrementCartItemQty: (id: number) => void;
+  decrementCartItemQty: (id: number) => void;
   clearCart: () => void;
 };
 
@@ -29,13 +24,13 @@ export const createCartSlice: StateCreator<
   addToCart: (item: DummyProductType, qty: number) =>
     set((state) => {
       const checkCartItem = state.cart.find(
-        (cartItem) => cartItem.id === item.sku
+        (cartItem) => cartItem.id === item.id
       );
 
       if (checkCartItem) {
         return {
           cart: state.cart.map((cartItem) =>
-            cartItem.id === item.sku
+            cartItem.id === item.id
               ? {
                   ...cartItem,
                   quantity: cartItem.quantity + qty,
@@ -49,19 +44,15 @@ export const createCartSlice: StateCreator<
         cart: [
           ...state.cart,
           {
-            id: item.sku,
-            title: item.title,
+            ...item,
             quantity: qty,
-            price: item.price,
-            stock: item.stock,
-            thumbnail: item.thumbnail,
           },
         ],
       };
     }),
-  removeFromCart: (id: string) =>
+  removeFromCart: (id: number) =>
     set((state) => ({ cart: state.cart.filter((item) => item.id !== id) })),
-  incrementCartItemQty: (id: string) =>
+  incrementCartItemQty: (id: number) =>
     set((state) => ({
       cart: state.cart.map((item) =>
         item.id === id
@@ -75,7 +66,7 @@ export const createCartSlice: StateCreator<
           : item
       ),
     })),
-  decrementCartItemQty: (id: string) =>
+  decrementCartItemQty: (id: number) =>
     set((state) => ({
       cart: state.cart.map((item) =>
         item.id === id

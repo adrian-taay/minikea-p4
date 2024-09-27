@@ -1,4 +1,4 @@
-import ProductCard from "@/components/products/product-card";
+import ProductCard from "@/components/cards/product-card";
 import ProductFilter from "@/components/products/product-filter";
 import ProductPagination from "@/components/products/product-pagination";
 import ProductSort from "@/components/products/product-sort";

@@ -3,7 +3,8 @@ import Image from "next/image";
 import React from "react";
 import AddItemBtn from "../add-item-buttons/AddItemBtn";
 import Link from "next/link";
-import ToggleWishlistBtn from "../add-item-buttons/ToggleWishlistBtn";
+import ToggleWishlistButton from "../buttons/toggle-wishlist-button";
+import { createSlug } from "@/utils/createSlug";
 
 export default function ProductCard({
   cardData,
@@ -18,6 +19,8 @@ export default function ProductCard({
     </div>
   );
 
+  const slug = createSlug(cardData);
+
   return (
     <div className="flex flex-col items-center bg-slate-300">
       <div className="min-w-[250px] min-h-[250px] overflow-hidden">
@@ -30,11 +33,11 @@ export default function ProductCard({
           loading="lazy"
         />
       </div>
-      <Link href={`/products/${cardData.id}`} className="font-bold">
+      <Link href={slug} className="font-bold">
         {productTitle}
       </Link>
       <AddItemBtn item={cardData} qty={1} />
-      <ToggleWishlistBtn cardData={cardData} />
+      <ToggleWishlistButton cardData={cardData} />
     </div>
   );
 }

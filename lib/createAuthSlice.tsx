@@ -1,4 +1,6 @@
 import { StateCreator } from "zustand";
+import { TransactionSlice } from "./createTransactionSlice";
+import { CartItem, CartSlice } from "./createCartSlice";
 
 export type UserItem = {
   accessToken: string;
@@ -18,10 +20,15 @@ export type AuthSlice = {
   transactions: [];
   userLogin: (user: UserItem) => void;
   userLogout: () => void;
-  addToTransactions: () => void;
+  userCheckout: (cart: CartItem[]) => void;
 };
 
-export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
+export const createAuthSlice: StateCreator<
+  AuthSlice & TransactionSlice & CartSlice,
+  [],
+  [],
+  AuthSlice
+> = (set, get) => ({
   user: {} as UserItem,
   isLoggedIn: false,
   transactions: [],
@@ -30,6 +37,9 @@ export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
       user: user,
       isLoggedIn: true,
     })),
-  userLogout: () => set({ user: {} as UserItem }),
-  addToTransactions: () => set({}),
+  userLogout: () => set({ user: {} as UserItem, isLoggedIn: false }),
+  userCheckout: (cart: CartItem[]) => {
+    get().addToTransactions(cart);
+    get().clearCart();
+  },
 });

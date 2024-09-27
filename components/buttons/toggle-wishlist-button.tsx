@@ -3,8 +3,9 @@
 import { useUserStore } from "@/lib/useUserStore";
 import { DummyProductType } from "@/types";
 import React from "react";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 
-export default function ToggleWishlistBtn({
+export default function ToggleWishlistButton({
   cardData,
 }: {
   cardData: DummyProductType;
@@ -25,7 +26,11 @@ export default function ToggleWishlistBtn({
 
   return (
     <button onClick={handleToggle}>
-      {findWishlistItem ? "remove" : "add"}
+      {findWishlistItem ? (
+        <GoHeartFill fill={"#E22B22"} size={28} />
+      ) : (
+        <GoHeart size={28} />
+      )}
     </button>
   );
 }

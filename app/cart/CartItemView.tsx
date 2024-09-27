@@ -6,6 +6,8 @@ import { CiTrash } from "react-icons/ci";
 import Image from "next/image";
 import { CartItem } from "@/lib/createCartSlice";
 import { GoDash, GoPlus } from "react-icons/go";
+import Link from "next/link";
+import { createSlug } from "@/utils/createSlug";
 
 export default function CartItemView() {
   const cart = useUserStore((state) => state.cart);
@@ -35,39 +37,44 @@ export default function CartItemView() {
     );
   };
 
+  const CartItems = cart.map((item) => (
+    <div
+      key={item.id}
+      className="flex gap-4 w-full items-start border p-4 relative"
+    >
+      <div className="bg-stone-200 p-2">
+        <Image src={item.thumbnail} width={100} height={100} alt={item.title} />
+      </div>
+      <div className="flex flex-col items-start gap-4 flex-1">
+        <div className="-space-y-1">
+          <Link href={createSlug(item)} className="font-bold text-xl">
+            {item.title}
+          </Link>
+          <p className="text-neutral-400">${item.price.toFixed(2)}</p>
+        </div>
+        <QuantityControlButtons item={item} />
+        <p className="font-semibold text-lg">
+          $ {(item.price * item.quantity).toFixed(2)}
+        </p>
+      </div>
+      <button
+        onClick={() => removeFromCart(item.id)}
+        className="absolute text-neutral-400 bottom-4 right-4"
+      >
+        <CiTrash size={28} />
+      </button>
+    </div>
+  ));
+
+  const NoItem = (
+    <div className="w-full h-[50px] flex-center">
+      <p>There are no items in your cart.</p>
+    </div>
+  );
+
   return (
     <div className="space-y-4">
-      {cart.map((item) => (
-        <div
-          key={item.id}
-          className="flex gap-4 w-full items-start border p-4 relative"
-        >
-          <div className="bg-stone-200 p-2">
-            <Image
-              src={item.thumbnail}
-              width={100}
-              height={100}
-              alt={item.title}
-            />
-          </div>
-          <div className="flex flex-col items-start gap-4 flex-1">
-            <div className="-space-y-1">
-              <p className="font-bold text-xl">{item.title}</p>
-              <p className="text-neutral-400">${item.price.toFixed(2)}</p>
-            </div>
-            <QuantityControlButtons item={item} />
-            <p className="font-semibold text-lg">
-              $ {(item.price * item.quantity).toFixed(2)}
-            </p>
-          </div>
-          <button
-            onClick={() => removeFromCart(item.id)}
-            className="absolute text-neutral-400 bottom-4 right-4"
-          >
-            <CiTrash size={28} />
-          </button>
-        </div>
-      ))}
+      {cart.length > 0 ? CartItems : NoItem}
       <button onClick={() => clearCart()}>Clear Cart</button>
     </div>
   );

@@ -1,17 +1,19 @@
 "use client";
 
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import { useUserStore } from "@/lib/useUserStore";
 import Image from "next/image";
 import AddItemBtn from "@/components/add-item-buttons/AddItemBtn";
 import Link from "next/link";
+
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "./styles.css";
 
 export default function WishlistItemView() {
   const wishlist = useUserStore((state) => state.wishlist);
-
   const inStockWishlistItems = wishlist.filter((item) => item.stock > 0);
 
   return (
@@ -36,7 +38,7 @@ export default function WishlistItemView() {
         const lowStock = item.stock < 10;
 
         return (
-          <SwiperSlide key={item.id} className="border py-4 px-4">
+          <SwiperSlide key={item.id} className="border py-4 px-4 mb-10">
             <div className="flex gap-3 justify-between">
               <Image
                 src={item.thumbnail}

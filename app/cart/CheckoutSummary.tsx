@@ -1,7 +1,8 @@
 "use client";
 
+import CheckoutButton from "@/components/buttons/checkout-button";
 import { useUserStore } from "@/lib/useUserStore";
-import { Button, Divider } from "@chakra-ui/react";
+import { Divider } from "@chakra-ui/react";
 import React from "react";
 
 export default function CheckoutSummary() {
@@ -33,7 +34,7 @@ export default function CheckoutSummary() {
       </div>
       <Divider />
       <div className="w-full text-right pt-2">
-        <Button>Checkout</Button>
+        <CheckoutButton />
       </div>
     </div>
   );

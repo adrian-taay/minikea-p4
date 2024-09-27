@@ -5,7 +5,8 @@ import Image from "next/image";
 import React from "react";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const response = await axios(`https://dummyjson.com/products/${params.id}`);
+  const extractId = params.id.split("-")[0];
+  const response = await axios(`https://dummyjson.com/products/${extractId}`);
 
   const meta: DummyProductType = response.data;
 
@@ -20,8 +21,9 @@ export default async function SingleProductPage({
 }: {
   params: { id: string };
 }) {
+  const extractId = params.id.split("-")[0];
   try {
-    const response = await axios(`https://dummyjson.com/products/${params.id}`);
+    const response = await axios(`https://dummyjson.com/products/${extractId}`);
     const productDetail: DummyProductType = response.data;
 
     return (

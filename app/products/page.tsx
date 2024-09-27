@@ -1,4 +1,4 @@
-import ProductCard from "@/components/products/product-card";
+import ProductCard from "@/components/cards/product-card";
 import ProductPagination from "@/components/products/product-pagination";
 import { DummyProductType } from "@/types";
 import axios from "axios";
@@ -15,10 +15,6 @@ export default async function Products({
 
   const determineSkip =
     Number(pageQuery) === 1 ? 0 : (Number(pageQuery) - 1) * 8;
-
-  // console.log("page query:", pageQuery);
-  // console.log("page limit:", 8);
-  // console.log("determine skip:", determineSkip);
 
   try {
     const [
