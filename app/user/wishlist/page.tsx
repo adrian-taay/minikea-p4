@@ -9,7 +9,7 @@ export default function WishlistPage() {
 
   return (
     <section>
-      <h1>Wishlist</h1>
+      <h1 className="font-bold text-2xl mb-8">Wishlist</h1>
       <div className="flex flex-col gap-4">
         {wishlist.map((item, index) => (
           <WishlistItemCard wishlistItem={item} key={index} />

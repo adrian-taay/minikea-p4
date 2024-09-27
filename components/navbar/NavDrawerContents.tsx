@@ -29,11 +29,7 @@ export default function NavDrawerContents() {
           </AccordionButton>
           <AccordionPanel className="flex flex-col gap-2">
             {menuLinks.map((item) => (
-              <Link
-                href={`/user/${item.href}`}
-                key={item.title}
-                className="ml-4"
-              >
+              <Link href={item.href} key={item.title} className="ml-4">
                 {item.title}
               </Link>
             ))}

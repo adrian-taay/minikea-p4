@@ -37,7 +37,7 @@ export default function UserAuthButton() {
   );
 
   const UserMenuLinks = menuLinks.map((link) => (
-    <MenuItem as="a" href={`/user/${link.href}`} key={link.title}>
+    <MenuItem as="a" href={link.href} key={link.title}>
       {link.title}
     </MenuItem>
   ));

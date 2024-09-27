@@ -1,15 +1,15 @@
 export const menuLinks = [
   {
     title: "My Profile",
-    href: "profile",
+    href: "/user",
   },
   {
-    title: "My Purchases",
-    href: "purchases",
+    title: "My Transactions",
+    href: "/user/transactions",
   },
   {
     title: "My Wishlist",
-    href: "wishlist",
+    href: "/user/wishlist",
   },
 ];
 

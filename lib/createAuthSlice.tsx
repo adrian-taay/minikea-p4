@@ -20,7 +20,7 @@ export type AuthSlice = {
   transactions: [];
   userLogin: (user: UserItem) => void;
   userLogout: () => void;
-  userCheckout: (cart: CartItem[]) => void;
+  userCheckout: (cart: CartItem[], user: UserItem) => void;
 };
 
 export const createAuthSlice: StateCreator<
@@ -38,8 +38,8 @@ export const createAuthSlice: StateCreator<
       isLoggedIn: true,
     })),
   userLogout: () => set({ user: {} as UserItem, isLoggedIn: false }),
-  userCheckout: (cart: CartItem[]) => {
-    get().addToTransactions(cart);
+  userCheckout: (cart: CartItem[], user: UserItem) => {
+    get().addToTransactions(cart, user);
     get().clearCart();
   },
 });
