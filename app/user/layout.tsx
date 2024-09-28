@@ -1,4 +1,7 @@
+"use client";
+
 import UserAvatarCard from "@/components/cards/user-avatar-card";
+import { useUserStore } from "@/lib/useUserStore";
 import Link from "next/link";
 
 export default function UserPageLayout({
@@ -6,6 +9,8 @@ export default function UserPageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+
   const Sidebar = (
     <div className="max-sm:hidden flex flex-col gap-8 px-16 py-8 justify-start font-bold border-r">
       <UserAvatarCard />
@@ -23,7 +28,7 @@ export default function UserPageLayout({
 
   return (
     <section className="w-full h-full flex">
-      {Sidebar}
+      {isLoggedIn && Sidebar}
       <div className="p-8 flex-1">{children}</div>
     </section>
   );

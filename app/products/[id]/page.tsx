@@ -1,8 +1,12 @@
+import WishlistItemView from "@/app/cart/WishlistItemView";
 import AddItemBtnWrapper from "@/components/add-item-buttons/AddItemBtnWrapper";
+import ProductImages from "@/components/single-product/product-images";
+import ProductInfoPolicies from "@/components/single-product/product-info-policies";
 import { DummyProductType } from "@/types";
 import axios from "axios";
-import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import { GoArrowLeft } from "react-icons/go";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const extractId = params.id.split("-")[0];
@@ -22,24 +26,42 @@ export default async function SingleProductPage({
   params: { id: string };
 }) {
   const extractId = params.id.split("-")[0];
+
+  const BackToProductsButton = (
+    <button className="hover:bg-stone-50 py-2 px-3 rounded-md">
+      <Link href={"/products"} className="flex-start gap-2">
+        <GoArrowLeft />
+        <span>Back to Products</span>
+      </Link>
+    </button>
+  );
+
   try {
     const response = await axios(`https://dummyjson.com/products/${extractId}`);
     const productDetail: DummyProductType = response.data;
 
+    const ProductWriteups = (
+      <div>
+        <h2 className="uppercase text-sm">
+          {productDetail.brand ? productDetail.brand : "MINIKEA"}
+        </h2>
+        <h1 className="text-2xl">{productDetail.title}</h1>
+        <h3>${productDetail.price}</h3>
+        <h3>{productDetail.availabilityStatus}</h3>
+        <h3>Rating: {productDetail.rating}</h3>
+
+        <p>{productDetail.description}</p>
+      </div>
+    );
+
     return (
       <div>
-        <h1>{productDetail.title}</h1>
-        <p>{productDetail.description}</p>
-        <div>
-          <Image
-            src={productDetail.images[0]}
-            width={200}
-            height={200}
-            alt={productDetail.title}
-            loading="lazy"
-          />
-        </div>
+        {BackToProductsButton}
+        <ProductImages images={productDetail.images && productDetail.images} />
+        {ProductWriteups}
         <AddItemBtnWrapper item={productDetail} />
+        <ProductInfoPolicies data={productDetail} />
+        <WishlistItemView />
       </div>
     );
   } catch (err) {
