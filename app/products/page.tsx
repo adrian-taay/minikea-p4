@@ -50,9 +50,9 @@ export default async function ProductsPage({
             <ProductCard cardData={item} key={index} />
           ))}
         </div>
-        {isMultiplePages && (
+        {/* {isMultiplePages && (
           <ProductPagination total={data.total} limit={limit} />
-        )}
+        )} */}
       </div>
     );
   } catch (error) {

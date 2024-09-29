@@ -13,7 +13,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { menuLinks } from "../navbar/menuLinks";
+import { userAccountLinks } from "../navbar/menuLinks";
 
 export default function UserAuthButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,7 +36,7 @@ export default function UserAuthButton() {
     </div>
   );
 
-  const UserMenuLinks = menuLinks.map((link) => (
+  const UserMenuLinks = userAccountLinks.map((link) => (
     <MenuItem as="a" href={link.href} key={link.title}>
       {link.title}
     </MenuItem>

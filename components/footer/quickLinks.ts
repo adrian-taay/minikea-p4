@@ -1,10 +1,4 @@
-import { productCategoryLinks } from "../navbar/menuLinks";
-
 export const quickLinks = [
-  {
-    title: "Shop Highlights",
-    links: [...productCategoryLinks],
-  },
   {
     title: "Quick Links",
     links: [

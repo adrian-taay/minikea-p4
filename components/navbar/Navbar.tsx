@@ -2,20 +2,12 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserAuthButton from "../buttons/user-auth-button";
 import ShoppingCartIcon from "../buttons/shopping-cart-button";
-import NavbarSearchBar from "../products/product-search";
 import { Titillium_Web } from "next/font/google";
-import { CiMenuBurger } from "react-icons/ci";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
-import NavDrawerContents from "./nav-drawer-contents";
+import NavDrawerLarge from "./nav-drawer-large";
+import NavDrawerSmall from "./nav-drawer-small";
 
 const titillium = Titillium_Web({
   weight: ["400", "600", "700"],
@@ -24,8 +16,6 @@ const titillium = Titillium_Web({
 
 export default function Navbar() {
   const [isFloatingNavbar, setIsFloatingNavbar] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef(null);
 
   useEffect(() => {
     function handleScrollNavbar() {
@@ -39,42 +29,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScrollNavbar);
   }, []);
 
-  const NavDrawer = (
-    <>
-      <button ref={btnRef} onClick={onOpen}>
-        <CiMenuBurger size={18} />
-      </button>
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-        isFullHeight={true}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader>
-            <span
-              className={clsx(
-                "tracking-widest",
-                "font-semibold",
-                titillium.className
-              )}
-            >
-              MINIKEA
-            </span>
-          </DrawerHeader>
-          <NavDrawerContents />
-        </DrawerContent>
-      </Drawer>
-    </>
-  );
-
   const LeftSideWrapper = (
     <section className="flex-start flex-1">
-      <div className="max-md:block hidden">{NavDrawer}</div>
-      <div className="hidden md:block w-3/4">
-        <NavbarSearchBar />
+      <div className="max-md:block hidden">
+        <NavDrawerSmall />
+      </div>
+      <div className="hidden md:block">
+        <NavDrawerLarge />
       </div>
     </section>
   );
@@ -107,20 +68,20 @@ export default function Navbar() {
     <nav
       className={clsx(
         "w-full",
-        "flex-between",
         "px-7",
         "bg-white",
         "border-b",
         "transition-all",
         "ease-in-out",
-        "py-2",
         "z-10",
         isFloatingNavbar && "fixed top-0 shadow-md"
       )}
     >
-      {LeftSideWrapper}
-      {LogoWrapper}
-      {RightSideWrapper}
+      <div className="flex-between py-2">
+        {LeftSideWrapper}
+        {LogoWrapper}
+        {RightSideWrapper}
+      </div>
     </nav>
   );
 }

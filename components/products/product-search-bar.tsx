@@ -5,7 +5,7 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-export default function NavbarSearchBar() {
+export default function ProductSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
@@ -22,6 +22,9 @@ export default function NavbarSearchBar() {
           placeholder="Search for products..."
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
+          size={"lg"}
+          className="font-extralight"
+          rounded={"none"}
         />
         <InputRightElement>
           <button onClick={handleSearchInput}>

@@ -1,4 +1,3 @@
-import { DummyProductType } from "@/types";
 import {
   Tabs,
   TabList,
@@ -8,6 +7,7 @@ import {
   TabIndicator,
 } from "@chakra-ui/react";
 import UserReviewCard from "../cards/user-review-card";
+import { DummyProductType } from "@/types/dummy-products-type";
 
 export default function ProductInfoPolicies({
   data,
