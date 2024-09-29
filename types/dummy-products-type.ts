@@ -58,3 +58,10 @@ export type DummyProductType = {
 export type CartItem = DummyProductType & {
   quantity: number;
 };
+
+export type ProductFetchResponseType = {
+  products: DummyProductType[];
+  total: number;
+  skip: number;
+  limit: number;
+};
