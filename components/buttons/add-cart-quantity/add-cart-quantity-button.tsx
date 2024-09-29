@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import InputQuantity from "./InputQuantity";
-import AddItemBtn from "./AddItemBtn";
-import { DummyProductType } from "@/types";
+import InputQuantity from "./qty-control-buttons";
+import AddItemBtn from "./add-item-button";
 import { useUserStore } from "@/lib/useUserStore";
+import { DummyProductType } from "@/types/dummy-products-type";
 
 export default function AddItemBtnWrapper({
   item,
@@ -15,7 +15,7 @@ export default function AddItemBtnWrapper({
   const [itemQty, setItemQty] = useState(1);
 
   const cartItemQty = cart.find(
-    (cartItem) => cartItem.id === item.sku
+    (cartItem) => cartItem.id === item.id
   )?.quantity;
 
   return (

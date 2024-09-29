@@ -1,10 +1,10 @@
-import { DummyProductType } from "@/types";
 import Image from "next/image";
 import React from "react";
-import AddItemBtn from "../add-item-buttons/AddItemBtn";
+import AddItemBtn from "../buttons/add-cart-quantity/add-item-button";
 import Link from "next/link";
 import ToggleWishlistButton from "../buttons/toggle-wishlist-button";
 import { createSlug } from "@/utils/createSlug";
+import { DummyProductType } from "@/types/dummy-products-type";
 
 export default function ProductCard({
   cardData,

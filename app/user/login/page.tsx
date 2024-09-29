@@ -1,7 +1,7 @@
 "use client";
 
-import { UserItem } from "@/lib/createAuthSlice";
 import { useUserStore } from "@/lib/useUserStore";
+import { UserItem } from "@/types/dummy-users-type";
 import { Button, Input } from "@chakra-ui/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";

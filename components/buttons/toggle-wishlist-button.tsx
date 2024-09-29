@@ -1,7 +1,8 @@
 "use client";
 
 import { useUserStore } from "@/lib/useUserStore";
-import { DummyProductType } from "@/types";
+import { DummyProductType } from "@/types/dummy-products-type";
+
 import React from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 

@@ -4,10 +4,10 @@ import React from "react";
 import { useUserStore } from "@/lib/useUserStore";
 import { CiTrash } from "react-icons/ci";
 import Image from "next/image";
-import { CartItem } from "@/lib/createCartSlice";
 import { GoDash, GoPlus } from "react-icons/go";
 import Link from "next/link";
 import { createSlug } from "@/utils/createSlug";
+import { CartItem } from "@/types/dummy-products-type";
 
 export default function CartItemView() {
   const cart = useUserStore((state) => state.cart);

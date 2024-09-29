@@ -2,7 +2,7 @@ import { DummyProductType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import AddItemBtn from "../add-item-buttons/AddItemBtn";
+import AddItemBtn from "../buttons/add-cart-quantity/add-item-button";
 import ToggleWishlistButton from "../buttons/toggle-wishlist-button";
 import clsx from "clsx";
 

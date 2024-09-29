@@ -1,7 +1,7 @@
 import React from "react";
-import CartItemView from "./CartItemView";
-import WishlistItemView from "./WishlistItemView";
-import CheckoutSummary from "./CheckoutSummary";
+import CartItemView from "./cart-item-view";
+import WishlistItemView from "./wishlist-item-view";
+import CheckoutSummary from "./checkout-summary";
 
 export default function CartPage() {
   const CartItemViewWrapper = (

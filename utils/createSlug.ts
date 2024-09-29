@@ -1,4 +1,4 @@
-import { DummyProductType } from "@/types";
+import { DummyProductType } from "@/types/dummy-products-type";
 
 export function createSlug(item: DummyProductType) {
   const slug =

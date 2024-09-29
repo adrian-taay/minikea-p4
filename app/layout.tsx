@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
+import SnackbarWrapper from "@/providers/snackbar-provider";
+import { ChakraUIProvider } from "@/providers/chakraui-provider";
 import Footer from "@/components/footer/Footer";
-import SnackbarWrapper from "@/utils/snackbar-provider";
-import { ChakraUIProvider } from "@/utils/chakraui-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

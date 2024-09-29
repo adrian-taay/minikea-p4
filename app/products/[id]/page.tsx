@@ -1,8 +1,8 @@
-import WishlistItemView from "@/app/cart/WishlistItemView";
-import AddItemBtnWrapper from "@/components/add-item-buttons/AddItemBtnWrapper";
+import WishlistItemView from "@/app/cart/wishlist-item-view";
+import AddItemBtnWrapper from "@/components/buttons/add-cart-quantity/add-cart-quantity-button";
 import ProductImages from "@/components/single-product/product-images";
 import ProductInfoPolicies from "@/components/single-product/product-info-policies";
-import { DummyProductType } from "@/types";
+import { DummyProductType } from "@/types/dummy-products-type";
 import axios from "axios";
 import Link from "next/link";
 import React from "react";

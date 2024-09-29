@@ -1,4 +1,4 @@
-import { CartItem } from "@/lib/createCartSlice";
+import { CartItem } from "@/types/dummy-products-type";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";

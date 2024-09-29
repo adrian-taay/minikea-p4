@@ -1,4 +1,4 @@
-import { DummyProductType } from "@/types";
+import { DummyProductType } from "@/types/dummy-products-type";
 import { StateCreator } from "zustand";
 
 export type WishlistSlice = {
@@ -7,12 +7,7 @@ export type WishlistSlice = {
   removeFromWishlist: (wishId: number) => void;
 };
 
-export const createWishlistSlice: StateCreator<
-  // WishlistSlice & CartSlice,
-  // [["zustand/persist", WishlistSlice]],
-  // [],
-  WishlistSlice
-> = (set) => ({
+export const createWishlistSlice: StateCreator<WishlistSlice> = (set) => ({
   wishlist: [],
   addToWishlist: (wishItem: DummyProductType) =>
     set((state) => ({

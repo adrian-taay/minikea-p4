@@ -3,8 +3,8 @@
 import clsx from "clsx";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import UserAuthButton from "./UserAuthButton";
-import ShoppingCartIcon from "./ShoppingCartIcon";
+import UserAuthButton from "../buttons/user-auth-button";
+import ShoppingCartIcon from "../buttons/shopping-cart-button";
 import NavbarSearchBar from "../products/product-search";
 import { Titillium_Web } from "next/font/google";
 import { CiMenuBurger } from "react-icons/ci";
@@ -15,7 +15,7 @@ import {
   DrawerOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import NavDrawerContents from "./NavDrawerContents";
+import NavDrawerContents from "./nav-drawer-contents";
 
 const titillium = Titillium_Web({
   weight: ["400", "600", "700"],
@@ -84,14 +84,15 @@ export default function Navbar() {
       href={"/"}
       className={clsx(
         "flex-center",
+        "flex-col",
         "flex-1",
+        "-space-y-2",
         titillium.className,
-        "font-semibold",
-        "text-3xl",
         "tracking-widest"
       )}
     >
-      MINIKEA
+      <span className="font-semibold text-3xl">MINIKEA</span>
+      <span className="">Superstore</span>
     </Link>
   );
 
@@ -113,8 +114,9 @@ export default function Navbar() {
           "border-b",
           "transition-all",
           "ease-in-out",
-          isFloatingNavbar && "fixed top-0 shadow-md",
-          isFloatingNavbar ? "py-3" : "py-5"
+          "py-2",
+          isFloatingNavbar && "fixed top-0 shadow-md"
+          // isFloatingNavbar ? "py-2" : "py-4"
         )}
       >
         {LeftSideWrapper}

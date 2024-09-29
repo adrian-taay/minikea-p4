@@ -1,18 +1,8 @@
 import { StateCreator } from "zustand";
 import { TransactionSlice } from "./createTransactionSlice";
-import { CartItem, CartSlice } from "./createCartSlice";
-
-export type UserItem = {
-  accessToken: string;
-  refreshToken: string;
-  id: number;
-  username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  image: string;
-};
+import { CartSlice } from "./createCartSlice";
+import { UserItem } from "@/types/dummy-users-type";
+import { CartItem } from "@/types/dummy-products-type";
 
 export type AuthSlice = {
   user: UserItem;

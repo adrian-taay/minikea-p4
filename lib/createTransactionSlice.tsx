@@ -1,15 +1,6 @@
 import { StateCreator } from "zustand";
-import { CartItem } from "./createCartSlice";
-import { UserItem } from "./createAuthSlice";
-
-export type TransactionItem = {
-  id: string;
-  createdAt: number;
-  user: UserItem;
-  items: CartItem[];
-  totalAmount: number;
-  status: "Completed" | "Cancelled";
-};
+import { TransactionItem, UserItem } from "@/types/dummy-users-type";
+import { CartItem } from "@/types/dummy-products-type";
 
 export type TransactionSlice = {
   transactions: TransactionItem[];

@@ -1,6 +1,6 @@
 import React from "react";
-import SearchBar from "./SearchBar";
-import SearchResults from "./SearchResults";
+import SearchBar from "./search-bar";
+import SearchResults from "./search-results";
 
 export async function generateMetadata() {
   return {

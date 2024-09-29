@@ -1,9 +1,5 @@
-import { DummyProductType } from "@/types";
+import { CartItem, DummyProductType } from "@/types/dummy-products-type";
 import { StateCreator } from "zustand";
-
-export type CartItem = DummyProductType & {
-  quantity: number;
-};
 
 export type CartSlice = {
   cart: CartItem[];
@@ -14,12 +10,7 @@ export type CartSlice = {
   clearCart: () => void;
 };
 
-export const createCartSlice: StateCreator<
-  // WishlistSlice & CartSlice,
-  // [["zustand/persist", CartSlice]],
-  // [],
-  CartSlice
-> = (set) => ({
+export const createCartSlice: StateCreator<CartSlice> = (set) => ({
   cart: [],
   addToCart: (item: DummyProductType, qty: number) =>
     set((state) => {

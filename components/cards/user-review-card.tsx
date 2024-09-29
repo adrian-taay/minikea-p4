@@ -1,7 +1,12 @@
+import { DummyProductRatingsType } from "@/types/dummy-products-type";
 import { Avatar } from "@chakra-ui/react";
 import { IoMdStar } from "react-icons/io";
 
-export default function UserReviewCard({ review }: {}) {
+export default function UserReviewCard({
+  review,
+}: {
+  review: DummyProductRatingsType;
+}) {
   const User = (
     <div className="flex flex-col items-start">
       <p className="font-semibold">{review.reviewerName}</p>

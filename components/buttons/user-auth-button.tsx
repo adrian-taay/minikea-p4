@@ -13,7 +13,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { menuLinks } from "./menuLinks";
+import { menuLinks } from "../navbar/menuLinks";
 
 export default function UserAuthButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();

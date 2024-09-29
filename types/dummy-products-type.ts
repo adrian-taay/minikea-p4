@@ -13,7 +13,7 @@ export type ProductType = {
   images: string[];
 };
 
-type DummyProductRatingsType = {
+export type DummyProductRatingsType = {
   rating: number;
   comment: string;
   date: string;
@@ -53,4 +53,8 @@ export type DummyProductType = {
   };
   images: string[];
   thumbnail: string;
+};
+
+export type CartItem = DummyProductType & {
+  quantity: number;
 };

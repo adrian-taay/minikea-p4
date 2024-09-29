@@ -1,4 +1,4 @@
-import { DummyProductType } from "@/types";
+import { DummyProductType } from "@/types/dummy-products-type";
 import axios from "axios";
 import React from "react";
 
@@ -7,8 +7,6 @@ export default async function SearchResults({ query }: { query: string }) {
     `https://dummyjson.com/products/search?q=${query}`
   );
   const products: DummyProductType[] = response.data.products;
-
-  // console.log(query);
 
   return (
     <div className="h-[100px] flex gap-4">
