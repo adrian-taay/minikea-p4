@@ -124,11 +124,9 @@ export default function Navbar() {
         {RightSideWrapper}
       </nav>
       <nav className="w-full text-center space-x-4">
-        <Link href={"/products/category/furniture"}>Furniture</Link>
-        <Link href={"/products/category/kitchen-accessories"}>
-          Kitchen Accessories
-        </Link>
-        <Link href={"/products/category/home-decoration"}>Home Decors</Link>
+        <Link href={"/products/furniture"}>Furniture</Link>
+        <Link href={"/products/kitchen-accessories"}>Kitchen Accessories</Link>
+        <Link href={"/products/home-decoration"}>Home Decors</Link>
       </nav>
     </nav>
   );

@@ -33,7 +33,10 @@ export default function ProductCard({
           loading="lazy"
         />
       </div>
-      <Link href={slug} className="font-bold">
+      <Link
+        href={`/products/${cardData.category}/${slug}`}
+        className="font-bold"
+      >
         {productTitle}
       </Link>
       <AddItemBtn item={cardData} qty={1} />

@@ -1,10 +1,13 @@
 import { CartItem } from "@/types/dummy-products-type";
+import { createSlug } from "@/utils/createSlug";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export default function TransactionItemsCard({ item }: { item: CartItem }) {
+  const slug = createSlug(item);
+
   return (
     <div
       className={clsx(
@@ -22,7 +25,10 @@ export default function TransactionItemsCard({ item }: { item: CartItem }) {
       </div>
       <div className="flex flex-col items-start flex-1">
         <div>
-          <Link href={`/products/${item.id}`} className="font-semibold">
+          <Link
+            href={`/products/${item.category}/${slug}`}
+            className="font-semibold"
+          >
             {item.title}
           </Link>
         </div>

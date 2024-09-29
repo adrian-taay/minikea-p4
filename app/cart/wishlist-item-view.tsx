@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./styles.css";
 import AddItemBtn from "@/components/buttons/add-cart-quantity/add-item-button";
+import { createSlug } from "@/utils/createSlug";
 
 export default function WishlistItemView() {
   const wishlist = useUserStore((state) => state.wishlist);
@@ -35,6 +36,7 @@ export default function WishlistItemView() {
       className="my-4"
     >
       {inStockWishlistItems.map((item) => {
+        const slug = createSlug(item);
         const lowStock = item.stock < 10;
 
         return (
@@ -49,7 +51,7 @@ export default function WishlistItemView() {
               <div className="flex flex-col justify-between items-start flex-1">
                 <div>
                   <Link
-                    href={`/products/${item.id}`}
+                    href={`/products/${item.category}/${slug}`}
                     className="font-semibold text-lg"
                   >
                     {item.title}
@@ -60,7 +62,7 @@ export default function WishlistItemView() {
                 </div>
                 <AddItemBtn item={item} qty={1} />
               </div>
-              <div className="font-semibold">$ {item.price.toFixed(2)}</div>
+              <div className="font-semibold">${item.price.toFixed(2)}</div>
             </div>
           </SwiperSlide>
         );

@@ -9,5 +9,5 @@ export function createSlug(item: DummyProductType) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-  return `/products/${slug}`;
+  return slug;
 }

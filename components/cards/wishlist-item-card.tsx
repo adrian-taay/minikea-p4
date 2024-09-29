@@ -1,10 +1,11 @@
-import { DummyProductType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import AddItemBtn from "../buttons/add-cart-quantity/add-item-button";
 import ToggleWishlistButton from "../buttons/toggle-wishlist-button";
 import clsx from "clsx";
+import { DummyProductType } from "@/types/dummy-products-type";
+import { createSlug } from "@/utils/createSlug";
 
 export default function WishlistItemCard({
   wishlistItem,
@@ -13,6 +14,7 @@ export default function WishlistItemCard({
 }) {
   const outOfStock = wishlistItem.stock === 0;
   const lowStock = wishlistItem.stock < 10;
+  const slug = createSlug(wishlistItem);
 
   return (
     <div
@@ -38,7 +40,7 @@ export default function WishlistItemCard({
       <div className="flex flex-col items-start flex-1">
         <div>
           <Link
-            href={`/products/${wishlistItem.id}`}
+            href={`/products/${wishlistItem.category}/${slug}`}
             className="font-semibold text-lg"
           >
             {wishlistItem.title}
