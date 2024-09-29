@@ -1,68 +1,58 @@
 import ProductCard from "@/components/cards/product-card";
 import ProductPagination from "@/components/products/product-pagination";
-import { DummyProductType } from "@/types/dummy-products-type";
+import ProductSort from "@/components/products/product-sort";
+import { ProductFetchResponseType } from "@/types/dummy-products-type";
 import axios from "axios";
-import Link from "next/link";
+import { Metadata } from "next";
 
-export default async function Products({
+export const metadata: Metadata = {
+  title: "Browse All Products | Minikea",
+  description: "Shop for furniture, decors, and more - Minikea",
+};
+
+export default async function ProductsPage({
   searchParams,
 }: {
   searchParams?: {
     page?: string;
+    sortBy?: string;
+    order?: string;
   };
 }) {
   const pageQuery = searchParams?.page || 1;
+  const sortByQuery = searchParams?.sortBy;
+  const orderQuery = searchParams?.order;
 
+  const addSortQuery =
+    sortByQuery && orderQuery
+      ? `&sortBy=${sortByQuery}&order=${orderQuery}`
+      : "";
+
+  const limit = 6;
   const determineSkip =
-    Number(pageQuery) === 1 ? 0 : (Number(pageQuery) - 1) * 8;
+    Number(pageQuery) === 1 ? 0 : (Number(pageQuery) - 1) * limit;
 
   try {
-    const [
-      furnitureResponse,
-      homeDecorResponse,
-      kitchenResponse,
-      smartphonesResponse,
-      laptopResponse,
-    ] = await Promise.all([
-      axios("https://dummyjson.com/products/category/furniture"),
-      axios("https://dummyjson.com/products/category/home-decoration"),
-      axios("https://dummyjson.com/products/category/kitchen-accessories"),
-      axios("https://dummyjson.com/products/category/smartphones"),
-      axios("https://dummyjson.com/products/category/laptops"),
-    ]);
+    const response = await axios(
+      `https://dummyjson.com/products?skip=${determineSkip}&limit=${limit}${addSortQuery}`
+    );
 
-    const furniture: DummyProductType[] = furnitureResponse.data.products;
-    const homeDecor: DummyProductType[] = homeDecorResponse.data.products;
-    const kitchen: DummyProductType[] = kitchenResponse.data.products;
-    const smartphone: DummyProductType[] = smartphonesResponse.data.products;
-    const laptop: DummyProductType[] = laptopResponse.data.products;
-
-    const productArray: DummyProductType[] = [
-      ...furniture,
-      ...homeDecor,
-      ...kitchen,
-      ...smartphone,
-      ...laptop,
-    ];
-
-    const data = {
-      products: productArray.slice(determineSkip, determineSkip + 8),
-      total: productArray.length,
-      skip: 0,
-      limit: 8,
-    };
+    const data: ProductFetchResponseType = response.data;
+    const isMultiplePages = data.total / data.limit > 1;
 
     return (
       <div>
         <h1>Products</h1>
-        <Link href={"/products/furniture"}>Furniture</Link>
         <p>Total Products: {data.total}</p>
+        <ProductSort />
         <div className="flex gap-4 flex-wrap">
           {data?.products.map((item, index) => (
             <ProductCard cardData={item} key={index} />
           ))}
         </div>
-        <ProductPagination total={data.total} limit={8} />
+        {isMultiplePages && (
+          <ProductPagination total={data.total} limit={limit} />
+        )}
       </div>
     );
   } catch (error) {

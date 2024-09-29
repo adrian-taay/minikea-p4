@@ -104,30 +104,23 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="z-10">
-      <nav
-        className={clsx(
-          "w-full",
-          "flex-between",
-          "px-7",
-          "bg-white",
-          "border-b",
-          "transition-all",
-          "ease-in-out",
-          "py-2",
-          isFloatingNavbar && "fixed top-0 shadow-md"
-          // isFloatingNavbar ? "py-2" : "py-4"
-        )}
-      >
-        {LeftSideWrapper}
-        {LogoWrapper}
-        {RightSideWrapper}
-      </nav>
-      <nav className="w-full text-center space-x-4">
-        <Link href={"/products/furniture"}>Furniture</Link>
-        <Link href={"/products/kitchen-accessories"}>Kitchen Accessories</Link>
-        <Link href={"/products/home-decoration"}>Home Decors</Link>
-      </nav>
+    <nav
+      className={clsx(
+        "w-full",
+        "flex-between",
+        "px-7",
+        "bg-white",
+        "border-b",
+        "transition-all",
+        "ease-in-out",
+        "py-2",
+        "z-10",
+        isFloatingNavbar && "fixed top-0 shadow-md"
+      )}
+    >
+      {LeftSideWrapper}
+      {LogoWrapper}
+      {RightSideWrapper}
     </nav>
   );
 }

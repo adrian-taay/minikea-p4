@@ -10,7 +10,7 @@ export default function NavbarSearchBar() {
   const router = useRouter();
 
   const handleSearchInput = () => {
-    router.push(`/search?q=${searchTerm}`);
+    router.push(`/products/search?q=${searchTerm}`);
     setSearchTerm("");
   };
 
