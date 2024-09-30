@@ -2,36 +2,46 @@
 
 import { useRouter } from "next/navigation";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-export default function ProductSearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
+type DrawerProps = {
+  onClose: () => void;
+};
 
-  const handleSearchInput = () => {
-    router.push(`/products/search?q=${searchTerm}`);
-    setSearchTerm("");
-  };
+export const ProductSearchBar = forwardRef<HTMLInputElement, DrawerProps>(
+  ({ onClose }, ref) => {
+    const [searchTerm, setSearchTerm] = useState("");
+    const router = useRouter();
 
-  return (
-    <div className="flex flex-col">
-      <h1 className="max-sm:block hidden text-xs mb-4">Search Products:</h1>
-      <InputGroup>
-        <Input
-          placeholder="Search for products..."
-          onChange={(e) => setSearchTerm(e.target.value)}
-          value={searchTerm}
-          size={"lg"}
-          className="font-extralight"
-          rounded={"none"}
-        />
-        <InputRightElement>
-          <button onClick={handleSearchInput}>
-            <CiSearch />
-          </button>
-        </InputRightElement>
-      </InputGroup>
-    </div>
-  );
-}
+    const handleSearchInput = () => {
+      onClose();
+      router.push(`/products/search?q=${searchTerm}`);
+      setSearchTerm("");
+    };
+
+    return (
+      <div className="flex flex-col">
+        <h1 className="max-sm:block hidden text-xs mb-4">Search Products:</h1>
+        <InputGroup>
+          <Input
+            placeholder="Search for products..."
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+            size={"lg"}
+            className="font-extralight"
+            rounded={"none"}
+            ref={ref}
+          />
+          <InputRightElement>
+            <button onClick={handleSearchInput}>
+              <CiSearch />
+            </button>
+          </InputRightElement>
+        </InputGroup>
+      </div>
+    );
+  }
+);
+
+ProductSearchBar.displayName = "Product Search";

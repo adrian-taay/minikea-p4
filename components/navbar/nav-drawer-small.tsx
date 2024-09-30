@@ -14,7 +14,7 @@ import {
   DrawerContent,
   DrawerHeader,
 } from "@chakra-ui/react";
-import ProductSearchBar from "../products/product-search-bar";
+import { ProductSearchBar } from "../products/product-search-bar";
 import Link from "next/link";
 import { userAccountLinks, productCategoryLinks } from "./menuLinks";
 import { useUserStore } from "@/lib/useUserStore";
@@ -29,7 +29,7 @@ const titillium = Titillium_Web({
 
 export default function NavDrawerSmall() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef(null);
+  const searchBarRef = useRef<HTMLInputElement>(null);
   const user = useUserStore((state) => state.user);
   const userLogout = useUserStore((state) => state.userLogout);
   const isUserLoggedIn = Object.entries(user).length > 0;
@@ -94,14 +94,14 @@ export default function NavDrawerSmall() {
 
   return (
     <>
-      <button ref={btnRef} onClick={onOpen}>
+      <button onClick={onOpen}>
         <CiMenuBurger size={18} />
       </button>
       <Drawer
         isOpen={isOpen}
         placement="left"
         onClose={onClose}
-        finalFocusRef={btnRef}
+        initialFocusRef={searchBarRef}
         isFullHeight={true}
       >
         <DrawerOverlay />
@@ -123,7 +123,7 @@ export default function NavDrawerSmall() {
             </span>
           </DrawerHeader>
           <DrawerBody className="flex flex-col justify-between">
-            <ProductSearchBar />
+            <ProductSearchBar ref={searchBarRef} onClose={onClose} />
             {ProductCategories}
             {isUserLoggedIn ? MyAccountToggle : SignIn}
           </DrawerBody>

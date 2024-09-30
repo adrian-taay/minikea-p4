@@ -17,7 +17,7 @@ import clsx from "clsx";
 import { Titillium_Web } from "next/font/google";
 import { useRef } from "react";
 import { CiSearch } from "react-icons/ci";
-import ProductSearchBar from "../products/product-search-bar";
+import { ProductSearchBar } from "../products/product-search-bar";
 import { productCategoryLinks } from "./menuLinks";
 import Link from "next/link";
 
@@ -28,13 +28,13 @@ const titillium = Titillium_Web({
 
 export default function NavDrawerLarge() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const searchBtnRef = useRef(null);
+  const searchBarRef = useRef<HTMLInputElement>(null);
 
   const SearchSection = (
     <div className="w-3/4 mx-auto text-center space-y-8">
       <h1 className="text-2xl">Search Our Products</h1>
       <div className="w-7/12 mx-auto">
-        <ProductSearchBar />
+        <ProductSearchBar ref={searchBarRef} onClose={onClose} />
       </div>
     </div>
   );
@@ -63,6 +63,7 @@ export default function NavDrawerLarge() {
                     href={`/products/${item.href}`}
                     key={index}
                     className="flex-center w-[250px] h-[250px] bg-slate-500 rounded-md text-white"
+                    onClick={onClose}
                   >
                     {item.title}
                   </Link>
@@ -88,7 +89,6 @@ export default function NavDrawerLarge() {
   return (
     <>
       <button
-        ref={searchBtnRef}
         onClick={onOpen}
         className="flex-start gap-2 hover:bg-stone-50 px-3 py-2 rounded-md"
       >
@@ -100,12 +100,12 @@ export default function NavDrawerLarge() {
         placement="top"
         isFullHeight
         onClose={onClose}
-        finalFocusRef={searchBtnRef}
+        initialFocusRef={searchBarRef}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader as="a" href="/">
+          <DrawerHeader>
             <div
               className={clsx(
                 "flex-center",
