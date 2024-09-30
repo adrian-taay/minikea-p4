@@ -14,6 +14,7 @@ import AddItemBtn from "@/components/buttons/add-cart-quantity/add-item-button";
 import { createSlug } from "@/utils/createSlug";
 
 export default function WishlistItemView() {
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const wishlist = useUserStore((state) => state.wishlist);
   const inStockWishlistItems = wishlist.filter((item) => item.stock > 0);
 
@@ -72,14 +73,18 @@ export default function WishlistItemView() {
 
   return (
     <>
-      <h1 className="font-semibold text-xl mt-8">
-        It&#39;s about time you bought these!
-      </h1>
-      <p className="w-4/5">
-        Clear your wishlist. Add them to cart. You deserve a clean wishlist!
-      </p>
-      {WishlistSwiper}
-      <Link href={"/user/wishlist"}>See your wishlist</Link>
+      {isLoggedIn && (
+        <>
+          <h1 className="font-semibold text-xl mt-8">
+            It&#39;s about time you bought these!
+          </h1>
+          <p className="w-4/5">
+            Clear your wishlist. Add them to cart. You deserve a clean wishlist!
+          </p>
+          {WishlistSwiper}
+          <Link href={"/user/wishlist"}>See your wishlist</Link>
+        </>
+      )}
     </>
   );
 }
