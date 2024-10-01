@@ -14,5 +14,12 @@ export default function AddItemBtn({
 }) {
   const addItem = useUserStore(state => state.addToCart);
 
-  return <Button onClick={() => addItem(item, qty)}>Add Item to Cart</Button>;
+  return (
+    <Button
+      bgColor="#404040"
+      textColor="#E3E3E3"
+      onClick={() => addItem(item, qty)}>
+      Add Item to Cart
+    </Button>
+  );
 }

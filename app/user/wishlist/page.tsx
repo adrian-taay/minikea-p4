@@ -2,17 +2,26 @@
 
 import WishlistItemCard from "@/components/cards/wishlist-item-card";
 import { useUserStore } from "@/lib/useUserStore";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default function WishlistPage() {
-  const wishlist = useUserStore((state) => state.wishlist);
+  const wishlist = useUserStore(state => state.wishlist);
+  const isLoggedIn = useUserStore(state => state.isLoggedIn);
+
+  if (isLoggedIn === false) {
+    redirect("/user/login");
+  }
 
   return (
     <section>
       <h1 className="font-bold text-2xl mb-8">Wishlist</h1>
       <div className="flex flex-col gap-4">
         {wishlist.map((item, index) => (
-          <WishlistItemCard wishlistItem={item} key={index} />
+          <WishlistItemCard
+            wishlistItem={item}
+            key={index}
+          />
         ))}
       </div>
     </section>
