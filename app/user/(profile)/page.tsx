@@ -3,16 +3,10 @@
 import { useUserStore } from "@/lib/useUserStore";
 import { Button, Center, Divider } from "@chakra-ui/react";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import React from "react";
 
 export default function UserAccountPage() {
   const user = useUserStore(state => state.user);
-  const isLoggedIn = useUserStore(state => state.isLoggedIn);
-
-  if (isLoggedIn === false) {
-    redirect("/user/login");
-  }
 
   const userDetailObj = {
     email: user.email,

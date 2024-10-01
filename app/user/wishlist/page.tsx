@@ -2,16 +2,10 @@
 
 import WishlistItemCard from "@/components/cards/wishlist-item-card";
 import { useUserStore } from "@/lib/useUserStore";
-import { redirect } from "next/navigation";
 import React from "react";
 
 export default function WishlistPage() {
   const wishlist = useUserStore(state => state.wishlist);
-  const isLoggedIn = useUserStore(state => state.isLoggedIn);
-
-  if (isLoggedIn === false) {
-    redirect("/user/login");
-  }
 
   return (
     <section>

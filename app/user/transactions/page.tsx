@@ -4,17 +4,11 @@ import TransactionItemsCard from "@/components/cards/transaction-item-card";
 import { useUserStore } from "@/lib/useUserStore";
 import { formatDate } from "@/utils/formatDate";
 import clsx from "clsx";
-import { redirect } from "next/navigation";
 import React from "react";
 
 export default function TransactionsPage() {
   const user = useUserStore(state => state.user);
   const transactions = useUserStore(state => state.transactions);
-  const isLoggedIn = useUserStore(state => state.isLoggedIn);
-
-  if (isLoggedIn === false) {
-    return redirect("/user/login");
-  }
 
   const transactionsByUser = transactions.filter(
     transaction => transaction.user?.username === user.username

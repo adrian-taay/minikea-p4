@@ -14,7 +14,7 @@ import { createSlug } from "@/utils/createSlug";
 import QuickAddButton from "@/components/buttons/add-cart-quantity/quick-add-button";
 
 export default function WishlistItemView() {
-  const isLoggedIn = useUserStore(state => state.isLoggedIn);
+  // const isLoggedIn = useUserStore(state => state.isLoggedIn);
   const wishlist = useUserStore(state => state.wishlist);
   const inStockWishlistItems = wishlist.filter(item => item.stock > 0);
 
