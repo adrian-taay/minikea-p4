@@ -11,11 +11,11 @@ export default function ToggleWishlistButton({
 }: {
   cardData: DummyProductType;
 }) {
-  const wishlist = useUserStore((state) => state.wishlist);
-  const addToWishlist = useUserStore((state) => state.addToWishlist);
-  const removeFromWishlist = useUserStore((state) => state.removeFromWishlist);
+  const wishlist = useUserStore(state => state.wishlist);
+  const addToWishlist = useUserStore(state => state.addToWishlist);
+  const removeFromWishlist = useUserStore(state => state.removeFromWishlist);
 
-  const findWishlistItem = wishlist.some((item) => item.id === cardData.id);
+  const findWishlistItem = wishlist.some(item => item.id === cardData.id);
 
   function handleToggle() {
     if (findWishlistItem) {
@@ -28,9 +28,12 @@ export default function ToggleWishlistButton({
   return (
     <button onClick={handleToggle}>
       {findWishlistItem ? (
-        <GoHeartFill fill={"#E22B22"} size={28} />
+        <GoHeartFill
+          fill={"#E22B22"}
+          size={24}
+        />
       ) : (
-        <GoHeart size={28} />
+        <GoHeart size={24} />
       )}
     </button>
   );

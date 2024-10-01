@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -37,8 +38,7 @@ export default function ProductPagination({
   const previousButton = (
     <span
       onClick={() => handleClickPage(String(Number(currentPage) - 1))}
-      className="cursor-pointer"
-    >
+      className="cursor-pointer">
       Prev
     </span>
   );
@@ -46,8 +46,7 @@ export default function ProductPagination({
   const nextButton = (
     <span
       onClick={() => handleClickPage(String(Number(currentPage) + 1))}
-      className="cursor-pointer"
-    >
+      className="cursor-pointer">
       Next
     </span>
   );
@@ -58,15 +57,18 @@ export default function ProductPagination({
       <span
         key={index}
         onClick={() => handleClickPage(String(index))}
-        className="cursor-pointer"
-      >
+        className={clsx(
+          "cursor-pointer",
+          currentPage === String(index) &&
+            "font-bold ring-1 px-2 ring-neutral-800 rounded-md"
+        )}>
         {index}
       </span>
     );
   });
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 text-lg">
       {previousButton}
       {pageButtons}
       {nextButton}

@@ -25,7 +25,7 @@ export const quickLinks = [
     ],
   },
   {
-    title: "We're here to help",
+    title: "Customer Care",
     links: [
       {
         title: "Customer Service",
@@ -49,6 +49,6 @@ export const quickLinks = [
 
 export const contactLeads = {
   email: "support@minikea.com",
-  address: "237 Alabang-Zapote Rd., Las Piñas City",
+  address: "237 Alabang-Zapote Rd., Las Piñas City, Metro Manila",
   phone: "+63 8880-0123",
 };

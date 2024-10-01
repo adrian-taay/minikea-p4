@@ -1,46 +1,55 @@
 import Image from "next/image";
 import React from "react";
-import AddItemBtn from "../buttons/add-cart-quantity/add-item-button";
 import Link from "next/link";
 import ToggleWishlistButton from "../buttons/toggle-wishlist-button";
 import { createSlug } from "@/utils/createSlug";
 import { DummyProductType } from "@/types/dummy-products-type";
+import QuickAddButton from "../buttons/add-cart-quantity/quick-add-button";
 
 export default function ProductCard({
   cardData,
 }: {
   cardData: DummyProductType;
 }) {
-  const productTitle = (
-    <div className="flex flex-col items-center">
-      <span>{cardData.category}</span>
-      <span className="w-3/5 text-center">{cardData.title}</span>
-      <span>$ {cardData.price.toFixed(2)}</span>
+  const slug = createSlug(cardData);
+
+  const ProductTitle = (
+    <div className="flex flex-col items-start my-3">
+      <span className="uppercase font-light">{cardData.brand}</span>
+      <span className="text-xl">{cardData.title}</span>
+      <span className="font-light text-xl mt-2">
+        $ {cardData.price.toFixed(2)}
+      </span>
     </div>
   );
 
-  const slug = createSlug(cardData);
+  const CartWishlistWrapper = (
+    <div className="absolute right-4 top-4 flex-center flex-col gap-3">
+      <QuickAddButton
+        item={cardData}
+        qty={1}
+      />
+      <ToggleWishlistButton cardData={cardData} />
+    </div>
+  );
 
   return (
-    <div className="flex flex-col items-center bg-slate-300">
-      <div className="min-w-[250px] min-h-[250px] overflow-hidden">
+    <div className="relative w-full flex flex-col items-start">
+      <div className="relative w-full aspect-square overflow-hidden">
         <Image
           src={cardData.images[0]}
           alt={cardData.title}
-          width={250}
-          height={250}
-          className="bg-cover bg-center hover:scale-125 transition-transform ease-in-out"
+          fill
+          className="rounded-sm object-cover bg-center hover:scale-125 transition-transform ease-in-out bg-stone-200"
           loading="lazy"
         />
       </div>
       <Link
         href={`/products/${cardData.category}/${slug}`}
-        className="font-bold"
-      >
-        {productTitle}
+        className="font-bold">
+        {ProductTitle}
       </Link>
-      <AddItemBtn item={cardData} qty={1} />
-      <ToggleWishlistButton cardData={cardData} />
+      {CartWishlistWrapper}
     </div>
   );
 }

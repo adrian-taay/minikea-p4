@@ -12,7 +12,7 @@ export async function generateMetadata({
 }) {
   const pageTitle = params.category
     .split("-")
-    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .map(word => word[0].toUpperCase() + word.slice(1))
     .join(" ");
 
   return {
@@ -53,18 +53,34 @@ export default async function CategoryPage({
     const isMultiplePages = data.total / data.limit > 1;
 
     return (
-      <div>
-        <h1>Products</h1>
-        <p>Total Products: {data.total}</p>
-        <ProductSort />
-        <div className="flex gap-4 flex-wrap">
+      <div className="w-full p-4 lg:p-8 max-w-screen-2xl mx-auto">
+        <div className="flex-center py-10 md:py-16 bg-stone-600 text-neutral-200 rounded-sm">
+          <h1 className="capitalize text-xl md:text-3xl font-semibold">
+            {params.category}
+          </h1>
+        </div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-1 my-4">
+          <p>
+            Products Found: {data.total} {data.total === 1 ? "item" : "items"}
+          </p>
+          <ProductSort />
+        </div>
+        <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-3">
           {data?.products.map((item, index) => (
-            <ProductCard cardData={item} key={index} />
+            <ProductCard
+              cardData={item}
+              key={index}
+            />
           ))}
         </div>
-        {isMultiplePages && (
-          <ProductPagination total={data.total} limit={limit} />
-        )}
+        <div className="flex-center py-2 md:py-8 border-t">
+          {isMultiplePages && (
+            <ProductPagination
+              total={data.total}
+              limit={limit}
+            />
+          )}
+        </div>
       </div>
     );
   } catch (error) {

@@ -50,8 +50,7 @@ export default function Navbar() {
         "-space-y-2",
         titillium.className,
         "tracking-widest"
-      )}
-    >
+      )}>
       <span className="font-semibold text-3xl">MINIKEA</span>
       <span className="">Superstore</span>
     </Link>
@@ -75,9 +74,8 @@ export default function Navbar() {
         "ease-in-out",
         "z-10",
         isFloatingNavbar && "fixed top-0 shadow-md"
-      )}
-    >
-      <div className="flex-between py-2">
+      )}>
+      <div className="flex-between py-2 max-w-screen-2xl mx-auto">
         {LeftSideWrapper}
         {LogoWrapper}
         {RightSideWrapper}

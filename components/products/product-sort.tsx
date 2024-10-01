@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Select } from "@chakra-ui/react";
 
 export default function ProductSort() {
   const [sortProductParams, setSortProductParams] = useState("");
@@ -33,19 +34,23 @@ export default function ProductSort() {
   }, [sortProductParams, pathname, replace, sortParams]);
 
   return (
-    <div className="flex gap-4">
-      <label htmlFor="product-sort">Sort Products by:</label>
-      <select
+    <div className="flex-start flex-col md:flex-row gap-1 md:gap-3">
+      <label
+        htmlFor="product-sort"
+        className="text-nowrap">
+        Sort Products:
+      </label>
+      <Select
+        rounded="none"
         id="product-sort"
         name="product-sort"
         value={sortProductParams}
-        onChange={(e) => setSortProductParams(e.target.value)}
-      >
+        onChange={e => setSortProductParams(e.target.value)}>
         <option value="title-asc">Alphabetical, A-Z</option>
         <option value="title-desc">Alphabetical, Z-A</option>
         <option value="price-asc">Price, low to high</option>
         <option value="price-desc">Price, high to low</option>
-      </select>
+      </Select>
     </div>
   );
 }
