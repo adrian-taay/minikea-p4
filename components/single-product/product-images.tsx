@@ -16,30 +16,37 @@ export default function ProductImages({ images }: { images: string[] }) {
       slideToClickedSlide
       slidesPerView={1}
       spaceBetween={10}
-      className="w-full"
+      className="w-full md:w-[300px] lg:w-[400px] xl:w-[600px]"
       onSwiper={setSwiper}
+      onSlideChange={(slide) => setActiveImage(slide.realIndex)}
     >
-      {images.map((image, index) => (
-        <SwiperSlide key={index}>
-          <Image
-            src={image}
-            width={500}
-            height={500}
-            alt="Product image"
-            className="bg-stone-200 bg-cover bg-center"
-          />
-        </SwiperSlide>
-      ))}
+      <div className="w-full">
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <div className="w-full aspect-square">
+              <Image
+                src={image}
+                fill
+                alt="Product image"
+                className="bg-stone-200 bg-cover bg-center"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </div>
     </Swiper>
   );
 
   const ThumbNav = (
-    <div className="w-full m-1 flex gap-1 md:flex-col items-center">
+    <div className="w-full flex gap-1 mt-2 md:mt-0 md:gap-2 lg:gap-3 items-center md:flex-col flex-shrink md:w-auto">
       {images.map((image, index) => (
         <div
           key={index}
           className={clsx(
             "bg-stone-200",
+            "w-[100px]",
+            "relative",
+            "aspect-square",
             activeImage === index && "ring-1 ring-black"
           )}
           onClick={() => {
@@ -47,14 +54,14 @@ export default function ProductImages({ images }: { images: string[] }) {
             swiper?.slideTo(index);
           }}
         >
-          <Image src={image} width={100} height={100} alt="Product image" />
+          <Image src={image} fill alt="Product image" />
         </div>
       ))}
     </div>
   );
 
   return (
-    <div className="w-full flex flex-col md:flex-row-reverse">
+    <div className="w-full md:flex flex-row-reverse gap-2 lg:gap-3 flex-shrink">
       {DisplayedImage}
       {ThumbNav}
     </div>

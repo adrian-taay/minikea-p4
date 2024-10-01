@@ -15,8 +15,8 @@ import QuickAddButton from "@/components/buttons/add-cart-quantity/quick-add-but
 
 export default function WishlistItemView() {
   // const isLoggedIn = useUserStore(state => state.isLoggedIn);
-  const wishlist = useUserStore(state => state.wishlist);
-  const inStockWishlistItems = wishlist.filter(item => item.stock > 0);
+  const wishlist = useUserStore((state) => state.wishlist);
+  const inStockWishlistItems = wishlist.filter((item) => item.stock > 0);
 
   const WishlistSwiper = (
     <Swiper
@@ -32,20 +32,27 @@ export default function WishlistItemView() {
         320: {
           slidesPerView: 1,
         },
+        640: {
+          slidesPerView: 1.75,
+        },
         960: {
-          slidesPerView: 1.5,
+          slidesPerView: 2.25,
+        },
+        1280: {
+          slidesPerView: 3.25,
         },
       }}
       pagination={{
         clickable: true,
-      }}>
-      {inStockWishlistItems.map(item => {
+      }}
+    >
+      {inStockWishlistItems.map((item) => {
         const slug = createSlug(item);
         const lowStock = item.stock < 10;
 
         return (
           <SwiperSlide key={item.id}>
-            <div className="w-full relative flex gap-3 justify-between mb-10">
+            <div className="w-full relative flex gap-3 justify-between mb-10 border rounded-md">
               <Image
                 src={item.thumbnail}
                 width={100}
@@ -53,10 +60,11 @@ export default function WishlistItemView() {
                 alt={item.title}
                 className="bg-stone-200"
               />
-              <div className="w-full flex flex-col items-start flex-1">
+              <div className="w-full flex flex-col items-start flex-1 py-1">
                 <Link
                   href={`/products/${item.category}/${slug}`}
-                  className="font-semibold text-lg">
+                  className="font-semibold text-lg"
+                >
                   {item.title}
                 </Link>
                 <div className="text-sm">
@@ -65,10 +73,7 @@ export default function WishlistItemView() {
                 <div className="font-semibold">${item.price.toFixed(2)}</div>
               </div>
               <div className="absolute right-4 bottom-4">
-                <QuickAddButton
-                  item={item}
-                  qty={1}
-                />
+                <QuickAddButton item={item} qty={1} />
               </div>
             </div>
           </SwiperSlide>
@@ -79,14 +84,16 @@ export default function WishlistItemView() {
 
   return (
     <section className="w-full flex flex-col">
-      <h1 className="font-semibold text-xl mt-8">
+      <h1 className="font-semibold text-xl">
         It&#39;s about time you bought these!
       </h1>
       <p className="w-4/5">
         Clear your wishlist. Add them to cart. You deserve a clean wishlist!
       </p>
       <div className="w-full">{WishlistSwiper}</div>
-      <Link href={"/user/wishlist"}>See your wishlist</Link>
+      <Link className="underline" href={"/user/wishlist"}>
+        See your wishlist
+      </Link>
     </section>
   );
 }

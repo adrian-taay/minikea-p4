@@ -16,25 +16,15 @@ export default function WishlistItemCard({
   const lowStock = wishlistItem.stock < 10;
   const slug = createSlug(wishlistItem);
 
-  return (
-    <div
-      className={clsx(
-        "flex",
-        "gap-3",
-        "justify-between",
-        "items-stretch",
-        "border",
-        "rounded-md",
-        "p-4",
-        outOfStock && "text-neutral-400"
-      )}
-    >
-      <div className="bg-stone-200">
+  const ProductDetail = (
+    <div className="flex flex-col xs:flex-row gap-3">
+      <div className="bg-stone-200 flex-start">
         <Image
           src={wishlistItem.thumbnail}
           width={100}
           height={100}
           alt={wishlistItem.title}
+          className="mx-auto"
         />
       </div>
       <div className="flex flex-col items-start flex-1">
@@ -52,15 +42,44 @@ export default function WishlistItemCard({
               ? `${wishlistItem.stock} items left!`
               : "In Stock"}
           </div>
+          <div className={clsx(!outOfStock && "font-semibold")}>
+            $ {wishlistItem.price.toFixed(2)}
+          </div>
         </div>
-        {outOfStock ? null : <AddItemBtn item={wishlistItem} qty={1} />}
       </div>
-      <div className="flex flex-col justify-between items-end">
-        <div className={clsx(!outOfStock && "font-semibold")}>
-          $ {wishlistItem.price.toFixed(2)}
-        </div>
-        <ToggleWishlistButton cardData={wishlistItem} />
-      </div>
+    </div>
+  );
+
+  const FloatingHeartButton = (
+    <div className="absolute right-6 top-6 xs:right-4 xs:top-4">
+      <ToggleWishlistButton cardData={wishlistItem} />
+    </div>
+  );
+
+  const AddButtonWrapper = (
+    <div className="flex flex-col items-start xs:items-end">
+      {outOfStock ? null : <AddItemBtn item={wishlistItem} qty={1} />}
+    </div>
+  );
+
+  return (
+    <div
+      className={clsx(
+        "relative",
+        "flex",
+        "flex-col",
+        "gap-3",
+        "justify-between",
+        "items-stretch",
+        "border",
+        "rounded-md",
+        "p-4",
+        outOfStock && "text-neutral-400"
+      )}
+    >
+      {ProductDetail}
+      {AddButtonWrapper}
+      {FloatingHeartButton}
     </div>
   );
 }

@@ -27,39 +27,48 @@ export default async function SingleProductPage({
 }) {
   const extractId = params.id.split("-")[0];
 
-  const BackToProductsButton = (
-    <button className="hover:bg-stone-50 py-2 px-3 rounded-md">
-      <Link href={"/products"} className="flex-start gap-2">
-        <GoArrowLeft />
-        <span>Back to Products</span>
-      </Link>
-    </button>
-  );
-
   try {
     const response = await axios(`https://dummyjson.com/products/${extractId}`);
     const productDetail: DummyProductType = response.data;
 
+    const BackToProductsButton = (
+      <button className="hover:bg-stone-50 py-2 px-3 rounded-md md:mb-8">
+        <Link
+          href={`/products/${productDetail.category}`}
+          className="flex-start gap-2"
+        >
+          <GoArrowLeft />
+          <span>Back to Products</span>
+        </Link>
+      </button>
+    );
+
     const ProductWriteups = (
-      <div>
+      <div className="my-4 md:my-0">
         <h2 className="uppercase text-sm">
           {productDetail.brand ? productDetail.brand : "MINIKEA"}
         </h2>
-        <h1 className="text-2xl">{productDetail.title}</h1>
+        <h1 className="text-2xl font-semibold">{productDetail.title}</h1>
         <h3>${productDetail.price}</h3>
-        <h3>{productDetail.availabilityStatus}</h3>
-        <h3>Rating: {productDetail.rating}</h3>
-
-        <p>{productDetail.description}</p>
+        <h3 className="text-sm">{productDetail.availabilityStatus}</h3>
+        <p className="my-4 text-justify">{productDetail.description}</p>
       </div>
     );
 
     return (
-      <div>
+      <div className="w-full p-4 md:p-8 max-w-screen-2xl mx-auto">
         {BackToProductsButton}
-        <ProductImages images={productDetail.images && productDetail.images} />
-        {ProductWriteups}
-        <AddItemBtnWrapper item={productDetail} />
+        <div className="flex flex-col gap-4 md:flex-row">
+          <div>
+            <ProductImages
+              images={productDetail.images && productDetail.images}
+            />
+          </div>
+          <div className="flex flex-col flex-1">
+            {ProductWriteups}
+            <AddItemBtnWrapper item={productDetail} />
+          </div>
+        </div>
         <ProductInfoPolicies data={productDetail} />
         <WishlistItemView />
       </div>

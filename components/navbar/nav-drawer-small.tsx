@@ -13,6 +13,7 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerHeader,
+  DrawerCloseButton,
 } from "@chakra-ui/react";
 import { ProductSearchBar } from "../products/product-search-bar";
 import Link from "next/link";
@@ -44,7 +45,12 @@ export default function NavDrawerSmall() {
           </AccordionButton>
           <AccordionPanel className="flex flex-col gap-2">
             {userAccountLinks.map((item) => (
-              <Link href={item.href} key={item.title} className="ml-4">
+              <Link
+                href={item.href}
+                key={item.title}
+                className="ml-4"
+                onClick={onClose}
+              >
                 {item.title}
               </Link>
             ))}
@@ -58,7 +64,7 @@ export default function NavDrawerSmall() {
   );
 
   const SignIn = (
-    <Link href={"/user/login"} className="px-4 py-2 font-semibold">
+    <Link href={"/login"} className="px-4 py-2 font-semibold" onClick={onClose}>
       Sign in
     </Link>
   );
@@ -80,6 +86,7 @@ export default function NavDrawerSmall() {
                     href={`/products/${item.href}`}
                     key={item.title}
                     className="ml-4"
+                    onClick={onClose}
                   >
                     {item.title}
                   </Link>
@@ -123,6 +130,7 @@ export default function NavDrawerSmall() {
             </span>
           </DrawerHeader>
           <DrawerBody className="flex flex-col justify-between">
+            <DrawerCloseButton />
             <ProductSearchBar ref={searchBarRef} onClose={onClose} />
             {ProductCategories}
             {isUserLoggedIn ? MyAccountToggle : SignIn}

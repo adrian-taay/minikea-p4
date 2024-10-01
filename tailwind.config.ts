@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import defaultTheme from 'tailwindcss/defaultTheme'
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -9,13 +9,17 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      xs: '420px',
+      xs: "420px",
       ...defaultTheme.screens,
     },
     extend: {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      animation: {
+        "bounce-forward": "bounce-forward 1s infinite",
+        "bounce-backward": "bounce-backward 1s ininite",
       },
     },
   },

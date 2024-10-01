@@ -9,7 +9,7 @@ export default function UserReviewCard({
 }) {
   const User = (
     <div className="flex flex-col items-start">
-      <p className="font-semibold">{review.reviewerName}</p>
+      <p className="font-semibold leading-none">{review.reviewerName}</p>
       <p className="text-sm">{review.reviewerEmail}</p>
       <p className="text-sm text-neutral-400">{review.date}</p>
     </div>
@@ -27,9 +27,9 @@ export default function UserReviewCard({
   );
 
   return (
-    <div className="w-5/12 mx-auto flex gap-2">
-      <div className="flex border flex-1 p-6 gap-4">
-        <Avatar />
+    <div className="w-full md:w-5/12 mx-auto flex gap-2">
+      <div className="w-full flex border-b flex-1 p-2 pb-6 md:p-6 gap-4">
+        <Avatar size="sm" />
         <div className="flex flex-col items-start">
           {User}
           {StarRating}
