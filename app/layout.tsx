@@ -29,7 +29,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${titillium.className} antialiased flex flex-col justify-between h-screen`}>
+        className={`${titillium.className} antialiased flex flex-col justify-between h-screen scroll-smooth`}
+      >
         <SnackbarWrapper>
           <ChakraUIProvider>
             <Navbar />

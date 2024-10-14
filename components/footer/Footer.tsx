@@ -8,7 +8,7 @@ export default function Footer() {
     <div key={group.title} className="flex-1 flex flex-col gap-2">
       <h1 className="font-bold text-neutral-200">{group.title}</h1>
       {group.links.map((item) => (
-        <Link key={item.title} href={item.href}>
+        <Link key={item.title} href={item.href} target="_blank">
           {item.title}
         </Link>
       ))}
