@@ -2,16 +2,15 @@
 
 import React from "react";
 import { useUserStore } from "@/lib/useUserStore";
-import { CiTrash } from "react-icons/ci";
 import Image from "next/image";
 import { GoDash, GoPlus } from "react-icons/go";
 import Link from "next/link";
 import { createSlug } from "@/utils/createSlug";
 import { CartItem } from "@/types/dummy-products-type";
+import DeleteEntryAlert from "./delete-entry-alert";
 
 export default function CartItemView() {
   const cart = useUserStore((state) => state.cart);
-  const removeFromCart = useUserStore((state) => state.removeFromCart);
   const incrementCartItemQty = useUserStore(
     (state) => state.incrementCartItemQty
   );
@@ -40,7 +39,7 @@ export default function CartItemView() {
   const CartItems = cart.map((item) => (
     <div
       key={item.id}
-      className="flex gap-4 w-full items-start border p-4 relative"
+      className="flex gap-4 w-full items-start border rounded-md p-4 relative"
     >
       <div className="bg-stone-200 p-2">
         <Image src={item.thumbnail} width={100} height={100} alt={item.title} />
@@ -57,12 +56,7 @@ export default function CartItemView() {
           $ {(item.price * item.quantity).toFixed(2)}
         </p>
       </div>
-      <button
-        onClick={() => removeFromCart(item.id)}
-        className="absolute text-neutral-400 bottom-4 right-4"
-      >
-        <CiTrash size={28} />
-      </button>
+      <DeleteEntryAlert itemId={item.id} />
     </div>
   ));
 
@@ -73,9 +67,11 @@ export default function CartItemView() {
   );
 
   return (
-    <div className="space-y-4">
+    <div className="w-full space-y-4">
       {cart.length > 0 ? CartItems : NoItem}
-      <button onClick={() => clearCart()}>Clear Cart</button>
+      <button onClick={() => clearCart()} className="text-red-600">
+        Clear Cart
+      </button>
     </div>
   );
 }

@@ -35,7 +35,12 @@ export default function CheckoutButton() {
 
   return (
     <>
-      <Button onClick={handleCheckout} disabled={cart.length < 1}>
+      <Button
+        bgColor="#404040"
+        textColor="#E3E3E3"
+        onClick={handleCheckout}
+        disabled={cart.length < 1}
+      >
         Proceed to Checkout
       </Button>
       <AlertDialog

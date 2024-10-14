@@ -14,7 +14,6 @@ import { createSlug } from "@/utils/createSlug";
 import QuickAddButton from "@/components/buttons/add-cart-quantity/quick-add-button";
 
 export default function WishlistItemView() {
-  // const isLoggedIn = useUserStore(state => state.isLoggedIn);
   const wishlist = useUserStore((state) => state.wishlist);
   const inStockWishlistItems = wishlist.filter((item) => item.stock > 0);
 
@@ -83,7 +82,7 @@ export default function WishlistItemView() {
   );
 
   return (
-    <section className="w-full flex flex-col">
+    <section className="w-full flex flex-col py-8">
       <h1 className="font-semibold text-xl">
         It&#39;s about time you bought these!
       </h1>
