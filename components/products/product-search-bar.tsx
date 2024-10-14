@@ -22,13 +22,16 @@ export const ProductSearchBar = forwardRef<HTMLInputElement, DrawerProps>(
 
     return (
       <div className="flex flex-col">
-        <h1 className="max-sm:block hidden text-xs mb-4">Search Products:</h1>
+        <h1 className="max-sm:block hidden text-xs mb-4 antialiased">
+          Search Products:
+        </h1>
         <InputGroup>
           <Input
             placeholder="Search for products..."
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
             size={"lg"}
+            focusBorderColor="white"
             className="font-extralight"
             rounded={"none"}
             ref={ref}

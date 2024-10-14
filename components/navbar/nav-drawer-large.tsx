@@ -31,7 +31,7 @@ export default function NavDrawerLarge() {
   const searchBarRef = useRef<HTMLInputElement>(null);
 
   const SearchSection = (
-    <div className="w-3/4 mx-auto text-center space-y-8">
+    <div className="w-3/4 mx-auto text-center text-white space-y-8 pt-8 pb-14 bg-neutral-600 rounded-lg">
       <h1 className="text-2xl">Search Our Products</h1>
       <div className="w-7/12 mx-auto">
         <ProductSearchBar ref={searchBarRef} onClose={onClose} />
@@ -57,12 +57,12 @@ export default function NavDrawerLarge() {
         <TabPanels>
           {productCategoryLinks.map((item) => (
             <TabPanel key={item.groupTitle}>
-              <div className="w-full flex-center gap-8 mt-4">
+              <div className="w-full flex-center flex-wrap gap-8 mt-4">
                 {item.links.map((item, index) => (
                   <Link
                     href={`/products/${item.href}`}
                     key={index}
-                    className="flex-center w-[250px] h-[250px] bg-slate-500 rounded-md text-white"
+                    className="flex-center aspect-square w-[150px] lg:w-[200px] border rounded-md transition-colors hover:bg-neutral-600 hover:text-neutral-100"
                     onClick={onClose}
                   >
                     {item.title}
@@ -74,16 +74,6 @@ export default function NavDrawerLarge() {
         </TabPanels>
       </Tabs>
     </div>
-  );
-
-  const NavFooter = (
-    <Link
-      href={"https://github.com/Ovi/DummyJSON"}
-      target="_blank"
-      className="text-neutral-400 underline text-xs"
-    >
-      This project is powered by DummyJSON APIs.
-    </Link>
   );
 
   return (
@@ -120,10 +110,9 @@ export default function NavDrawerLarge() {
               <span className="font-light">Superstore</span>
             </div>
           </DrawerHeader>
-          <DrawerBody className="w-full flex-between flex-col gap-6">
+          <DrawerBody className="w-full flex flex-col gap-5">
             {SearchSection}
             {TabbedCategories}
-            {NavFooter}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
