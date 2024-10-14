@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import Link from "next/link";
+import NewDealsSection from "./_homepage-sections/new-deals";
+import PopularProductsSection from "./_homepage-sections/popular-products";
 
 export const metadata: Metadata = {
   title: "Home | Minikea",
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="w-full h-[200vh]">
-      Welcome to Minikea!
-      <Link href={"/products"}>Show Products</Link>
+    <main className="w-full p-4 md:p-8 max-w-screen-2xl mx-auto">
+      <NewDealsSection />
+      <PopularProductsSection />
     </main>
   );
 }

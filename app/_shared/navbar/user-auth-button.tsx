@@ -23,7 +23,7 @@ export default function UserAuthButton() {
 
   const SignInButton = (
     <Button size="sm">
-      <Link href={"/user/login"}>Sign in</Link>
+      <Link href={"/login"}>Sign in</Link>
     </Button>
   );
 
