@@ -1,9 +1,9 @@
 "use client";
 
-import CheckoutButton from "@/components/buttons/checkout-button";
 import { useUserStore } from "@/lib/useUserStore";
 import { Divider } from "@chakra-ui/react";
 import React from "react";
+import CheckoutButton from "./checkout-button";
 
 export default function CheckoutSummary() {
   const cart = useUserStore((state) => state.cart);

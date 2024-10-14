@@ -1,7 +1,7 @@
 import React from "react";
-import SearchBar from "./search-bar";
-import SearchResults from "./search-results";
-import WishlistItemView from "@/app/cart/wishlist-item-view";
+import SearchBar from "./_components/search-bar";
+import SearchResults from "./_components/search-results";
+import WishlistItemView from "@/app/_shared/wishlist-item-view/wishlist-item-view";
 
 export async function generateMetadata() {
   return {

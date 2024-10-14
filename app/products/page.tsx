@@ -1,9 +1,9 @@
-import ProductCard from "@/components/cards/product-card";
-import ProductPagination from "@/components/products/product-pagination";
-import ProductSort from "@/components/products/product-sort";
+import ProductPagination from "@/app/products/_components/product-pagination";
+import ProductSort from "@/app/products/_components/product-sort";
 import { ProductFetchResponseType } from "@/types/dummy-products-type";
 import axios from "axios";
 import { Metadata } from "next";
+import ProductCard from "./_components/product-card";
 
 export const metadata: Metadata = {
   title: "Browse All Products | Minikea",

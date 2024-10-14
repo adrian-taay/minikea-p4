@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import AddItemBtn from "../buttons/add-cart-quantity/add-item-button";
-import ToggleWishlistButton from "../buttons/toggle-wishlist-button";
 import clsx from "clsx";
 import { DummyProductType } from "@/types/dummy-products-type";
 import { createSlug } from "@/utils/createSlug";
+import ToggleWishlistButton from "./toggle-wishlist-button";
+import AddItemBtn from "@/app/products/[category]/[id]/_components/_add-to-cart/add-item-button";
 
 export default function WishlistItemCard({
   wishlistItem,

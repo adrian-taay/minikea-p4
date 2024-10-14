@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import CartItemView from "./cart-item-view";
-import WishlistItemView from "./wishlist-item-view";
-import CheckoutSummary from "./checkout-summary";
+import WishlistItemView from "../_shared/wishlist-item-view/wishlist-item-view";
+import CheckoutSummary from "./_components/checkout-summary";
 import useViewportResize from "@/lib/useViewportResize";
+import CartItemView from "./_components/cart-item-view";
 
 export default function CartPage() {
   const isWidthSmall = useViewportResize();

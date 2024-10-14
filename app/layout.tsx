@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
 import SnackbarWrapper from "@/providers/snackbar-provider";
 import { ChakraUIProvider } from "@/providers/chakraui-provider";
-import Footer from "@/components/footer/Footer";
 import { Titillium_Web } from "next/font/google";
+import Navbar from "./_shared/navbar/Navbar";
+import Footer from "./_shared/footer/Footer";
 
 // const poppins = Poppins({
 //   subsets: ["latin"],

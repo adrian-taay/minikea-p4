@@ -17,9 +17,9 @@ import clsx from "clsx";
 import { Titillium_Web } from "next/font/google";
 import { useRef } from "react";
 import { CiSearch } from "react-icons/ci";
-import { ProductSearchBar } from "../products/product-search-bar";
 import { productCategoryLinks } from "./menuLinks";
 import Link from "next/link";
+import { ProductSearchBar } from "./product-search-bar";
 
 const titillium = Titillium_Web({
   weight: ["400", "600", "700"],

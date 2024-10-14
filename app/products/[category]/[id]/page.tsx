@@ -1,7 +1,7 @@
-import WishlistItemView from "@/app/cart/wishlist-item-view";
-import AddItemBtnWrapper from "@/components/buttons/add-cart-quantity/add-cart-quantity-button";
-import ProductImages from "@/components/single-product/product-images";
-import ProductInfoPolicies from "@/components/single-product/product-info-policies";
+import WishlistItemView from "@/app/_shared/wishlist-item-view/wishlist-item-view";
+import AddItemBtnWrapper from "@/app/products/[category]/[id]/_components/_add-to-cart/add-cart-quantity-button";
+import ProductImages from "@/app/products/[category]/[id]/_components/product-images";
+import ProductInfoPolicies from "@/app/products/[category]/[id]/_components/product-info-policies";
 import { DummyProductType } from "@/types/dummy-products-type";
 import axios from "axios";
 import Link from "next/link";

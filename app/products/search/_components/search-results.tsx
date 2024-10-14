@@ -2,7 +2,7 @@ import { DummyProductType } from "@/types/dummy-products-type";
 import axios from "axios";
 import React from "react";
 import SearchCard from "./search-card";
-import ShowMoreProducts from "@/components/buttons/show-more-products";
+import ShowMoreProducts from "@/app/products/search/_components/show-more-products";
 
 export default async function SearchResults({
   query,

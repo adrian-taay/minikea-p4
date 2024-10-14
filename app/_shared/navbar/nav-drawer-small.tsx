@@ -15,13 +15,13 @@ import {
   DrawerHeader,
   DrawerCloseButton,
 } from "@chakra-ui/react";
-import { ProductSearchBar } from "../products/product-search-bar";
 import Link from "next/link";
 import { userAccountLinks, productCategoryLinks } from "./menuLinks";
 import { useUserStore } from "@/lib/useUserStore";
 import { CiMenuBurger } from "react-icons/ci";
 import clsx from "clsx";
 import { Titillium_Web } from "next/font/google";
+import { ProductSearchBar } from "./product-search-bar";
 
 const titillium = Titillium_Web({
   weight: ["400", "600", "700"],

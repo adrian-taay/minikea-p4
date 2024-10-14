@@ -11,7 +11,7 @@ import {
   ListItem,
   ListIcon,
 } from "@chakra-ui/react";
-import UserReviewCard from "../cards/user-review-card";
+import UserReviewCard from "./user-review-card";
 import { DummyProductType } from "@/types/dummy-products-type";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

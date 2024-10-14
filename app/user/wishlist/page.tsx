@@ -1,8 +1,8 @@
 "use client";
 
-import WishlistItemCard from "@/components/cards/wishlist-item-card";
 import { useUserStore } from "@/lib/useUserStore";
 import React from "react";
+import WishlistItemCard from "./wishlist-item-card";
 
 export default function WishlistPage() {
   const wishlist = useUserStore((state) => state.wishlist);

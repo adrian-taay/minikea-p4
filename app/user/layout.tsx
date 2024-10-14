@@ -1,4 +1,4 @@
-import UserAvatarCard from "@/components/cards/user-avatar-card";
+import UserAvatarCard from "@/app/user/(profile)/user-avatar-card";
 import Link from "next/link";
 
 export default function UserPageLayout({
@@ -9,19 +9,13 @@ export default function UserPageLayout({
   const Sidebar = (
     <div className="hidden md:flex flex-col gap-8 px-16 py-8 justify-start font-bold border-r">
       <UserAvatarCard />
-      <Link
-        href={"/user"}
-        className="hover:underline">
+      <Link href={"/user"} className="hover:underline">
         My Profile
       </Link>
-      <Link
-        href={"/user/transactions"}
-        className="hover:underline">
+      <Link href={"/user/transactions"} className="hover:underline">
         My Transactions
       </Link>
-      <Link
-        href={"/user/wishlist"}
-        className="hover:underline">
+      <Link href={"/user/wishlist"} className="hover:underline">
         My Wishlist
       </Link>
     </div>

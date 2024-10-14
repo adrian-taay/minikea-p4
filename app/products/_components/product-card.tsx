@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import ToggleWishlistButton from "../buttons/toggle-wishlist-button";
 import { createSlug } from "@/utils/createSlug";
 import { DummyProductType } from "@/types/dummy-products-type";
-import QuickAddButton from "../buttons/add-cart-quantity/quick-add-button";
+import QuickAddButton from "./quick-add-button";
+import ToggleWishlistButton from "@/app/user/wishlist/toggle-wishlist-button";
 
 export default function ProductCard({
   cardData,
@@ -25,10 +25,7 @@ export default function ProductCard({
 
   const CartWishlistWrapper = (
     <div className="absolute right-4 top-4 flex-center flex-col gap-3">
-      <QuickAddButton
-        item={cardData}
-        qty={1}
-      />
+      <QuickAddButton item={cardData} qty={1} />
       <ToggleWishlistButton cardData={cardData} />
     </div>
   );
@@ -46,7 +43,8 @@ export default function ProductCard({
       </div>
       <Link
         href={`/products/${cardData.category}/${slug}`}
-        className="font-bold">
+        className="font-bold"
+      >
         {ProductTitle}
       </Link>
       {CartWishlistWrapper}

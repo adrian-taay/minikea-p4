@@ -3,11 +3,11 @@
 import clsx from "clsx";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import UserAuthButton from "../buttons/user-auth-button";
-import ShoppingCartIcon from "../buttons/shopping-cart-button";
+import ShoppingCartIcon from "./shopping-cart-button";
 import { Titillium_Web } from "next/font/google";
 import NavDrawerLarge from "./nav-drawer-large";
 import NavDrawerSmall from "./nav-drawer-small";
+import UserAuthButton from "./user-auth-button";
 
 const titillium = Titillium_Web({
   weight: ["400", "600", "700"],
@@ -50,7 +50,8 @@ export default function Navbar() {
         "-space-y-2",
         titillium.className,
         "tracking-widest"
-      )}>
+      )}
+    >
       <span className="font-semibold text-3xl">MINIKEA</span>
       <span className="">Superstore</span>
     </Link>
@@ -74,7 +75,8 @@ export default function Navbar() {
         "ease-in-out",
         "z-10",
         isFloatingNavbar && "fixed top-0 shadow-md"
-      )}>
+      )}
+    >
       <div className="flex-between py-2 max-w-screen-2xl mx-auto">
         {LeftSideWrapper}
         {LogoWrapper}

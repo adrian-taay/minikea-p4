@@ -4,14 +4,13 @@ import React from "react";
 import { useUserStore } from "@/lib/useUserStore";
 import Image from "next/image";
 import Link from "next/link";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./styles.css";
 import { createSlug } from "@/utils/createSlug";
-import QuickAddButton from "@/components/buttons/add-cart-quantity/quick-add-button";
+import QuickAddButton from "@/app/products/_components/quick-add-button";
 
 export default function WishlistItemView() {
   const wishlist = useUserStore((state) => state.wishlist);

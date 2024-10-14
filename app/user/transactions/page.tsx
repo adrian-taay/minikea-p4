@@ -1,26 +1,24 @@
 "use client";
 
-import TransactionItemsCard from "@/components/cards/transaction-item-card";
+import TransactionItemsCard from "@/app/user/transactions/transaction-item-card";
 import { useUserStore } from "@/lib/useUserStore";
 import { formatDate } from "@/utils/formatDate";
 import clsx from "clsx";
 import React from "react";
 
 export default function TransactionsPage() {
-  const user = useUserStore(state => state.user);
-  const transactions = useUserStore(state => state.transactions);
+  const user = useUserStore((state) => state.user);
+  const transactions = useUserStore((state) => state.transactions);
 
   const transactionsByUser = transactions.filter(
-    transaction => transaction.user?.username === user.username
+    (transaction) => transaction.user?.username === user.username
   );
 
-  const TransactionsWrapper = transactionsByUser.map(transactions => {
+  const TransactionsWrapper = transactionsByUser.map((transactions) => {
     const transactionDate = formatDate(transactions.createdAt);
 
     return (
-      <div
-        key={transactions.id}
-        className="w-full border rounded-md">
+      <div key={transactions.id} className="w-full border rounded-md">
         <div className="flex-between bg-slate-100 px-4 py-2">
           <div className="text-md tracking-wide">{transactionDate}</div>
           <p
@@ -29,15 +27,13 @@ export default function TransactionsPage() {
                 ? "text-lime-600"
                 : "text-red-600",
               "uppercase"
-            )}>
+            )}
+          >
             {transactions.status}
           </p>
         </div>
-        {transactions.items.map(item => (
-          <TransactionItemsCard
-            key={item.sku}
-            item={item}
-          />
+        {transactions.items.map((item) => (
+          <TransactionItemsCard key={item.sku} item={item} />
         ))}
         <div className="text-right font-semibold px-4 py-2">
           Total: ${transactions.totalAmount.toFixed(2)}
