@@ -4,6 +4,9 @@ import { ProductFetchResponseType } from "@/types/dummy-products-type";
 import axios from "axios";
 import React from "react";
 import ProductCard from "../_components/product-card";
+import { productCategoryLinks } from "@/app/_shared/navbar/menuLinks";
+import Image from "next/image";
+import { feature_gift } from "@/app/_shared/constants/images";
 
 export async function generateMetadata({
   params,
@@ -44,6 +47,13 @@ export default async function CategoryPage({
   const determineSkip =
     Number(pageQuery) === 1 ? 0 : (Number(pageQuery) - 1) * limit;
 
+  const productGroup = productCategoryLinks.find((item) =>
+    item.links.some((obj) => obj.href === params.category)
+  );
+  const productCategory = productGroup?.links.find(
+    (item) => item.href === params.category
+  );
+
   try {
     const response = await axios(
       `https://dummyjson.com/products/category/${params.category}?skip=${determineSkip}&limit=${limit}${addSortQuery}`
@@ -53,27 +63,37 @@ export default async function CategoryPage({
     const isMultiplePages = data.total / data.limit > 1;
 
     return (
-      <div className="w-full p-4 lg:p-8 max-w-screen-2xl mx-auto">
-        <div className="flex-center py-10 md:py-16 bg-stone-600 text-neutral-200 rounded-sm">
-          <h1 className="capitalize text-xl md:text-3xl font-semibold">
+      <div className="w-full max-w-screen-2xl mx-auto">
+        <div className="relative flex-center bg-stone-600 text-neutral-200 rounded-sm">
+          <div className="relative w-full h-[450px]">
+            <Image
+              src={productCategory?.img ?? feature_gift}
+              alt={productCategory?.title ?? params.category}
+              fill
+              className="absolute object-cover bg-center"
+            />
+          </div>
+          <h1 className="absolute w-full h-full capitalize text-xl md:text-4xl flex-center bg-neutral-700/40">
             {params.category}
           </h1>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-1 my-4">
-          <p>
-            Products Found: {data.total} {data.total === 1 ? "item" : "items"}
-          </p>
-          <ProductSort />
-        </div>
-        <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-3">
-          {data?.products.map((item, index) => (
-            <ProductCard cardData={item} key={index} />
-          ))}
-        </div>
-        <div className="flex-center py-2 md:py-8 border-t">
-          {isMultiplePages && (
-            <ProductPagination total={data.total} limit={limit} />
-          )}
+        <div className="flex flex-col p-4 lg:p-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-1 my-4 ">
+            <p>
+              Products Found: {data.total} {data.total === 1 ? "item" : "items"}
+            </p>
+            <ProductSort />
+          </div>
+          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-3">
+            {data?.products.map((item, index) => (
+              <ProductCard cardData={item} key={index} />
+            ))}
+          </div>
+          <div className="flex-center py-2 md:py-8 border-t">
+            {isMultiplePages && (
+              <ProductPagination total={data.total} limit={limit} />
+            )}
+          </div>
         </div>
       </div>
     );
