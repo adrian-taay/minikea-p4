@@ -31,12 +31,18 @@ export default async function DisplayProducts({
   );
 
   return (
-    <div className="w-full px-4 md:px-8 py-20 flex flex-col gap-8 items-center">
-      <h1 className="font-semibold text-3xl place-self-start">
+    <div className="w-full flex flex-col gap-8 items-center">
+      <h1 className="text-3xl place-self-center md:place-self-start">
         {displayProductObject.headline}
       </h1>
       {DisplayPopularProducts}
-      <ActionButton title="See our Products" href="/products" />
+      <ActionButton
+        title="See our Products"
+        href="/products"
+        style={{
+          rounded: "none",
+        }}
+      />
     </div>
   );
 }

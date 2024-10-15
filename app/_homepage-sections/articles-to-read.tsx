@@ -84,8 +84,8 @@ export default function ArticlesToRead() {
       </div>
       <div className="absolute w-full h-full p-10 text-neutral-700 bg-white/50 space-y-4">
         <p className="uppercase text-sm">Feature</p>
-        <p className="w-1/2 text-5xl text-pretty">Back to Basics</p>
-        <p className="w-2/5 text-pretty tracking-tighter leading-snug">
+        <p className="w-full md:w-1/2 text-5xl text-pretty">Back to Basics</p>
+        <p className="w-full md:w-2/5 text-pretty tracking-tighter leading-snug">
           Discover the simplicity of a capsule wardrobe, a curated collection of
           timeless, versatile pieces that work for any occasion. By focusing on
           quality over quantity, you can create countless outfits while reducing
@@ -107,7 +107,8 @@ export default function ArticlesToRead() {
   return (
     <section className="w-full pt-10 space-y-10">
       {FullWidthWrapper}
-      <div className="w-full px-4 md:px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <h1 className="text-3xl text-center">Worth Reading</h1>
+      <div className="w-full px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 md:gap-8">
         {ArticlesCard}
       </div>
     </section>

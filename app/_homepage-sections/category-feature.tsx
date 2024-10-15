@@ -17,7 +17,7 @@ export default function CategoryFeatureSection() {
       <h1 className="text-2xl font-semibold tracking-wide">
         Fill your home with joy this Christmas!
       </h1>
-      <p className="w-3/4 text-pretty">
+      <p className="w-full xl:w-3/4 max-lg:text-justify text-pretty">
         Celebrate the longest Christmas season in the world, Filipino style!
         From bright parols lighting up the streets to festive Noche Buena
         feasts, it&apos;s the time to share joy, gifts, and love. Whether
@@ -31,9 +31,9 @@ export default function CategoryFeatureSection() {
   );
 
   return (
-    <>
-      <div className="w-full px-4 md:px-8 my-30 h-[500px] flex flex-col md:flex-row gap-10">
-        <div className="relative flex-1 bg-slate-300">
+    <div className="w-full px-4 md:px-8 my-30 h-full flex flex-col gap-10 mt-10">
+      <div className="w-full flex flex-col lg:flex-row gap-4 lg:gap-10">
+        <div className="relative w-full lg:w-3/4 h-[25vh] md:h-[50vh]">
           <Image
             src={feature_christmas}
             alt="Christmas"
@@ -41,15 +41,11 @@ export default function CategoryFeatureSection() {
             className="object-cover bg-center absolute"
           />
         </div>
-        <div className="flex flex-col justify-center items-start gap-8 w-1/2">
+        <div className="flex flex-col justify-center items-start gap-8 w-full lg:w-1/2">
           {WriteupsWrapper}
-          <ActionButton
-            title="Read More"
-            href="/products/kitchen-accessories"
-          />
         </div>
       </div>
       <DisplayProducts displayProductObject={christmasPicks} />
-    </>
+    </div>
   );
 }

@@ -115,7 +115,7 @@ export default function HeroSection() {
         {splashImages.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="w-full flex flex-col h-full relative">
-              <div className="w-full h-[75vh] relative flex justify-center items-center">
+              <div className="w-full h-[50vh] lg:h-[75vh] relative flex justify-center items-center">
                 <Image
                   src={item.img}
                   alt="Minikea"
@@ -130,7 +130,8 @@ export default function HeroSection() {
                   "h-full",
                   "flex",
                   "flex-col",
-                  "p-20",
+                  "p-8",
+                  "md:p-20",
                   "gap-8",
                   "bg-neutral-700/60",
                   item.textColor === "white"
@@ -147,8 +148,10 @@ export default function HeroSection() {
                 )}
               >
                 <p className="uppercase text-sm">{item.subtext}</p>
-                <p className="w-1/2 text-5xl text-pretty">{item.headline}</p>
-                <p className="w-1/5 text-pretty tracking-tighter leading-snug">
+                <p className="w-full md:w-1/2 text-5xl text-pretty">
+                  {item.headline}
+                </p>
+                <p className="w-full md:w-1/5 text-pretty tracking-tighter leading-snug">
                   {item.content}
                 </p>
                 {item.actionButton && (

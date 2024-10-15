@@ -87,13 +87,13 @@ export default function NewDealsSection() {
 
   return (
     <div className="w-full px-4 md:px-8 space-y-10 mt-10">
-      <div className="text-center space-y-4">
-        <h1 className="text-5xl">New Deals</h1>
+      <div className="text-center space-y-0 md:space-y-4">
+        <h1 className="text-3xl sm:text-5xl">New Deals</h1>
         <p className="text-sm uppercase tracking-wider">
           Products of the season
         </p>
       </div>
-      <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {NewDealsWrapper}
       </div>
       <DisplayProducts displayProductObject={topPicks} />

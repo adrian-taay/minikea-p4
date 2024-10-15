@@ -8,9 +8,9 @@ export default function ActionButton({
   title: string;
   href: string;
   style?: {
-    bgColor: string;
-    textColor: string;
-    rounded: "none";
+    bgColor?: string;
+    textColor?: string;
+    rounded?: "none";
   };
 }) {
   return (
