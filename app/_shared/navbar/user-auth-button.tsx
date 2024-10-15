@@ -29,9 +29,9 @@ export default function UserAuthButton() {
 
   const UserAccountButton = (
     <div className="flex gap-2 items-center">
-      <span className="text-sm font-semibold">Hi, {user.firstName}</span>
+      <span className="text-sm">Hello, {user.firstName}</span>
       <div className="rounded-full overflow-hidden bg-slate-400">
-        <Image src={user.image} width={25} height={25} alt={user.username} />
+        <Image src={user.image} width={30} height={30} alt={user.username} />
       </div>
     </div>
   );

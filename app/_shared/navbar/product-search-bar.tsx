@@ -21,7 +21,7 @@ export const ProductSearchBar = forwardRef<HTMLInputElement, DrawerProps>(
     };
 
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col bg-white">
         <h1 className="max-sm:block hidden text-xs mb-4 antialiased">
           Search Products:
         </h1>

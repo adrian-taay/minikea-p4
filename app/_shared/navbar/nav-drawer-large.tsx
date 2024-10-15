@@ -20,6 +20,8 @@ import { CiSearch } from "react-icons/ci";
 import { productCategoryLinks } from "./menuLinks";
 import Link from "next/link";
 import { ProductSearchBar } from "./product-search-bar";
+import Image from "next/image";
+import { search_splash } from "../constants/images";
 
 const titillium = Titillium_Web({
   weight: ["400", "600", "700"],
@@ -31,7 +33,7 @@ export default function NavDrawerLarge() {
   const searchBarRef = useRef<HTMLInputElement>(null);
 
   const SearchSection = (
-    <div className="w-3/4 mx-auto text-center text-white space-y-8 pt-8 pb-14 bg-neutral-600 rounded-lg">
+    <div className="w-1/2 mx-auto text-center space-y-8 py-8 border bg-white/80 z-10">
       <h1 className="text-2xl">Search Our Products</h1>
       <div className="w-7/12 mx-auto">
         <ProductSearchBar ref={searchBarRef} onClose={onClose} />
@@ -51,7 +53,7 @@ export default function NavDrawerLarge() {
         <TabIndicator
           mt="-1.5px"
           height="2px"
-          bg="blue.500"
+          bg="gray.600"
           borderRadius="1px"
         />
         <TabPanels>
@@ -59,14 +61,26 @@ export default function NavDrawerLarge() {
             <TabPanel key={item.groupTitle}>
               <div className="w-full flex-center flex-wrap gap-8 mt-4">
                 {item.links.map((item, index) => (
-                  <Link
-                    href={`/products/${item.href}`}
+                  <div
                     key={index}
-                    className="flex-center aspect-square w-[150px] lg:w-[200px] border rounded-md transition-colors hover:bg-neutral-600 hover:text-neutral-100"
-                    onClick={onClose}
+                    className="relative flex flex-col h-full rounded-md overflow-hidden shadow-md"
                   >
-                    {item.title}
-                  </Link>
+                    <div className="relative h-full aspect-square w-[150px] lg:w-[200px]">
+                      <Image
+                        src={item.img}
+                        alt={item.href}
+                        fill
+                        className="absolute object-cover bg-center"
+                      />
+                    </div>
+                    <Link
+                      href={`/products/${item.href}`}
+                      className="absolute w-full h-full z-10 text-white flex items-center justify-center bg-neutral-700/40 font-semibold text-lg"
+                      onClick={onClose}
+                    >
+                      {item.title}
+                    </Link>
+                  </div>
                 ))}
               </div>
             </TabPanel>
@@ -95,7 +109,7 @@ export default function NavDrawerLarge() {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>
+          <DrawerHeader className="shadow-md border-b">
             <div
               className={clsx(
                 "flex-center",
@@ -110,7 +124,13 @@ export default function NavDrawerLarge() {
               <span className="font-light">Superstore</span>
             </div>
           </DrawerHeader>
-          <DrawerBody className="w-full flex flex-col gap-5">
+          <DrawerBody className="relative w-full flex flex-col justify-center gap-5">
+            <Image
+              src={search_splash}
+              alt="Search splash image"
+              fill
+              className="object-cover bg-center absolute opacity-40"
+            />
             {SearchSection}
             {TabbedCategories}
           </DrawerBody>

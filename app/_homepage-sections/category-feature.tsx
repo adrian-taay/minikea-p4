@@ -1,5 +1,4 @@
 import React from "react";
-import ActionButton from "./_action-button";
 import Image from "next/image";
 import { feature_christmas } from "../_shared/constants/images";
 import { DisplayProductsType } from "./display-products";

@@ -4,13 +4,15 @@ import { useUserStore } from "@/lib/useUserStore";
 import { UserItem } from "@/types/dummy-users-type";
 import { Button, Input } from "@chakra-ui/react";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
+import { login_splash } from "../_shared/constants/images";
 
 export default function LoginPage() {
   const router = useRouter();
-  const userLogin = useUserStore(state => state.userLogin);
+  const userLogin = useUserStore((state) => state.userLogin);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -40,7 +42,7 @@ export default function LoginPage() {
   }
 
   const LoginForm = (
-    <section className="w-full md:w-1/2 lg:w-1/3 2xl:w-1/5 border rounded-md shadow-md flex flex-col bg-slate-100 p-5 gap-4 my-20">
+    <section className="absolute w-full md:w-1/2 lg:w-1/3 2xl:w-1/5 border shadow-md flex flex-col bg-white p-5 gap-4 my-20">
       <h1 className="text-center text-xl font-semibold pb-4 border-b">
         Member Login
       </h1>
@@ -51,7 +53,7 @@ export default function LoginPage() {
           type="text"
           value={username}
           name="username-input"
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter your username"
         />
       </div>
@@ -62,7 +64,7 @@ export default function LoginPage() {
           type="password"
           value={password}
           name="password-input"
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
         />
       </div>
@@ -71,13 +73,24 @@ export default function LoginPage() {
         mt={4}
         textColor="#E5E5E5"
         bg="#222222"
-        onClick={() => loginUser(username, password)}>
+        onClick={() => loginUser(username, password)}
+      >
         Login
       </Button>
     </section>
   );
 
   return (
-    <div className="w-full flex-center h-full md:bg-slate-300">{LoginForm}</div>
+    <div className="w-full flex-center h-full relative">
+      <div className="relative w-full aspect-[16/7] h-full">
+        <Image
+          src={login_splash}
+          alt="Login splash image"
+          fill
+          className="object-cover bg-center absolute"
+        />
+      </div>
+      {LoginForm}
+    </div>
   );
 }
