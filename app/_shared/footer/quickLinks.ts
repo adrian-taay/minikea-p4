@@ -28,19 +28,23 @@ export const quickLinks = [
     title: "Credits",
     links: [
       {
-        title: "Shopify -- Design",
+        title: "Shopify",
         href: "https://demo-alukas.myshopify.com/password",
       },
       {
-        title: "Our Home -- Design",
+        title: "Our Home",
         href: "https://ourhome.ph/",
       },
       {
-        title: "DummyJSON -- 3rd Party API",
+        title: "Rustans",
+        href: "https://rustans.com/",
+      },
+      {
+        title: "DummyJSON",
         href: "https://dummyjson.com/",
       },
       {
-        title: "Codebility -- Proponents",
+        title: "Codebility",
         href: "https://www.codebility.tech/",
       },
     ],
