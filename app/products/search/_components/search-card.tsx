@@ -17,7 +17,7 @@ export default function SearchCard({ item }: { item: DummyProductType }) {
           src={item.thumbnail}
           alt={item.title}
           fill
-          className="object-cover bg-center bg-stone-200 hover:scale-125 transition-transform ease-in-out"
+          className="absolute object-cover bg-center bg-stone-200 hover:scale-125 transition-transform ease-in-out"
         />
       </div>
       <div className="leading-snug -space-y-1">

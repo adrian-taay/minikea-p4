@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
 type DrawerProps = {
@@ -13,6 +13,19 @@ export const ProductSearchBar = forwardRef<HTMLInputElement, DrawerProps>(
   ({ onClose }, ref) => {
     const [searchTerm, setSearchTerm] = useState("");
     const router = useRouter();
+    const searchButtonRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+      function handleEnterKeyPress(e: KeyboardEvent) {
+        if (e.key === "Enter") {
+          searchButtonRef.current?.click();
+        }
+      }
+
+      window.addEventListener("keypress", handleEnterKeyPress);
+
+      return () => window.removeEventListener("keypress", handleEnterKeyPress);
+    }, []);
 
     const handleSearchInput = () => {
       onClose();
@@ -25,7 +38,7 @@ export const ProductSearchBar = forwardRef<HTMLInputElement, DrawerProps>(
         <h1 className="max-sm:block hidden text-xs mb-4 antialiased">
           Search Products:
         </h1>
-        <InputGroup>
+        <InputGroup size="lg">
           <Input
             placeholder="Search for products..."
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -37,7 +50,7 @@ export const ProductSearchBar = forwardRef<HTMLInputElement, DrawerProps>(
             ref={ref}
           />
           <InputRightElement>
-            <button onClick={handleSearchInput}>
+            <button onClick={handleSearchInput} ref={searchButtonRef}>
               <CiSearch />
             </button>
           </InputRightElement>

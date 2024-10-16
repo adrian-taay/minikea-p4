@@ -70,9 +70,10 @@ export default function LoginPage() {
       </div>
       <Button
         placeSelf="center"
+        rounded="none"
         mt={4}
         textColor="#E5E5E5"
-        bg="#222222"
+        bg="#404040"
         onClick={() => loginUser(username, password)}
       >
         Login

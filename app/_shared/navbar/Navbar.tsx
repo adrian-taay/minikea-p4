@@ -58,7 +58,7 @@ export default function Navbar() {
   );
 
   const RightSideWrapper = (
-    <section className="flex-end flex-1 gap-4">
+    <section className="flex-end flex-1 gap-6">
       <ShoppingCartIcon />
       <UserAuthButton />
     </section>

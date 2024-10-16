@@ -63,7 +63,7 @@ export default function NavDrawerLarge() {
                 {item.links.map((item, index) => (
                   <div
                     key={index}
-                    className="relative flex flex-col h-full rounded-md overflow-hidden shadow-md"
+                    className="relative flex flex-col h-full shadow-md"
                   >
                     <div className="relative h-full aspect-square w-[150px] lg:w-[200px]">
                       <Image

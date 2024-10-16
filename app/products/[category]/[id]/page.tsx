@@ -1,8 +1,12 @@
+import DisplayProducts, {
+  DisplayProductsType,
+} from "@/app/_shared/display-products/display-products";
 import WishlistItemView from "@/app/_shared/wishlist-item-view/wishlist-item-view";
 import AddItemBtnWrapper from "@/app/products/[category]/[id]/_components/_add-to-cart/add-cart-quantity-button";
 import ProductImages from "@/app/products/[category]/[id]/_components/product-images";
 import ProductInfoPolicies from "@/app/products/[category]/[id]/_components/product-info-policies";
 import { DummyProductType } from "@/types/dummy-products-type";
+import { randomProductIdArray } from "@/utils/randomProductIdArray";
 import axios from "axios";
 import Link from "next/link";
 import React from "react";
@@ -26,6 +30,11 @@ export default async function SingleProductPage({
   params: { id: string };
 }) {
   const extractId = params.id.split("-")[0];
+
+  const randomPicks: DisplayProductsType = {
+    headline: "Random Picks",
+    products: randomProductIdArray(6),
+  };
 
   try {
     const response = await axios(`https://dummyjson.com/products/${extractId}`);
@@ -71,6 +80,7 @@ export default async function SingleProductPage({
         </div>
         <ProductInfoPolicies data={productDetail} />
         <WishlistItemView />
+        <DisplayProducts displayProductObject={randomPicks} />
       </div>
     );
   } catch (err) {

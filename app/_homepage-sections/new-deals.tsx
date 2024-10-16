@@ -8,7 +8,9 @@ import {
   feature_watches,
 } from "../_shared/constants/images";
 import Image, { StaticImageData } from "next/image";
-import DisplayProducts, { DisplayProductsType } from "./display-products";
+import DisplayProducts, {
+  DisplayProductsType,
+} from "../_shared/display-products/display-products";
 
 type ImageCardType = {
   category: string;

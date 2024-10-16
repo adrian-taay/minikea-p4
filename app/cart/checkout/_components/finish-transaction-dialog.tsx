@@ -1,10 +1,8 @@
 "use client";
 
-import { useUserStore } from "@/lib/useUserStore";
 import {
   AlertDialog,
   AlertDialogBody,
-  AlertDialogCloseButton,
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogHeader,
@@ -15,22 +13,23 @@ import {
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
-export default function CheckoutButton() {
+import React from "react";
+import { useUserStore } from "@/lib/useUserStore";
+
+export default function FinishTransactionDialog() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
-  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const user = useUserStore((state) => state.user);
   const cart = useUserStore((state) => state.cart);
-
+  const userCheckout = useUserStore((state) => state.userCheckout);
   const cancelRef = useRef(null);
 
-  function handleCheckout() {
-    if (cart.length < 1) return;
+  function handlePay() {
+    if (!cart) return;
 
-    if (!isLoggedIn) {
-      return onOpen();
-    }
+    userCheckout(cart, user);
 
-    router.push("/cart/checkout");
+    setTimeout(() => onOpen(), 1000);
   }
 
   return (
@@ -39,10 +38,9 @@ export default function CheckoutButton() {
         bgColor="#404040"
         textColor="#E3E3E3"
         rounded="none"
-        onClick={handleCheckout}
-        disabled={cart.length < 1}
+        onClick={handlePay}
       >
-        Proceed to Checkout
+        Complete Payment
       </Button>
       <AlertDialog
         motionPreset="slideInBottom"
@@ -50,25 +48,17 @@ export default function CheckoutButton() {
         onClose={onClose}
         isOpen={isOpen}
         isCentered
+        closeOnEsc={false}
+        closeOnOverlayClick={false}
       >
         <AlertDialogOverlay />
 
         <AlertDialogContent rounded="none" py={2}>
-          <AlertDialogHeader>Proceed to Checkout</AlertDialogHeader>
-          <AlertDialogCloseButton />
-          <AlertDialogBody>You must login to continue.</AlertDialogBody>
+          <AlertDialogHeader>Payment Complete!</AlertDialogHeader>
+          <AlertDialogBody>Thank you for your purchase.</AlertDialogBody>
           <AlertDialogFooter>
-            <Button rounded="none" ref={cancelRef} onClick={onClose}>
-              I&apos;ll do it later
-            </Button>
-            <Button
-              bgColor="#404040"
-              textColor="#E3E3E3"
-              rounded="none"
-              ml={3}
-              onClick={() => router.push("/login")}
-            >
-              Login
+            <Button onClick={() => router.push("/user/transactions")}>
+              OK
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

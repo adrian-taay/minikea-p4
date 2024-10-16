@@ -17,7 +17,6 @@ export default function CartItemView() {
   const decrementCartItemQty = useUserStore(
     (state) => state.decrementCartItemQty
   );
-  const clearCart = useUserStore((state) => state.clearCart);
 
   const QuantityControlButtons = ({ item }: { item: CartItem }) => {
     return (
@@ -39,7 +38,7 @@ export default function CartItemView() {
   const CartItems = cart.map((item) => (
     <div
       key={item.id}
-      className="flex gap-4 w-full items-start border rounded-md p-4 relative"
+      className="flex gap-4 w-full items-start border p-4 relative"
     >
       <div className="bg-stone-200 p-2">
         <Image src={item.thumbnail} width={100} height={100} alt={item.title} />
@@ -69,9 +68,6 @@ export default function CartItemView() {
   return (
     <div className="w-full space-y-4">
       {cart.length > 0 ? CartItems : NoItem}
-      <button onClick={() => clearCart()} className="text-red-600">
-        Clear Cart
-      </button>
     </div>
   );
 }

@@ -7,6 +7,10 @@ import ProductCard from "../_components/product-card";
 import { productCategoryLinks } from "@/app/_shared/navbar/menuLinks";
 import Image from "next/image";
 import { feature_gift } from "@/app/_shared/constants/images";
+import DisplayProducts, {
+  DisplayProductsType,
+} from "@/app/_shared/display-products/display-products";
+import { randomProductIdArray } from "@/utils/randomProductIdArray";
 
 export async function generateMetadata({
   params,
@@ -54,6 +58,11 @@ export default async function CategoryPage({
     (item) => item.href === params.category
   );
 
+  const randomPicks: DisplayProductsType = {
+    headline: "You might like these",
+    products: randomProductIdArray(6),
+  };
+
   try {
     const response = await axios(
       `https://dummyjson.com/products/category/${params.category}?skip=${determineSkip}&limit=${limit}${addSortQuery}`
@@ -84,7 +93,7 @@ export default async function CategoryPage({
             </p>
             <ProductSort />
           </div>
-          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4">
             {data?.products.map((item, index) => (
               <ProductCard cardData={item} key={index} />
             ))}
@@ -94,6 +103,7 @@ export default async function CategoryPage({
               <ProductPagination total={data.total} limit={limit} />
             )}
           </div>
+          <DisplayProducts displayProductObject={randomPicks} />
         </div>
       </div>
     );

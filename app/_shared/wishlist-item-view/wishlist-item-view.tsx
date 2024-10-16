@@ -15,6 +15,7 @@ import QuickAddButton from "@/app/products/_components/quick-add-button";
 export default function WishlistItemView() {
   const wishlist = useUserStore((state) => state.wishlist);
   const inStockWishlistItems = wishlist.filter((item) => item.stock > 0);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
 
   const WishlistSwiper = (
     <Swiper
@@ -80,7 +81,7 @@ export default function WishlistItemView() {
     </Swiper>
   );
 
-  return (
+  const WishlistItemWrapper = (
     <section className="w-full flex flex-col py-8">
       <h1 className="font-semibold text-xl">
         It&#39;s about time you bought these!
@@ -94,4 +95,6 @@ export default function WishlistItemView() {
       </Link>
     </section>
   );
+
+  return <>{isLoggedIn && wishlist.length > 0 ? WishlistItemWrapper : null}</>;
 }

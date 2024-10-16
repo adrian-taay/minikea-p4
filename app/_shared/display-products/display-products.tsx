@@ -1,8 +1,8 @@
 import { DummyProductType } from "@/types/dummy-products-type";
 import axios from "axios";
 import React from "react";
-import SearchCard from "../products/search/_components/search-card";
-import ActionButton from "./_action-button";
+import SearchCard from "../../products/search/_components/search-card";
+import ActionButton from "../../_homepage-sections/_action-button";
 
 export type DisplayProductsType = {
   headline: string;
@@ -32,12 +32,12 @@ export default async function DisplayProducts({
 
   return (
     <div className="w-full flex flex-col gap-8 items-center">
-      <h1 className="text-3xl place-self-center md:place-self-start">
+      <h1 className="text-2xl place-self-center md:place-self-start">
         {displayProductObject.headline}
       </h1>
       {DisplayPopularProducts}
       <ActionButton
-        title="See our Products"
+        title="See more"
         href="/products"
         style={{
           rounded: "none",

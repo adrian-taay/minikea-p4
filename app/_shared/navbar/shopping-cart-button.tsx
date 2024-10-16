@@ -25,7 +25,9 @@ export default function ShoppingCartIcon() {
       {cart.length > 0 && (
         <Badge
           variant="solid"
-          colorScheme="green"
+          textColor="#E5E5E5"
+          bg="#404040"
+          rounded="full"
           className="absolute -top-1 -right-1"
         >
           {cart.length}

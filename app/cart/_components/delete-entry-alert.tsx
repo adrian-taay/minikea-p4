@@ -36,7 +36,7 @@ export default function DeleteEntryAlert({ itemId }: { itemId: number }) {
         isCentered
       >
         <AlertDialogOverlay>
-          <AlertDialogContent>
+          <AlertDialogContent rounded="none" py={2}>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               Delete Item from Cart
             </AlertDialogHeader>
@@ -46,12 +46,13 @@ export default function DeleteEntryAlert({ itemId }: { itemId: number }) {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button rounded="none" ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
               <Button
                 bgColor="#404040"
                 textColor="#E3E3E3"
+                rounded="none"
                 onClick={() => removeFromCart(itemId)}
                 ml={3}
               >

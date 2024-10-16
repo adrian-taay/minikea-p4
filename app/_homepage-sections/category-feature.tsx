@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { feature_christmas } from "../_shared/constants/images";
-import { DisplayProductsType } from "./display-products";
-import DisplayProducts from "./display-products";
+import { DisplayProductsType } from "../_shared/display-products/display-products";
+import DisplayProducts from "../_shared/display-products/display-products";
 
 export default function CategoryFeatureSection() {
   const christmasPicks: DisplayProductsType = {
