@@ -21,6 +21,7 @@ export default function FinishTransactionDialog() {
   const router = useRouter();
   const user = useUserStore((state) => state.user);
   const cart = useUserStore((state) => state.cart);
+  const clearCart = useUserStore((state) => state.clearCart);
   const userCheckout = useUserStore((state) => state.userCheckout);
   const cancelRef = useRef(null);
 
@@ -30,6 +31,12 @@ export default function FinishTransactionDialog() {
     userCheckout(cart, user);
 
     setTimeout(() => onOpen(), 1000);
+  }
+
+  function handleRedirect() {
+    router.push("/user/transactions");
+
+    clearCart();
   }
 
   return (
@@ -57,9 +64,7 @@ export default function FinishTransactionDialog() {
           <AlertDialogHeader>Payment Complete!</AlertDialogHeader>
           <AlertDialogBody>Thank you for your purchase.</AlertDialogBody>
           <AlertDialogFooter>
-            <Button onClick={() => router.push("/user/transactions")}>
-              OK
-            </Button>
+            <Button onClick={handleRedirect}>OK</Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

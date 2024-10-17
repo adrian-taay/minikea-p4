@@ -16,19 +16,19 @@ export default function ProductImages({ images }: { images: string[] }) {
       slideToClickedSlide
       slidesPerView={1}
       spaceBetween={10}
-      className="w-full md:w-[300px] lg:w-[400px] xl:w-[600px]"
+      className="w-full md:w-[350px] lg:w-[400px] xl:w-[600px]"
       onSwiper={setSwiper}
       onSlideChange={(slide) => setActiveImage(slide.realIndex)}
     >
       <div className="w-full">
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full aspect-square">
+            <div className="relative w-full aspect-square bg-stone-200 ">
               <Image
                 src={image}
                 fill
                 alt="Product image"
-                className="bg-stone-200 bg-cover bg-center"
+                className="absolute object-cover bg-center"
               />
             </div>
           </SwiperSlide>
@@ -38,7 +38,7 @@ export default function ProductImages({ images }: { images: string[] }) {
   );
 
   const ThumbNav = (
-    <div className="w-full flex gap-1 mt-2 md:mt-0 md:gap-2 lg:gap-3 items-center md:flex-col flex-shrink md:w-auto">
+    <div className="w-full flex gap-1 mt-2 xl:mt-0 md:gap-2 xl:gap-3 items-center xl:flex-col flex-shrink md:w-auto">
       {images.map((image, index) => (
         <div
           key={index}
@@ -61,7 +61,7 @@ export default function ProductImages({ images }: { images: string[] }) {
   );
 
   return (
-    <div className="w-full md:flex flex-row-reverse gap-2 lg:gap-3 flex-shrink">
+    <div className="w-full xl:flex flex-row-reverse gap-2 lg:gap-3 flex-shrink">
       {DisplayedImage}
       {ThumbNav}
     </div>

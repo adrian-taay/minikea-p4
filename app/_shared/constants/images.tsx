@@ -7,6 +7,7 @@ import splash_tech from "@/public/splash-images/splash_tech.jpg";
 import login_splash from "@/public/splash-images/login_splash.jpg";
 import search_splash from "@/public/splash-images/search_splash.jpg";
 import checkout_splash from "@/public/splash-images/checkout_splash.jpg";
+import delivery_splash from "@/public/splash-images/delivery_splash.jpg";
 
 import feature_apparel from "@/public/feature-images/apparel.jpg";
 import feature_beauty from "@/public/feature-images/beauty-and-wellness.jpg";
@@ -57,6 +58,7 @@ export {
   login_splash,
   search_splash,
   checkout_splash,
+  delivery_splash,
   feature_apparel,
   feature_beauty,
   feature_gift,

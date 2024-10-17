@@ -22,6 +22,7 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 import { Navigation } from "swiper/modules";
+import "./product-info-policies.css";
 
 export default function ProductInfoPolicies({
   data,
@@ -66,7 +67,7 @@ export default function ProductInfoPolicies({
 
   const CustomerReviews = (
     <div className="w-full flex flex-col gap-6">
-      <span className="place-self-start md:place-self-auto font-semibold">
+      <span className="place-self-start font-semibold">
         Ratings: {data.rating} / 5
       </span>
       {data.reviews.map((review, index) => (
@@ -118,15 +119,15 @@ export default function ProductInfoPolicies({
       content: Details,
     },
     {
-      header: "Customer Reviews",
+      header: "Reviews",
       content: CustomerReviews,
     },
     {
-      header: "Terms and Conditions",
+      header: "Terms",
       content: Terms,
     },
     {
-      header: "Shipping and Warranty",
+      header: "Warranty",
       content: Shipping,
     },
   ];
@@ -167,7 +168,7 @@ export default function ProductInfoPolicies({
   );
 
   const TabbedContents = (
-    <Tabs align="center" position="relative" variant="unstyled">
+    <Tabs position="relative" variant="unstyled">
       <TabList>
         {ContentObject.map((item) => (
           <Tab key={item.header} className="font-semibold">
@@ -178,7 +179,10 @@ export default function ProductInfoPolicies({
       <TabIndicator mt="-1.5px" height="2px" bg="#404040" borderRadius="1px" />
       <TabPanels>
         {ContentObject.map((item) => (
-          <TabPanel key={item.header} className="lg:w-3/4 lg:mt-4">
+          <TabPanel
+            key={item.header}
+            className="mt-4 h-[25vh] xl:h-[50vh] overflow-y-scroll custom-scrollbar"
+          >
             {item.content}
           </TabPanel>
         ))}
@@ -187,9 +191,9 @@ export default function ProductInfoPolicies({
   );
 
   return (
-    <div className="w-full border-b my-8 lg:my-16 xl:my-24">
+    <div className="w-full my-8">
       <div className="sm:hidden">{SliderContents}</div>
-      <div className="hidden sm:block">{TabbedContents}</div>
+      <div className="hidden sm:block w-full">{TabbedContents}</div>
     </div>
   );
 }

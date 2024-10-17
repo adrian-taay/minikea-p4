@@ -60,7 +60,7 @@ export default function CartItemView() {
   ));
 
   const NoItem = (
-    <div className="w-full h-[50px] flex-center">
+    <div className="w-full h-full flex-center border border-dashed text-neutral-400">
       <p>There are no items in your cart.</p>
     </div>
   );

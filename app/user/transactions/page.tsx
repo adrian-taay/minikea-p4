@@ -18,9 +18,9 @@ export default function TransactionsPage() {
     const transactionDate = formatDate(transactions.createdAt);
 
     return (
-      <div key={transactions.id} className="w-full border rounded-md">
-        <div className="flex-between bg-slate-100 px-4 py-2">
-          <div className="text-md tracking-wide">{transactionDate}</div>
+      <div key={transactions.id} className="w-full border">
+        <div className="flex-between bg-stone-100 px-4 py-1 text-sm tracking-wide font-semibold">
+          <p>{transactionDate}</p>
           <p
             className={clsx(
               transactions.status === "Completed"

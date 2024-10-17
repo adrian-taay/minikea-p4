@@ -14,10 +14,10 @@ export default function CheckoutSummary() {
   const totalCost = subtotal + shippingFee;
 
   return (
-    <div className="w-full lg:w-3/5 flex h-full flex-col px-4 py-8 text-lg space-y-8 max-md:my-8 bg-stone-100">
+    <div className="w-full lg:w-3/5 flex h-full flex-col p-8 text-lg space-y-8 max-md:my-8 bg-stone-100">
       <div className="space-y-8">
-        <h1 className="font-bold text-2xl">Summary</h1>
-        <div className="flex flex-col gap-4">
+        <h1 className="font-bold text-xl">Summary</h1>
+        <div className="flex flex-col gap-4 text-sm">
           <div className="flex-between">
             <span>Subtotal</span>
             <span>{subtotal ? `$${subtotal.toFixed(2)}` : "--"}</span>
@@ -27,8 +27,8 @@ export default function CheckoutSummary() {
             <span>{shippingFee ? `$${shippingFee.toFixed(2)}` : "Free"}</span>
           </div>
           <div className="flex-between">
-            <span className="font-bold text-xl">Total</span>
-            <span className="font-bold text-xl">
+            <span className="font-bold text-lg">Total</span>
+            <span className="font-bold text-lg">
               {totalCost ? `$${totalCost.toFixed(2)}` : "--"}
             </span>
           </div>

@@ -27,7 +27,7 @@ export default function UserReviewCard({
   );
 
   return (
-    <div className="w-full md:w-5/12 mx-auto flex gap-2">
+    <div className="w-full flex gap-2">
       <div className="w-full flex border-b flex-1 p-2 pb-6 md:p-6 gap-4">
         <Avatar size="sm" />
         <div className="flex flex-col items-start">

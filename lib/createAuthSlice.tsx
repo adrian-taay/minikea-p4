@@ -30,6 +30,6 @@ export const createAuthSlice: StateCreator<
   userLogout: () => set({ user: {} as UserItem, isLoggedIn: false }),
   userCheckout: (cart: CartItem[], user: UserItem) => {
     get().addToTransactions(cart, user);
-    get().clearCart();
+    // get().clearCart();
   },
 });

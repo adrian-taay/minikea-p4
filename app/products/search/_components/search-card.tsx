@@ -12,7 +12,7 @@ export default function SearchCard({ item }: { item: DummyProductType }) {
       href={`/products/${item.category}/${slug}`}
       className="w-full flex flex-col gap-2"
     >
-      <div className="relative w-full aspect-square overflow-hidden">
+      <div className="relative w-full aspect-square overflow-hidden bg-stone-200">
         <Image
           src={item.thumbnail}
           alt={item.title}

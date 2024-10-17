@@ -1,3 +1,4 @@
+import DeliveryBanner from "@/app/_shared/delivery-banner/delivery-banner";
 import DisplayProducts, {
   DisplayProductsType,
 } from "@/app/_shared/display-products/display-products";
@@ -67,7 +68,7 @@ export default async function SingleProductPage({
     return (
       <div className="w-full p-4 md:p-8 max-w-screen-2xl mx-auto">
         {BackToProductsButton}
-        <div className="flex flex-col gap-4 md:flex-row">
+        <div className="flex flex-col gap-4 md:flex-row md:gap-8">
           <div>
             <ProductImages
               images={productDetail.images && productDetail.images}
@@ -76,11 +77,19 @@ export default async function SingleProductPage({
           <div className="flex flex-col flex-1">
             {ProductWriteups}
             <AddItemBtnWrapper item={productDetail} />
+            <div className="hidden lg:block">
+              <ProductInfoPolicies data={productDetail} />
+            </div>
           </div>
         </div>
-        <ProductInfoPolicies data={productDetail} />
-        <WishlistItemView />
+        <div className="block lg:hidden">
+          <ProductInfoPolicies data={productDetail} />
+        </div>
         <DisplayProducts displayProductObject={randomPicks} />
+        <WishlistItemView />
+        <div className="mt-8">
+          <DeliveryBanner />
+        </div>
       </div>
     );
   } catch (err) {

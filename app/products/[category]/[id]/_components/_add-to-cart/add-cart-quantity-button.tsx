@@ -19,7 +19,7 @@ export default function AddItemBtnWrapper({
   )?.quantity;
 
   return (
-    <div className="flex flex-col items-start gap-4">
+    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
       <InputQuantity
         stock={item.stock}
         itemQty={itemQty}

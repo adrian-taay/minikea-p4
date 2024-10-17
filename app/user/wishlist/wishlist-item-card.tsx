@@ -72,7 +72,6 @@ export default function WishlistItemCard({
         "justify-between",
         "items-stretch",
         "border",
-        "rounded-md",
         "p-4",
         outOfStock && "text-neutral-400"
       )}

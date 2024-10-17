@@ -16,7 +16,7 @@ export default function InputQuantity({
 }) {
   const DecreaseBtn = (
     <button
-      className="p-2 md:p-3"
+      // className="p-2 md:p-3"
       onClick={() => setItemQty((q) => (q - 1 < 1 ? q : q - 1))}
     >
       <GoDash />
@@ -25,7 +25,7 @@ export default function InputQuantity({
 
   const IncreaseBtn = (
     <button
-      className="px-2 md:px-3 py-1.5"
+      // className="px-2 md:px-3 py-1.5"
       onClick={() =>
         setItemQty((q) =>
           q + 1 > stock || q + cartItemQty + 1 > stock ? q : q + 1
@@ -37,9 +37,9 @@ export default function InputQuantity({
   );
 
   return (
-    <div className="flex-start md:text-2xl border">
+    <div className="flex-start md:text-xl border lg:h-full px-3">
       {DecreaseBtn}
-      <span className="font-bold px-3 md:px-6">{itemQty}</span>
+      <span className="px-3 md:px-6">{itemQty}</span>
       {IncreaseBtn}
     </div>
   );

@@ -11,6 +11,7 @@ import DisplayProducts, {
   DisplayProductsType,
 } from "@/app/_shared/display-products/display-products";
 import { randomProductIdArray } from "@/utils/randomProductIdArray";
+import DeliveryBanner from "@/app/_shared/delivery-banner/delivery-banner";
 
 export async function generateMetadata({
   params,
@@ -104,6 +105,9 @@ export default async function CategoryPage({
             )}
           </div>
           <DisplayProducts displayProductObject={randomPicks} />
+          <div className="mt-8">
+            <DeliveryBanner />
+          </div>
         </div>
       </div>
     );
