@@ -1,18 +1,12 @@
 "use client";
 
 import clsx from "clsx";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ShoppingCartIcon from "./shopping-cart-button";
-import { Titillium_Web } from "next/font/google";
 import NavDrawerLarge from "./nav-drawer-large";
 import NavDrawerSmall from "./nav-drawer-small";
 import UserAuthButton from "./user-auth-button";
-
-const titillium = Titillium_Web({
-  weight: ["400", "600", "700"],
-  subsets: ["latin"],
-});
+import MinikeaLogo from "../constants/minikea-logo";
 
 export default function Navbar() {
   const [isFloatingNavbar, setIsFloatingNavbar] = useState(false);
@@ -40,23 +34,6 @@ export default function Navbar() {
     </section>
   );
 
-  const LogoWrapper = (
-    <Link
-      href={"/"}
-      className={clsx(
-        "flex-center",
-        "flex-col",
-        "flex-1",
-        "-space-y-2",
-        titillium.className,
-        "tracking-widest"
-      )}
-    >
-      <span className="font-semibold text-3xl">MINIKEA</span>
-      <span className="">Superstore</span>
-    </Link>
-  );
-
   const RightSideWrapper = (
     <section className="flex-end flex-1 gap-6">
       <ShoppingCartIcon />
@@ -79,7 +56,7 @@ export default function Navbar() {
     >
       <div className="flex-between py-2 max-w-screen-2xl mx-auto">
         {LeftSideWrapper}
-        {LogoWrapper}
+        <MinikeaLogo />
         {RightSideWrapper}
       </div>
     </nav>
