@@ -78,6 +78,7 @@ export default function NewDealsSection() {
               src={item.img}
               alt={item.headline}
               fill
+              sizes="350px, (min-width: 1440px) 480px"
               className="absolute object-cover bg-center"
             />
           </div>

@@ -43,9 +43,7 @@ export default function LoginPage() {
 
   const LoginForm = (
     <section className="absolute w-full md:w-1/2 lg:w-1/3 2xl:w-1/5 border shadow-md flex flex-col bg-white p-5 gap-4 my-20">
-      <h1 className="text-center text-xl font-semibold pb-4 border-b">
-        Member Login
-      </h1>
+      <h1 className="text-center text-xl font-semibold pb-4">Member Login</h1>
       <div className="flex flex-col gap-2">
         <label htmlFor="username-input">Username:</label>
         <Input
@@ -89,6 +87,8 @@ export default function LoginPage() {
           src={login_splash}
           alt="Login splash image"
           fill
+          sizes="100vw"
+          priority
           className="object-cover bg-center absolute"
         />
       </div>

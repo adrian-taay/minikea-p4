@@ -10,6 +10,8 @@ export default function DeliveryBanner() {
         src={delivery_splash}
         alt="Delivery splash image"
         fill
+        priority
+        sizes="100vw"
         className="absolute object-cover bg-center"
       />
       <div className="absolute w-full h-full bg-neutral-700/50 flex flex-col justify-center p-10 text-white">

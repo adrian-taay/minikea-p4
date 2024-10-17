@@ -80,6 +80,8 @@ export default async function CategoryPage({
               src={productCategory?.img ?? feature_gift}
               alt={productCategory?.title ?? params.category}
               fill
+              sizes="100vw"
+              priority
               className="absolute object-cover bg-center"
             />
           </div>

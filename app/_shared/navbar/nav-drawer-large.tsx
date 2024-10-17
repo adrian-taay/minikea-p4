@@ -72,6 +72,7 @@ export default function NavDrawerLarge() {
                         src={item.img}
                         alt={item.href}
                         fill
+                        sizes="150px, (min-width: 1024px) 200px"
                         className="absolute object-cover bg-center"
                       />
                     </div>
@@ -131,6 +132,7 @@ export default function NavDrawerLarge() {
               src={search_splash}
               alt="Search splash image"
               fill
+              sizes="0px, (min-width) 100vw"
               className="object-cover bg-center absolute opacity-40"
             />
             {SearchSection}

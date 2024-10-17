@@ -55,7 +55,8 @@ export default function ArticlesToRead() {
                   src={item.img}
                   alt={item.title}
                   fill
-                  className="object-cover bg-center absolute"
+                  sizes="350px"
+                  className="object-cover bg-center absolute w-full aspect-square"
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -79,6 +80,7 @@ export default function ArticlesToRead() {
           src={feature_clothing}
           alt="article"
           fill
+          sizes="100vw"
           className="absolute object-cover bg-center"
         />
       </div>

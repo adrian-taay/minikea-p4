@@ -12,6 +12,8 @@ export default function CheckoutPage() {
           src={checkout_splash}
           alt="Checkout splash image"
           fill
+          sizes="100vw"
+          priority
           className="absolute object-cover bg-center"
         />
       </div>

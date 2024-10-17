@@ -17,6 +17,7 @@ export default function SearchCard({ item }: { item: DummyProductType }) {
           src={item.thumbnail}
           alt={item.title}
           fill
+          sizes="150px, (min-width: 768px) 250px"
           className="absolute object-cover bg-center bg-stone-200 hover:scale-125 transition-transform ease-in-out"
         />
       </div>

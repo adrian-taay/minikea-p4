@@ -37,6 +37,7 @@ export default function CategoryFeatureSection() {
             src={feature_christmas}
             alt="Christmas"
             fill
+            sizes="350px, (min-width: 768px) 750px"
             className="object-cover bg-center absolute"
           />
         </div>

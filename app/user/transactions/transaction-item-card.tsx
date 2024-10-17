@@ -27,6 +27,7 @@ export default function TransactionItemsCard({ item }: { item: CartItem }) {
           src={item.thumbnail}
           fill
           alt={item.title}
+          sizes="80px"
           className="absolute object-cover bg-center"
         />
       </div>

@@ -37,6 +37,7 @@ export default function ProductCard({
           src={cardData.images[0]}
           alt={cardData.title}
           fill
+          sizes="350px"
           className="rounded-sm object-cover bg-center hover:scale-125 transition-transform ease-in-out bg-stone-200"
           loading="lazy"
         />

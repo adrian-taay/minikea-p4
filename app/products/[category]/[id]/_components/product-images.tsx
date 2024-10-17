@@ -27,6 +27,8 @@ export default function ProductImages({ images }: { images: string[] }) {
               <Image
                 src={image}
                 fill
+                priority
+                sizes="350px, (min-width: 1024px) 400px, (min-width: 1440px) 600px"
                 alt="Product image"
                 className="absolute object-cover bg-center"
               />
@@ -54,7 +56,7 @@ export default function ProductImages({ images }: { images: string[] }) {
             swiper?.slideTo(index);
           }}
         >
-          <Image src={image} fill alt="Product image" />
+          <Image src={image} fill sizes="100px" alt="Product image" />
         </div>
       ))}
     </div>

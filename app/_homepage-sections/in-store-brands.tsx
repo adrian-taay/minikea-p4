@@ -16,6 +16,7 @@ export default function InStoreBrandsSection() {
               src={item.img}
               alt={item.brand}
               fill
+              sizes="(max-width: 768px) 50px, (min-width: 769px) 100px"
               className="absolute aspect-square object-contain bg-center saturate-0 opacity-40"
             />
           </div>
