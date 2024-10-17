@@ -38,6 +38,7 @@ export default function CheckoutButton() {
       <Button
         bgColor="#404040"
         textColor="#E3E3E3"
+        _hover={{ bg: "#535353" }}
         rounded="none"
         onClick={handleCheckout}
         disabled={cart.length < 1}
@@ -64,6 +65,7 @@ export default function CheckoutButton() {
             <Button
               bgColor="#404040"
               textColor="#E3E3E3"
+              _hover={{ bg: "#535353" }}
               rounded="none"
               ml={3}
               onClick={() => router.push("/login")}

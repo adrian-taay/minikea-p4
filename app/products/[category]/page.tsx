@@ -84,7 +84,7 @@ export default async function CategoryPage({
             />
           </div>
           <h1 className="absolute w-full h-full capitalize text-xl md:text-4xl flex-center bg-neutral-700/40">
-            {params.category}
+            {productCategory?.title}
           </h1>
         </div>
         <div className="flex flex-col p-4 lg:p-8">

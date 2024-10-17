@@ -6,7 +6,7 @@ import Image from "next/image";
 import React from "react";
 
 export default function UserAccountPage() {
-  const user = useUserStore(state => state.user);
+  const user = useUserStore((state) => state.user);
 
   const userDetailObj = {
     email: user.email,
@@ -27,12 +27,7 @@ export default function UserAccountPage() {
   const ProfilePictureWrapper = (
     <div className="flex md:flex-col items-center gap-4 my-4">
       {user.image && (
-        <Image
-          src={user.image}
-          width={150}
-          height={150}
-          alt={user.firstName}
-        />
+        <Image src={user.image} width={150} height={150} alt={user.firstName} />
       )}
       <div className="flex flex-col gap-4">
         <Button size={"sm"}>Select Image</Button>
@@ -49,13 +44,11 @@ export default function UserAccountPage() {
       {Object.entries(userDetailObj).map(([key, value]) => {
         const capitalized = key
           .split("_")
-          .map(word => word[0].toUpperCase() + word.slice(1))
+          .map((word) => word[0].toUpperCase() + word.slice(1))
           .join(" ");
 
         return (
-          <div
-            key={key}
-            className="flex flex-col items-start">
+          <div key={key} className="flex flex-col items-start">
             <span className="font-semibold w-28">{capitalized}:</span>
             <span>{value}</span>
           </div>
@@ -66,10 +59,7 @@ export default function UserAccountPage() {
 
   const VerticalDivider = (
     <Center height="inherit">
-      <Divider
-        orientation="vertical"
-        mx={10}
-      />
+      <Divider orientation="vertical" mx={10} />
     </Center>
   );
 
@@ -83,8 +73,10 @@ export default function UserAccountPage() {
       </div>
       <Button
         bgColor="#404040"
+        _hover={{ bg: "#535353" }}
         textColor="#E3E3E3"
-        className="mt-8">
+        className="mt-8"
+      >
         Edit
       </Button>
     </section>

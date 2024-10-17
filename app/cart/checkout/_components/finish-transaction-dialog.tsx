@@ -36,13 +36,16 @@ export default function FinishTransactionDialog() {
   function handleRedirect() {
     router.push("/user/transactions");
 
-    clearCart();
+    setTimeout(() => clearCart(), 4000);
+
+    // clearCart();
   }
 
   return (
     <>
       <Button
         bgColor="#404040"
+        _hover={{ bg: "#535353" }}
         textColor="#E3E3E3"
         rounded="none"
         onClick={handlePay}
@@ -64,7 +67,14 @@ export default function FinishTransactionDialog() {
           <AlertDialogHeader>Payment Complete!</AlertDialogHeader>
           <AlertDialogBody>Thank you for your purchase.</AlertDialogBody>
           <AlertDialogFooter>
-            <Button onClick={handleRedirect}>OK</Button>
+            <Button
+              bgColor="#404040"
+              _hover={{ bg: "#535353" }}
+              textColor="#E3E3E3"
+              onClick={handleRedirect}
+            >
+              OK
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

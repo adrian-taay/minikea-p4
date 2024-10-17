@@ -45,7 +45,7 @@ export const productCategoryLinks = [
     groupTitle: "Beauty and Wellness",
     links: [
       {
-        title: "Make-up Kits",
+        title: "Beauty",
         href: "beauty",
         img: category_makeup,
       },

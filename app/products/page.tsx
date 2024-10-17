@@ -4,6 +4,11 @@ import { ProductFetchResponseType } from "@/types/dummy-products-type";
 import axios from "axios";
 import { Metadata } from "next";
 import ProductCard from "./_components/product-card";
+import DisplayProducts, {
+  DisplayProductsType,
+} from "../_shared/display-products/display-products";
+import { randomProductIdArray } from "@/utils/randomProductIdArray";
+import DeliveryBanner from "../_shared/delivery-banner/delivery-banner";
 
 export const metadata: Metadata = {
   title: "Browse All Products | Minikea",
@@ -32,6 +37,11 @@ export default async function ProductsPage({
   const determineSkip =
     Number(pageQuery) === 1 ? 0 : (Number(pageQuery) - 1) * limit;
 
+  const randomPicks: DisplayProductsType = {
+    headline: "You might like these",
+    products: randomProductIdArray(6),
+  };
+
   try {
     const response = await axios(
       `https://dummyjson.com/products?skip=${determineSkip}&limit=${limit}${addSortQuery}`
@@ -41,19 +51,32 @@ export default async function ProductsPage({
     const isMultiplePages = data.total / data.limit > 1;
 
     return (
-      <div>
-        <h1>Products</h1>
-        <p>Total Products: {data.total}</p>
-        <ProductSort />
-        <div className="flex gap-4 flex-wrap">
-          {data?.products.map((item, index) => (
-            <ProductCard cardData={item} key={index} />
-          ))}
+      <section className="w-full max-w-screen-2xl mx-auto">
+        {/* <h1>Products</h1>
+        <p>Total Products: {data.total}</p> */}
+        <div className="p-4 lg:p-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-1 my-4 ">
+            <p>
+              Products Found: {data.total} {data.total === 1 ? "item" : "items"}
+            </p>
+            <ProductSort />
+          </div>
+          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4">
+            {data?.products.map((item, index) => (
+              <ProductCard cardData={item} key={index} />
+            ))}
+          </div>
+          <div className="flex-center py-2 md:py-8 border-t">
+            {isMultiplePages && (
+              <ProductPagination total={data.total} limit={limit} />
+            )}
+          </div>
+          <DisplayProducts displayProductObject={randomPicks} />
+          <div className="mt-8">
+            <DeliveryBanner />
+          </div>
         </div>
-        {isMultiplePages && (
-          <ProductPagination total={data.total} limit={limit} />
-        )}
-      </div>
+      </section>
     );
   } catch (error) {
     console.log(error);

@@ -20,6 +20,7 @@ export default function ActionButton({
       bgColor={style?.bgColor ?? "#404040"}
       textColor={style?.textColor ?? "#E3E3E3"}
       rounded={style?.rounded ?? "md"}
+      _hover={{ bg: style?.bgColor ? "#E3E3E3" : "#535353" }}
     >
       {title}
     </Button>

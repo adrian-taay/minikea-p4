@@ -16,7 +16,7 @@ export default function InStoreBrandsSection() {
               src={item.img}
               alt={item.brand}
               fill
-              className="object-contain bg-center saturate-0 opacity-40"
+              className="absolute aspect-square object-contain bg-center saturate-0 opacity-40"
             />
           </div>
         ))}

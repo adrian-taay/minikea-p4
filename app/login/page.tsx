@@ -74,6 +74,7 @@ export default function LoginPage() {
         mt={4}
         textColor="#E5E5E5"
         bg="#404040"
+        _hover={{ bg: "#535353" }}
         onClick={() => loginUser(username, password)}
       >
         Login

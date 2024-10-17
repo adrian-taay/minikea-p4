@@ -35,6 +35,7 @@ export default function AddItemBtn({
     <>
       <Button
         bgColor="#404040"
+        _hover={{ bg: "#535353" }}
         textColor="#E3E3E3"
         rounded="none"
         onClick={handleClick}

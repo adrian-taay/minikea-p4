@@ -11,6 +11,7 @@ import Image, { StaticImageData } from "next/image";
 import DisplayProducts, {
   DisplayProductsType,
 } from "../_shared/display-products/display-products";
+import Link from "next/link";
 
 type ImageCardType = {
   category: string;
@@ -21,33 +22,33 @@ type ImageCardType = {
 
 const newDeals: ImageCardType[] = [
   {
-    category: "Home",
+    category: "Furniture",
     headline: "Refresh Your Space: Up to 40% Off Furniture",
-    href: "home",
+    href: "furniture",
     img: feature_home,
   },
   {
-    category: "Apparel",
+    category: "Mens Shoes",
     headline: "Buy 1 Get 1 Free on Select Fashion Items",
-    href: "",
+    href: "mens-shoes",
     img: feature_apparel,
   },
   {
     category: "Beauty",
     headline: "Exclusive: Free Skincare Set with Orders Over $50",
-    href: "",
+    href: "beauty",
     img: feature_beauty,
   },
   {
-    category: "Tech",
+    category: "Smartphones",
     headline: "Upgrade Your Gadgets: 30% Off Latest Tech",
-    href: "",
+    href: "smartphones",
     img: feature_tech,
   },
   {
-    category: "Watches",
+    category: "Mens Watches",
     headline: "Timeless Elegance: 25% Off Premium Watches",
-    href: "",
+    href: "mens-watches",
     img: feature_watches,
   },
   {
@@ -67,7 +68,11 @@ export default function NewDealsSection() {
   const NewDealsWrapper = (
     <>
       {newDeals.map((item, index) => (
-        <div className="flex flex-col h-full relative" key={index}>
+        <Link
+          href={`/products/${item.href}`}
+          className="flex flex-col h-full relative"
+          key={index}
+        >
           <div className="bg-stone-300 aspect-square relative flex flex-col">
             <Image
               src={item.img}
@@ -82,7 +87,7 @@ export default function NewDealsSection() {
               {item.headline}
             </span>
           </div>
-        </div>
+        </Link>
       ))}
     </>
   );

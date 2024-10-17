@@ -20,18 +20,21 @@ export default function TransactionItemsCard({ item }: { item: CartItem }) {
         "p-3",
         "xs:p-4",
         "text-neutral-500"
-      )}>
+      )}
+    >
       <div className="relative bg-stone-200 w-20 aspect-square">
         <Image
           src={item.thumbnail}
           fill
           alt={item.title}
+          className="absolute object-cover bg-center"
         />
       </div>
       <div className="flex flex-col items-start flex-1">
         <Link
           href={`/products/${item.category}/${slug}`}
-          className="font-semibold">
+          className="font-semibold"
+        >
           {item.title}
         </Link>
         <p className="text-sm">

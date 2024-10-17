@@ -31,6 +31,7 @@ export default function ShowMoreProducts() {
   return (
     <Button
       bgColor="#404040"
+      _hover={{ bg: "#535353" }}
       textColor="#E3E3E3"
       onClick={() => setLimit((l) => l + 6)}
     >

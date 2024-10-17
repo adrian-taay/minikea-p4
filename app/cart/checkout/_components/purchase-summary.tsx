@@ -46,11 +46,13 @@ export default function PurchaseSummary() {
             </Tr>
           </Tbody>
           <Tfoot className="place-self-end">
-            <Th>Total</Th>
-            <Th>&nbsp;</Th>
-            <Th fontSize={18} isNumeric>
-              $ {totalCost.toFixed(2)}
-            </Th>
+            <Tr>
+              <Th>Total</Th>
+              <Th>&nbsp;</Th>
+              <Th fontSize={18} isNumeric>
+                $ {totalCost.toFixed(2)}
+              </Th>
+            </Tr>
           </Tfoot>
         </Table>
       </TableContainer>

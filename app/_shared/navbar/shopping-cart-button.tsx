@@ -81,7 +81,11 @@ export default function ShoppingCartIcon() {
             onMouseLeave={onClose}
           >
             {CartList}
-            {ViewCartLink}
+            {cart.length > 0 ? (
+              ViewCartLink
+            ) : (
+              <p className="text-center">No items on your cart.</p>
+            )}
           </MenuList>
         </Menu>
       </div>

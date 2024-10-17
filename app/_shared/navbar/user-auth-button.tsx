@@ -22,7 +22,13 @@ export default function UserAuthButton() {
   const userLogout = useUserStore((state) => state.userLogout);
 
   const SignInButton = (
-    <Button rounded="none" size="sm" textColor="#E5E5E5" bg="#404040">
+    <Button
+      rounded="none"
+      size="sm"
+      textColor="#E5E5E5"
+      bg="#404040"
+      _hover={{ bg: "#535353" }}
+    >
       <Link href={"/login"}>Sign in</Link>
     </Button>
   );
