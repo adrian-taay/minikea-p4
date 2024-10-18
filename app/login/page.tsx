@@ -16,6 +16,17 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  setTimeout(() => {
+    setUsername("michaelw");
+    setPassword("michaelwpass");
+
+    console.log("User credentials loaded. You can also login using:");
+    console.log("User: emilys");
+    console.log("Password: emilyspass");
+  }, 3000);
+
+  console.log("Default user credentials will appear after 3 seconds");
+
   async function loginUser(username: string, password: string) {
     try {
       const response = await axios.post("https://dummyjson.com/auth/login", {

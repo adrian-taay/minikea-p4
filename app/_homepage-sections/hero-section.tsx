@@ -120,6 +120,7 @@ export default function HeroSection() {
                   src={item.img}
                   alt="Minikea"
                   fill
+                  priority
                   sizes="100vw"
                   className="object-cover bg-center absolute"
                 />

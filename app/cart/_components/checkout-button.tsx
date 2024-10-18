@@ -20,6 +20,7 @@ export default function CheckoutButton() {
   const router = useRouter();
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
   const cart = useUserStore((state) => state.cart);
+  const setPayStatus = useUserStore((state) => state.setPayStatus);
 
   const cancelRef = useRef(null);
 
@@ -30,6 +31,7 @@ export default function CheckoutButton() {
       return onOpen();
     }
 
+    setPayStatus(1);
     router.push("/cart/checkout");
   }
 

@@ -21,6 +21,7 @@ export default function FinishTransactionDialog() {
   const router = useRouter();
   const user = useUserStore((state) => state.user);
   const cart = useUserStore((state) => state.cart);
+  const setPayStatus = useUserStore((state) => state.setPayStatus);
   const clearCart = useUserStore((state) => state.clearCart);
   const userCheckout = useUserStore((state) => state.userCheckout);
   const cancelRef = useRef(null);
@@ -29,14 +30,16 @@ export default function FinishTransactionDialog() {
     if (!cart) return;
 
     userCheckout(cart, user);
-
     setTimeout(() => onOpen(), 1000);
   }
 
   function handleRedirect() {
     router.push("/user/transactions");
 
-    setTimeout(() => clearCart(), 4000);
+    setTimeout(() => {
+      clearCart();
+      setPayStatus(0);
+    }, 5000);
 
     // clearCart();
   }

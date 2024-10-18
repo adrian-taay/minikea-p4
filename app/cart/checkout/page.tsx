@@ -1,11 +1,16 @@
+'use client'
+
 import React from "react";
 import PurchaseSummary from "./_components/purchase-summary";
 import FinishTransactionDialog from "./_components/finish-transaction-dialog";
 import Image from "next/image";
 import { checkout_splash } from "@/app/_shared/constants/images";
+import useCheckoutGuard from "@/utils/guards/useCheckoutGuard";
 
 export default function CheckoutPage() {
-  return (
+const isLoading = useCheckoutGuard();
+
+return !isLoading && (
     <main className="relative w-full h-screen flex flex-col justify-center items-center max-w-screen-2xl mx-auto">
       <div className="relative w-full h-full">
         <Image
