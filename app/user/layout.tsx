@@ -1,20 +1,34 @@
+"use client";
+
 import UserAvatarCard from "@/app/user/(profile)/user-avatar-card";
 import Link from "next/link";
-import DisplayProducts, {
-  DisplayProductsType,
-} from "../_shared/display-products/display-products";
-import { randomProductIdArray } from "@/utils/randomProductIdArray";
 import DeliveryBanner from "../_shared/delivery-banner/delivery-banner";
+import { useUserStore } from "@/lib/useUserStore";
+import { useLayoutEffect, useState } from "react";
+import { redirect } from "next/navigation";
 
 export default function UserPageLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const randomPicks: DisplayProductsType = {
-    headline: "You might like these",
-    products: randomProductIdArray(6),
-  };
+  const user = useUserStore((state) => state.user);
+  const [isInitialLoad, setIsInitialLoad] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useLayoutEffect(() => {
+    if (user) {
+      setIsInitialLoad(true);
+    }
+
+    if (!isInitialLoad) return;
+
+    if (Object.keys(user).length === 0) {
+      redirect("/login");
+    } else {
+      setIsLoading(false);
+    }
+  }, [isInitialLoad, user]);
 
   const Sidebar = (
     <div className="hidden md:flex flex-col gap-8 px-16 pt-8 justify-start font-bold border-r">
@@ -32,17 +46,18 @@ export default function UserPageLayout({
   );
 
   return (
-    <section className="w-full flex-col gap-8 max-w-screen-2xl mx-auto">
-      <div className="w-full flex border-b">
-        {Sidebar}
-        <div className="w-full p-8 mb-10 flex-1">{children}</div>
-      </div>
-      <div className="pt-8">
-        <DeliveryBanner />
-      </div>
-      <div className="p-8">
-        <DisplayProducts displayProductObject={randomPicks} />
-      </div>
-    </section>
+    <>
+      {!isLoading && (
+        <section className="w-full flex-col gap-8 max-w-screen-2xl mx-auto">
+          <div className="w-full flex border-b">
+            {Sidebar}
+            <div className="w-full p-8 mb-10 flex-1">{children}</div>
+          </div>
+          <div className="p-8">
+            <DeliveryBanner />
+          </div>
+        </section>
+      )}
+    </>
   );
 }

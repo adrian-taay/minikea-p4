@@ -7,9 +7,11 @@ import NavDrawerLarge from "./nav-drawer-large";
 import NavDrawerSmall from "./nav-drawer-small";
 import UserAuthButton from "./user-auth-button";
 import MinikeaLogo from "../constants/minikea-logo";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isFloatingNavbar, setIsFloatingNavbar] = useState(false);
+  const currentUrl = usePathname();
 
   useEffect(() => {
     function handleScrollNavbar() {
@@ -41,7 +43,7 @@ export default function Navbar() {
     </section>
   );
 
-  return (
+  return currentUrl === "/cart/checkout" ? null : (
     <nav
       className={clsx(
         "w-full",
