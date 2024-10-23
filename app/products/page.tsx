@@ -9,6 +9,8 @@ import DisplayProducts, {
 } from "../_shared/display-products/display-products";
 import { randomProductIdArray } from "@/utils/randomProductIdArray";
 import DeliveryBanner from "../_shared/delivery-banner/delivery-banner";
+import { Suspense } from "react";
+import ProductSkeleton from "./_components/product-skeleton";
 
 export const metadata: Metadata = {
   title: "Browse All Products | Minikea",
@@ -61,9 +63,11 @@ export default async function ProductsPage({
             </p>
             <ProductSort />
           </div>
-          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4">
+          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
             {data?.products.map((item, index) => (
-              <ProductCard cardData={item} key={index} />
+              <Suspense key={index} fallback={<ProductSkeleton />}>
+                <ProductCard cardData={item} />
+              </Suspense>
             ))}
           </div>
           <div className="flex-center py-2 md:py-8 border-t">
