@@ -5,6 +5,7 @@ import { createSlug } from "@/utils/createSlug";
 import { DummyProductType } from "@/types/dummy-products-type";
 import QuickAddButton from "./quick-add-button";
 import ToggleWishlistButton from "@/app/user/wishlist/toggle-wishlist-button";
+import ToggleTempWishlistButton from "@/app/user/wishlist/toggle-temp-wishlist-button";
 
 export default function ProductCard({
   cardData,
@@ -27,6 +28,7 @@ export default function ProductCard({
     <div className="absolute right-4 top-4 flex-center flex-col gap-3">
       <QuickAddButton item={cardData} qty={1} />
       <ToggleWishlistButton cardData={cardData} />
+      <ToggleTempWishlistButton cardData={cardData} />
     </div>
   );
 

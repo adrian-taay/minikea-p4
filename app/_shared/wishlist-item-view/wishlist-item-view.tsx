@@ -96,5 +96,7 @@ export default function WishlistItemView() {
     </section>
   );
 
-  return <>{isLoggedIn && wishlist.length > 0 ? WishlistItemWrapper : null}</>;
+  return (
+    <>{isLoggedIn === 1 && wishlist.length > 0 ? WishlistItemWrapper : null}</>
+  );
 }

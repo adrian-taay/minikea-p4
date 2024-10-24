@@ -27,7 +27,7 @@ export default function CheckoutButton() {
   function handleCheckout() {
     if (cart.length < 1) return;
 
-    if (!isLoggedIn) {
+    if (isLoggedIn === 0) {
       return onOpen();
     }
 

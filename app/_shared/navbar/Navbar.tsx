@@ -8,6 +8,7 @@ import NavDrawerSmall from "./nav-drawer-small";
 import UserAuthButton from "./user-auth-button";
 import MinikeaLogo from "../constants/minikea-logo";
 import { usePathname } from "next/navigation";
+import TempWishlistDrawer from "./temp-wishlist-button";
 
 export default function Navbar() {
   const [isFloatingNavbar, setIsFloatingNavbar] = useState(false);
@@ -38,6 +39,7 @@ export default function Navbar() {
 
   const RightSideWrapper = (
     <section className="flex-end flex-1 gap-6">
+      <TempWishlistDrawer />
       <ShoppingCartIcon />
       <UserAuthButton />
     </section>
