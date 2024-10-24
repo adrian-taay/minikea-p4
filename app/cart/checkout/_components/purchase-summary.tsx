@@ -34,7 +34,7 @@ export default function PurchaseSummary() {
           <Tbody>
             {cart.map((item, index) => (
               <Tr key={index}>
-                <Td>{item.title}</Td>
+                <Td whiteSpace="wrap">{item.title}</Td>
                 <Td isNumeric>{item.quantity}</Td>
                 <Td isNumeric>$ {(item.price * item.quantity).toFixed(2)}</Td>
               </Tr>

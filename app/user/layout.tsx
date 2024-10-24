@@ -13,7 +13,7 @@ export default function UserPageLayout({
   const isLoading = useAuthGuard();
 
   const Sidebar = (
-    <div className="hidden md:flex flex-col gap-8 px-16 pt-8 justify-start font-bold border-r">
+    <div className="hidden md:flex flex-col gap-8 px-16 py-8 justify-start font-bold border-r">
       <UserAvatarCard />
       <Link href={"/user"} className="hover:underline">
         My Profile
@@ -33,7 +33,7 @@ export default function UserPageLayout({
         <section className="w-full flex-col gap-8 max-w-screen-2xl mx-auto">
           <div className="w-full flex border-b">
             {Sidebar}
-            <div className="w-full p-8 mb-10 flex-1">{children}</div>
+            <div className="w-full p-8 flex-1">{children}</div>
           </div>
           <div className="p-8">
             <DeliveryBanner />
