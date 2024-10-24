@@ -6,30 +6,34 @@ import { DummyProductType } from "@/types/dummy-products-type";
 import React from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 
-export default function ToggleWishlistButton({
+export default function ToggleTempWishlistButton({
   cardData,
 }: {
   cardData: DummyProductType;
 }) {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
-  const wishlist = useUserStore((state) => state.wishlist);
-  const addToWishlist = useUserStore((state) => state.addToWishlist);
-  const removeFromWishlist = useUserStore((state) => state.removeFromWishlist);
+  const tempWishlist = useUserStore((state) => state.tempWishlist);
+  const addToTempWishlist = useUserStore((state) => state.addToTempWishlist);
+  const removeFromTempWishlist = useUserStore(
+    (state) => state.removeFromTempWishlist
+  );
 
-  const findWishlistItem = wishlist.some((item) => item.id === cardData.id);
+  const findTempWishlistItem = tempWishlist.some(
+    (item) => item.id === cardData.id
+  );
 
   function handleToggle() {
-    if (findWishlistItem) {
-      removeFromWishlist(cardData.id);
+    if (findTempWishlistItem) {
+      removeFromTempWishlist(cardData.id);
     } else {
-      addToWishlist(cardData);
+      addToTempWishlist(cardData);
     }
   }
 
   return (
-    isLoggedIn === 1 && (
+    isLoggedIn === 0 && (
       <button onClick={handleToggle}>
-        {findWishlistItem ? (
+        {findTempWishlistItem ? (
           <GoHeartFill fill={"#E22B22"} size={24} />
         ) : (
           <GoHeart size={24} />
