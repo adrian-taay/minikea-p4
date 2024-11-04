@@ -29,7 +29,7 @@ export const ProductSearchBar = forwardRef<HTMLInputElement, DrawerProps>(
 
     const handleSearchInput = () => {
       onClose();
-      router.push(`/products/search?q=${searchTerm}`);
+      router.push(`/search?q=${searchTerm}`);
       setSearchTerm("");
     };
 

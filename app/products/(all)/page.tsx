@@ -3,14 +3,14 @@ import ProductSort from "@/app/products/_components/product-sort";
 import { ProductFetchResponseType } from "@/types/dummy-products-type";
 import axios from "axios";
 import { Metadata } from "next";
-import ProductCard from "./_components/product-card";
+import ProductCard from "../_components/product-card";
 import DisplayProducts, {
   DisplayProductsType,
-} from "../_shared/display-products/display-products";
+} from "../../_shared/display-products/display-products";
 import { randomProductIdArray } from "@/utils/randomProductIdArray";
-import DeliveryBanner from "../_shared/delivery-banner/delivery-banner";
 import { Suspense } from "react";
-import ProductSkeleton from "./_components/product-skeleton";
+import ProductSkeleton from "../_components/product-skeleton";
+import CategoryNav from "../_components/category-nav";
 
 export const metadata: Metadata = {
   title: "Browse All Products | Minikea",
@@ -54,31 +54,34 @@ export default async function ProductsPage({
 
     return (
       <section className="w-full max-w-screen-2xl mx-auto">
-        {/* <h1>Products</h1>
-        <p>Total Products: {data.total}</p> */}
-        <div className="p-4 lg:p-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-1 my-4 ">
-            <p>
-              Products Found: {data.total} {data.total === 1 ? "item" : "items"}
-            </p>
-            <ProductSort />
+        <div className="w-full flex p-4 lg:p-8">
+          <div className="hidden md:block md:w-2/5 lg:w-1/4 xl:w-1/5">
+            <CategoryNav />
           </div>
-          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
-            {data?.products.map((item, index) => (
-              <Suspense key={index} fallback={<ProductSkeleton />}>
-                <ProductCard cardData={item} />
-              </Suspense>
-            ))}
+          <div className="w-full flex flex-col">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-1">
+              <p>
+                Products Found: {data.total}{" "}
+                {data.total === 1 ? "item" : "items"}
+              </p>
+              <ProductSort />
+            </div>
+            <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
+              {data?.products.map((item, index) => (
+                <Suspense key={index} fallback={<ProductSkeleton />}>
+                  <ProductCard cardData={item} />
+                </Suspense>
+              ))}
+            </div>
           </div>
-          <div className="flex-center py-2 md:py-8 border-t">
-            {isMultiplePages && (
-              <ProductPagination total={data.total} limit={limit} />
-            )}
-          </div>
+        </div>
+        <div className="flex-center py-2 md:py-8 border-t">
+          {isMultiplePages && (
+            <ProductPagination total={data.total} limit={limit} />
+          )}
+        </div>
+        <div className="px-4 lg:px-8">
           <DisplayProducts displayProductObject={randomPicks} />
-          <div className="mt-8">
-            <DeliveryBanner />
-          </div>
         </div>
       </section>
     );

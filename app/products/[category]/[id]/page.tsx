@@ -1,4 +1,3 @@
-import DeliveryBanner from "@/app/_shared/delivery-banner/delivery-banner";
 import DisplayProducts, {
   DisplayProductsType,
 } from "@/app/_shared/display-products/display-products";
@@ -87,9 +86,6 @@ export default async function SingleProductPage({
         </div>
         <DisplayProducts displayProductObject={randomPicks} />
         <WishlistItemView />
-        <div className="mt-8">
-          <DeliveryBanner />
-        </div>
       </div>
     );
   } catch (err) {

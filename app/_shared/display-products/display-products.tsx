@@ -1,8 +1,8 @@
 import { DummyProductType } from "@/types/dummy-products-type";
 import axios from "axios";
 import React from "react";
-import SearchCard from "../../products/search/_components/search-card";
 import ActionButton from "../../_homepage-sections/_action-button";
+import SearchCard from "@/app/search/_components/search-card";
 
 export type DisplayProductsType = {
   headline: string;
