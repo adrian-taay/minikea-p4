@@ -90,8 +90,10 @@ export default function TempWishlistDrawer() {
               })}
             </DrawerBody>
 
-            <DrawerFooter className="flex flex-col gap-4">
-              <p>Don&apos;t lose your wishlist. Sign in to your account.</p>
+            <DrawerFooter className="flex flex-col items-start gap-4">
+              <p className="place-self-start">
+                Don&apos;t lose your wishlist. Sign in to your account.
+              </p>
               <Button
                 rounded="none"
                 size="sm"

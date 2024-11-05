@@ -53,7 +53,7 @@ export default function LoginPage() {
   }
 
   const LoginForm = (
-    <section className="absolute w-full md:w-1/2 lg:w-1/3 2xl:w-1/5 border shadow-md flex flex-col bg-white p-5 gap-4 my-20">
+    <section className="absolute w-full sm:w-1/2 lg:w-1/3 2xl:w-1/5 border shadow-md flex flex-col bg-white p-5 gap-4 my-20">
       <h1 className="text-center text-xl font-semibold pb-4">Member Login</h1>
       <div className="flex flex-col gap-2">
         <label htmlFor="username-input">Username:</label>
@@ -93,7 +93,7 @@ export default function LoginPage() {
 
   return (
     <div className="w-full flex-center h-full relative">
-      <div className="relative w-full aspect-[16/7] h-full">
+      <div className="relative w-full aspect-[16/7] h-[50vh] sm:h-[75vh] lg:h-full">
         <Image
           src={login_splash}
           alt="Login splash image"

@@ -83,8 +83,10 @@ export default function NewDealsSection() {
             />
           </div>
           <div className="absolute w-full h-full flex flex-col justify-center items-center gap-4 text-white bg-neutral-700/40">
-            <span className="uppercase">{item.category}</span>
-            <span className="w-10/12 font-semibold text-3xl text-center">
+            <span className="uppercase max-xs:text-sm text-base">
+              {item.category}
+            </span>
+            <span className="w-10/12 font-semibold max-xs:text-xl text-3xl text-center">
               {item.headline}
             </span>
           </div>

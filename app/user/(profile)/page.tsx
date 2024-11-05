@@ -11,14 +11,6 @@ export default function UserAccountPage() {
   const userDetailObj = {
     email: user.email,
     username: user.username,
-    // password: (
-    //   <Input
-    //     variant="filled"
-    //     size={"sm"}
-    //     type="password"
-    //     disabled
-    //   />
-    // ),
     first_name: user.firstName,
     last_name: user.lastName,
     gender: user.gender,
@@ -75,6 +67,7 @@ export default function UserAccountPage() {
         bgColor="#404040"
         _hover={{ bg: "#535353" }}
         textColor="#E3E3E3"
+        rounded="none"
         className="mt-8"
       >
         Edit

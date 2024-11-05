@@ -84,7 +84,9 @@ export default async function SingleProductPage({
         <div className="block lg:hidden">
           <ProductInfoPolicies data={productDetail} />
         </div>
-        <DisplayProducts displayProductObject={randomPicks} />
+        <div className="lg:mt-8">
+          <DisplayProducts displayProductObject={randomPicks} />
+        </div>
         <WishlistItemView />
       </div>
     );

@@ -16,7 +16,7 @@ export default function CategoryFeatureSection() {
       <h1 className="text-2xl font-semibold tracking-wide">
         Fill your home with joy this Christmas!
       </h1>
-      <p className="w-full xl:w-3/4 max-lg:text-justify text-pretty">
+      <p className="w-full xl:w-3/4 max-lg:text-justify text-pretty max-xs:text-sm text-base">
         Celebrate the longest Christmas season in the world, Filipino style!
         From bright parols lighting up the streets to festive Noche Buena
         feasts, it&apos;s the time to share joy, gifts, and love. Whether

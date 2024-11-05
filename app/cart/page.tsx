@@ -12,7 +12,7 @@ export default function CartPage() {
   };
 
   return (
-    <main className="w-full flex flex-col p-4 md:p8 max-w-screen-2xl mx-auto">
+    <main className="w-full flex flex-col p-4 md:p-8 max-w-screen-2xl mx-auto">
       <CartLayoutSwitcher />
       <div className="py-10">
         <DisplayProducts displayProductObject={randomPicks} />

@@ -75,7 +75,7 @@ export default function ArticlesToRead() {
 
   const FullWidthWrapper = (
     <div className="w-full relative bg-slate-200 flex justify-center items-center text-white">
-      <div className="w-full relative h-[50vh]">
+      <div className="w-full relative max-sm:h-[60vh] h-[50vh]">
         <Image
           src={feature_clothing}
           alt="article"
@@ -84,10 +84,12 @@ export default function ArticlesToRead() {
           className="absolute object-cover bg-center"
         />
       </div>
-      <div className="absolute w-full h-full p-10 text-neutral-700 bg-white/50 space-y-4">
+      <div className="absolute w-full h-full p-10 text-neutral-700 bg-white/50 max-xs:space-y-2 space-y-3 lg:space-y-4">
         <p className="uppercase text-sm">Feature</p>
-        <p className="w-full md:w-1/2 text-5xl text-pretty">Back to Basics</p>
-        <p className="w-full md:w-2/5 text-pretty tracking-tighter leading-snug">
+        <p className="w-full md:w-1/2 max-lg:text-3xl text-5xl text-pretty">
+          Back to Basics
+        </p>
+        <p className="w-full md:w-3/5 lg:w-2/5 text-pretty tracking-tighter leading-snug">
           Discover the simplicity of a capsule wardrobe, a curated collection of
           timeless, versatile pieces that work for any occasion. By focusing on
           quality over quantity, you can create countless outfits while reducing

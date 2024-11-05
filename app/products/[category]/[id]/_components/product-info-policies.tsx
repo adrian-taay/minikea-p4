@@ -181,7 +181,7 @@ export default function ProductInfoPolicies({
         {ContentObject.map((item) => (
           <TabPanel
             key={item.header}
-            className="mt-4 h-[25vh] xl:h-[50vh] overflow-y-scroll custom-scrollbar"
+            className="mt-4 h-[25vh] overflow-y-scroll custom-scrollbar"
           >
             {item.content}
           </TabPanel>

@@ -33,9 +33,9 @@ export default function UserPageLayout({
         <section className="w-full flex-col gap-8 max-w-screen-2xl mx-auto">
           <div className="w-full flex border-b">
             {Sidebar}
-            <div className="w-full p-8 flex-1">{children}</div>
+            <div className="w-full p-4 md:p-8 flex-1">{children}</div>
           </div>
-          <div className="p-8">
+          <div className="md:p-8">
             <DeliveryBanner />
           </div>
         </section>
