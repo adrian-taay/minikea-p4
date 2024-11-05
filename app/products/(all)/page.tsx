@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import ProductSkeleton from "../_components/product-skeleton";
 import CategoryNav from "../_components/category-nav";
 import ProductsContainer from "../_components/products-container";
-import ProductPagination from "../_components/product-pagination";
+// import ProductPagination from "../_components/product-pagination";
 
 export const metadata: Metadata = {
   title: "Browse All Products | Minikea",
@@ -61,9 +61,9 @@ export default async function ProductsPage({
           />
         </Suspense>
       </div>
-      <div className="flex-center py-2 md:py-8 border-t">
+      {/* <div className="flex-center py-2 md:py-8 border-t">
         <ProductPagination />
-      </div>
+      </div> */}
       <div className="px-4 lg:px-8">
         <DisplayProducts displayProductObject={randomPicks} />
       </div>

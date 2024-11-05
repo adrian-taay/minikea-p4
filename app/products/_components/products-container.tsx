@@ -4,6 +4,7 @@ import React from "react";
 import ProductSort from "./product-sort";
 import ProductCard from "./product-card";
 import ProductLimit from "./product-limit";
+import ProductPagination from "./product-pagination";
 
 export default async function ProductsContainer({
   category,
@@ -38,10 +39,15 @@ export default async function ProductsContainer({
             <ProductLimit />
           </div>
         </div>
-        <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
-          {data?.products.map((item, index) => (
-            <ProductCard cardData={item} key={index} />
-          ))}
+        <div className="flex flex-col justify-between h-full">
+          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
+            {data?.products.map((item, index) => (
+              <ProductCard cardData={item} key={index} />
+            ))}
+          </div>
+          <div className="w-full flex-center">
+            <ProductPagination total={data.total} limit={10} />
+          </div>
         </div>
       </div>
     );

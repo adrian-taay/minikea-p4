@@ -1,45 +1,49 @@
 "use client";
 
-import clsx from "clsx";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useState } from "react";
+import {
+  MdChevronLeft,
+  MdChevronRight,
+  MdFirstPage,
+  MdLastPage,
+} from "react-icons/md";
 
-export default function ProductPagination() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageParams = useSearchParams();
+export default function ProductPagination({
+  total,
+  limit,
+}: {
+  total: number;
+  limit: number;
+}) {
+  const [currentPage, setCurrentPage] = useState(String(1));
+  const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  useEffect(() => {
-    function handleClickPage() {
-      if (currentPage < 1) return;
+  const totalPages = Math.ceil(total / limit);
 
-      const params = new URLSearchParams(pageParams);
+  function handleClickPage(page: string = currentPage) {
+    if (Number(page) < 1 || Number(page) > totalPages) return;
 
-      params.set("page", String(currentPage));
+    setCurrentPage(page);
+    const params = new URLSearchParams(searchParams);
 
-      const queryString: string[] = [];
+    params.set("page", page);
 
-      params.forEach((value, key) => {
-        queryString.push(`${key}=${value}`);
-      });
+    const queryString: string[] = [];
 
-      replace(`${pathname}?${queryString.join("&")}`);
-    }
+    params.forEach((value, key) => {
+      queryString.push(`${key}=${value}`);
+    });
 
-    handleClickPage();
-  }, [currentPage, pathname, replace, pageParams]);
+    replace(`${pathname}?${queryString.join("&")}`);
+  }
 
   const previousButton = (
     <span
-      onClick={() => setCurrentPage((p) => p - 1)}
-      className={clsx(
-        "py-1.5 flex items-center",
-        currentPage < 2
-          ? "cursor-default text-neutral-400"
-          : "cursor-pointer hover:ring-1 px-2 ring-neutral-400"
-      )}
+      onClick={() => handleClickPage(String(Number(currentPage) - 1))}
+      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center"
     >
       <MdChevronLeft /> PREV
     </span>
@@ -47,17 +51,38 @@ export default function ProductPagination() {
 
   const nextButton = (
     <span
-      onClick={() => setCurrentPage((p) => p + 1)}
-      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex items-center"
+      onClick={() => handleClickPage(String(Number(currentPage) + 1))}
+      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center"
     >
       NEXT <MdChevronRight />
     </span>
   );
 
+  const firstPage = (
+    <span
+      onClick={() => handleClickPage(String(1))}
+      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5"
+    >
+      <MdFirstPage />
+    </span>
+  );
+
+  const lastPage = (
+    <span
+      onClick={() => handleClickPage(String(totalPages))}
+      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5"
+    >
+      <MdLastPage />
+    </span>
+  );
+
   return (
-    <div className="flex gap-8 items-center justify-center text-sm">
+    <div className="flex gap-4 items-center">
+      {firstPage}
       {previousButton}
+      <span className="text-neutral-400">|</span>
       {nextButton}
+      {lastPage}
     </div>
   );
 }
