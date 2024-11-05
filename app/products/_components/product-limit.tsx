@@ -31,7 +31,7 @@ export default function ProductLimit() {
   }, [limitProductParams, pathname, replace, limitParams]);
 
   return (
-    <div className="flex-start flex-col md:flex-row gap-1 md:gap-3">
+    <div className="flex-start gap-3">
       <label htmlFor="product-limit" className="text-nowrap">
         No. of Items to Show:
       </label>
@@ -42,9 +42,9 @@ export default function ProductLimit() {
         value={limitProductParams}
         onChange={(e) => setLimitProductParams(e.target.value)}
       >
-        <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
+        <option value="30">30</option>
         <option value="all">All</option>
       </Select>
     </div>

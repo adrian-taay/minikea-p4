@@ -34,10 +34,8 @@ export default function ProductSort() {
   }, [sortProductParams, pathname, replace, sortParams]);
 
   return (
-    <div className="flex-start flex-col md:flex-row gap-1 md:gap-3">
-      <label
-        htmlFor="product-sort"
-        className="text-nowrap">
+    <div className="flex-start gap-1 md:gap-3">
+      <label htmlFor="product-sort" className="text-nowrap">
         Sort Products:
       </label>
       <Select
@@ -45,7 +43,8 @@ export default function ProductSort() {
         id="product-sort"
         name="product-sort"
         value={sortProductParams}
-        onChange={e => setSortProductParams(e.target.value)}>
+        onChange={(e) => setSortProductParams(e.target.value)}
+      >
         <option value="title-asc">Alphabetical, A-Z</option>
         <option value="title-desc">Alphabetical, Z-A</option>
         <option value="price-asc">Price, low to high</option>

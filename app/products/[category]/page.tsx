@@ -9,6 +9,7 @@ import { randomProductIdArray } from "@/utils/randomProductIdArray";
 import CategoryNav from "../_components/category-nav";
 import ProductSkeleton from "../_components/product-skeleton";
 import ProductsContainer from "../_components/products-container";
+import ProductPagination from "../_components/product-pagination";
 
 export async function generateMetadata({
   params,
@@ -40,7 +41,7 @@ export default async function CategoryPage({
   const pageQuery = searchParams?.page || 1;
   const sortByQuery = searchParams?.sortBy;
   const orderQuery = searchParams?.order;
-  const limit = searchParams?.limit || "5";
+  const limit = searchParams?.limit || "10";
 
   const addSortQuery =
     sortByQuery && orderQuery
@@ -83,7 +84,10 @@ export default async function CategoryPage({
   );
 
   return (
-    <section className="w-full max-w-screen-2xl mx-auto">
+    <section
+      className="w-full max-w-screen-2xl mx-auto"
+      id={Math.random().toString()}
+    >
       {ImageBanner}
       <div className="w-full flex p-4 lg:p-8">
         <div className="hidden md:block md:w-2/5 lg:w-1/4 xl:w-1/5">
@@ -91,6 +95,7 @@ export default async function CategoryPage({
         </div>
         <Suspense fallback={<ProductSkeleton />}>
           <ProductsContainer
+            category={params.category}
             determineSkip={determineSkip}
             limit={limit}
             addSortQuery={addSortQuery}
@@ -98,7 +103,7 @@ export default async function CategoryPage({
         </Suspense>
       </div>
       <div className="flex-center py-2 md:py-8 border-t">
-        Product Pagination
+        <ProductPagination />
       </div>
       <div className="px-4 lg:px-8">
         <DisplayProducts displayProductObject={randomPicks} />

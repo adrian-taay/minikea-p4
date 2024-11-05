@@ -6,34 +6,34 @@ import ProductCard from "./product-card";
 import ProductLimit from "./product-limit";
 
 export default async function ProductsContainer({
+  category,
   determineSkip,
   limit,
   addSortQuery,
 }: {
+  category?: string;
   determineSkip: number;
   limit: string;
   addSortQuery: string;
 }) {
   const addLimit = limit === "all" ? "0" : String(limit);
 
-  try {
-    const response = await axios(
-      `https://dummyjson.com/products?skip=${determineSkip}&limit=${addLimit}${addSortQuery}`
-    );
+  const apiUrl = category
+    ? `https://dummyjson.com/products/category/${category}?skip=${determineSkip}&limit=${addLimit}${addSortQuery}`
+    : `https://dummyjson.com/products?skip=${determineSkip}&limit=${addLimit}${addSortQuery}`;
 
-    console.log(
-      `https://dummyjson.com/products?skip=${determineSkip}&limit=${addLimit}${addSortQuery}`
-    );
+  try {
+    const response = await axios(apiUrl);
 
     const data: ProductFetchResponseType = response.data;
 
     return (
       <div className="w-full flex flex-col">
-        <div className="flex flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-between mb-4 gap-3">
           <p>
             Products Found: {data.total} {data.total === 1 ? "item" : "items"}
           </p>
-          <div className="flex gap-3">
+          <div className="flex flex-col md:flex-row gap-3">
             <ProductSort />
             <ProductLimit />
           </div>

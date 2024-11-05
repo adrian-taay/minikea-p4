@@ -9,7 +9,7 @@ export default function ProductsPageLayout({
   return (
     <section className="w-full flex-col gap-8 max-w-screen-2xl mx-auto">
       {children}
-      <div className="p-8">
+      <div className="py-8 sm:p-8">
         <DeliveryBanner />
       </div>
     </section>
