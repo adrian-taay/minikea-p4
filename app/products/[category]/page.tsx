@@ -9,7 +9,6 @@ import { randomProductIdArray } from "@/utils/randomProductIdArray";
 import CategoryNav from "../_components/category-nav";
 import ProductSkeleton from "../_components/product-skeleton";
 import ProductsContainer from "../_components/products-container";
-// import ProductPagination from "../_components/product-pagination";
 
 export async function generateMetadata({
   params,
@@ -67,7 +66,7 @@ export default async function CategoryPage({
 
   const ImageBanner = (
     <div className="relative flex-center bg-stone-600 text-neutral-200 rounded-sm">
-      <div className="relative w-full h-[450px] lg:h-[300px]">
+      <div className="relative w-full h-[300px]">
         <Image
           src={productCategory?.img ?? feature_gift}
           alt={productCategory?.title ?? params.category}
@@ -102,9 +101,6 @@ export default async function CategoryPage({
           />
         </Suspense>
       </div>
-      {/* <div className="flex-center py-2 md:py-8 border-t">
-        <ProductPagination />
-      </div> */}
       <div className="px-4 lg:px-8">
         <DisplayProducts displayProductObject={randomPicks} />
       </div>

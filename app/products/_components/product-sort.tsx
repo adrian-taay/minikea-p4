@@ -45,6 +45,7 @@ export default function ProductSort() {
         value={sortProductParams}
         onChange={(e) => setSortProductParams(e.target.value)}
       >
+        <option value="default">Default</option>
         <option value="title-asc">Alphabetical, A-Z</option>
         <option value="title-desc">Alphabetical, Z-A</option>
         <option value="price-asc">Price, low to high</option>

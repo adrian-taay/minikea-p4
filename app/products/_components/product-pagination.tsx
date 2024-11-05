@@ -43,7 +43,7 @@ export default function ProductPagination({
   const previousButton = (
     <span
       onClick={() => handleClickPage(String(Number(currentPage) - 1))}
-      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center"
+      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center text-sm"
     >
       <MdChevronLeft /> PREV
     </span>
@@ -52,7 +52,7 @@ export default function ProductPagination({
   const nextButton = (
     <span
       onClick={() => handleClickPage(String(Number(currentPage) + 1))}
-      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center"
+      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center text-sm"
     >
       NEXT <MdChevronRight />
     </span>

@@ -7,7 +7,8 @@ import { Suspense } from "react";
 import ProductSkeleton from "../_components/product-skeleton";
 import CategoryNav from "../_components/category-nav";
 import ProductsContainer from "../_components/products-container";
-// import ProductPagination from "../_components/product-pagination";
+import Image from "next/image";
+import { category_all } from "@/app/_shared/constants/images";
 
 export const metadata: Metadata = {
   title: "Browse All Products | Minikea",
@@ -44,11 +45,30 @@ export default async function ProductsPage({
     products: randomProductIdArray(6),
   };
 
+  const ImageBanner = (
+    <div className="relative flex-center bg-stone-600 text-neutral-200 rounded-sm">
+      <div className="relative w-full h-[300px]">
+        <Image
+          src={category_all}
+          alt="all products splash"
+          fill
+          sizes="100vw"
+          priority
+          className="absolute object-cover bg-center"
+        />
+      </div>
+      <h1 className="absolute w-full h-full capitalize text-xl md:text-4xl flex-center bg-neutral-700/70">
+        Products
+      </h1>
+    </div>
+  );
+
   return (
     <section
       className="w-full max-w-screen-2xl mx-auto"
       id={Math.random().toString()}
     >
+      {ImageBanner}
       <div className="w-full flex p-4 lg:p-8">
         <div className="hidden md:block md:w-2/5 lg:w-1/4 xl:w-1/5">
           <CategoryNav />
@@ -61,9 +81,6 @@ export default async function ProductsPage({
           />
         </Suspense>
       </div>
-      {/* <div className="flex-center py-2 md:py-8 border-t">
-        <ProductPagination />
-      </div> */}
       <div className="px-4 lg:px-8">
         <DisplayProducts displayProductObject={randomPicks} />
       </div>

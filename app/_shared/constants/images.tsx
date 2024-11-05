@@ -23,6 +23,7 @@ import article_cosmetics from "@/public/article-images/article_cosmetics.jpg";
 import article_home_christmas from "@/public/article-images/article_home_christmas.jpg";
 import article_tech from "@/public/article-images/article_tech.jpg";
 
+import category_all from "@/public/category-images/category_all.jpg";
 import category_car from "@/public/category-images/category_car.jpg";
 import category_decors from "@/public/category-images/category_decors.jpg";
 import category_dress from "@/public/category-images/category_dress.jpg";
@@ -71,6 +72,7 @@ export {
   article_cosmetics,
   article_home_christmas,
   article_tech,
+  category_all,
   category_car,
   category_decors,
   category_dress,
