@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
@@ -12,6 +13,8 @@ export default function ProductPagination() {
 
   useEffect(() => {
     function handleClickPage() {
+      if (currentPage < 1) return;
+
       const params = new URLSearchParams(pageParams);
 
       params.set("page", String(currentPage));
@@ -31,7 +34,12 @@ export default function ProductPagination() {
   const previousButton = (
     <span
       onClick={() => setCurrentPage((p) => p - 1)}
-      className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex items-center"
+      className={clsx(
+        "py-1.5 flex items-center",
+        currentPage < 2
+          ? "cursor-default text-neutral-400"
+          : "cursor-pointer hover:ring-1 px-2 ring-neutral-400"
+      )}
     >
       <MdChevronLeft /> PREV
     </span>
