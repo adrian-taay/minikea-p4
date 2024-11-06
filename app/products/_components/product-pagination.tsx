@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MdChevronLeft,
   MdChevronRight,
@@ -12,37 +12,42 @@ import {
 export default function ProductPagination({
   total,
   limit,
+  pageQuery,
 }: {
   total: number;
   limit: number;
+  pageQuery: number;
 }) {
-  const [currentPage, setCurrentPage] = useState(String(1));
+  const [currentPage, setCurrentPage] = useState(pageQuery ?? 1);
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
   const totalPages = Math.ceil(total / limit);
 
-  function handleClickPage(page: string = currentPage) {
-    if (Number(page) < 1 || Number(page) > totalPages) return;
+  useEffect(() => {
+    function handleClickPage() {
+      if (Number(currentPage) < 1 || Number(currentPage) > totalPages) return;
 
-    setCurrentPage(page);
-    const params = new URLSearchParams(searchParams);
+      const params = new URLSearchParams(searchParams);
 
-    params.set("page", page);
+      params.set("page", String(currentPage));
 
-    const queryString: string[] = [];
+      const queryString: string[] = [];
 
-    params.forEach((value, key) => {
-      queryString.push(`${key}=${value}`);
-    });
+      params.forEach((value, key) => {
+        queryString.push(`${key}=${value}`);
+      });
 
-    replace(`${pathname}?${queryString.join("&")}`);
-  }
+      replace(`${pathname}?${queryString.join("&")}`);
+    }
+
+    handleClickPage();
+  }, [currentPage, searchParams, pathname, replace, totalPages]);
 
   const previousButton = (
     <span
-      onClick={() => handleClickPage(String(Number(currentPage) - 1))}
+      onClick={() => setCurrentPage((p) => p - 1)}
       className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center text-sm"
     >
       <MdChevronLeft /> PREV
@@ -51,7 +56,7 @@ export default function ProductPagination({
 
   const nextButton = (
     <span
-      onClick={() => handleClickPage(String(Number(currentPage) + 1))}
+      onClick={() => setCurrentPage((p) => p + 1)}
       className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5 flex gap-3 items-center text-sm"
     >
       NEXT <MdChevronRight />
@@ -60,7 +65,7 @@ export default function ProductPagination({
 
   const firstPage = (
     <span
-      onClick={() => handleClickPage(String(1))}
+      onClick={() => setCurrentPage(1)}
       className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5"
     >
       <MdFirstPage />
@@ -69,7 +74,7 @@ export default function ProductPagination({
 
   const lastPage = (
     <span
-      onClick={() => handleClickPage(String(totalPages))}
+      onClick={() => setCurrentPage(totalPages)}
       className="cursor-pointer hover:ring-1 px-2 ring-neutral-400 py-1.5"
     >
       <MdLastPage />

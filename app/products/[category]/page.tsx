@@ -7,8 +7,8 @@ import DisplayProducts, {
 } from "@/app/_shared/display-products/display-products";
 import { randomProductIdArray } from "@/utils/randomProductIdArray";
 import CategoryNav from "../_components/category-nav";
-import ProductSkeleton from "../_components/product-skeleton";
 import ProductsContainer from "../_components/products-container";
+import ProductsContainerSkeleton from "../_components/products-container-skeleton";
 
 export async function generateMetadata({
   params,
@@ -85,19 +85,20 @@ export default async function CategoryPage({
   return (
     <section
       className="w-full max-w-screen-2xl mx-auto"
-      id={Math.random().toString()}
+      key={Math.random().toString()}
     >
       {ImageBanner}
       <div className="w-full flex p-4 lg:p-8">
         <div className="hidden md:block md:w-2/5 lg:w-1/4 xl:w-1/5">
           <CategoryNav />
         </div>
-        <Suspense fallback={<ProductSkeleton />}>
+        <Suspense fallback={<ProductsContainerSkeleton />}>
           <ProductsContainer
             category={params.category}
             determineSkip={determineSkip}
             limit={limit}
             addSortQuery={addSortQuery}
+            pageQuery={Number(pageQuery)}
           />
         </Suspense>
       </div>

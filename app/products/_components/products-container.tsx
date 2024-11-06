@@ -11,11 +11,13 @@ export default async function ProductsContainer({
   determineSkip,
   limit,
   addSortQuery,
+  pageQuery,
 }: {
   category?: string;
   determineSkip: number;
   limit: string;
   addSortQuery: string;
+  pageQuery: number;
 }) {
   const addLimit = limit === "all" ? "0" : String(limit);
 
@@ -23,35 +25,39 @@ export default async function ProductsContainer({
     ? `https://dummyjson.com/products/category/${category}?skip=${determineSkip}&limit=${addLimit}${addSortQuery}`
     : `https://dummyjson.com/products?skip=${determineSkip}&limit=${addLimit}${addSortQuery}`;
 
-  try {
-    const response = await axios(apiUrl);
+  // try {
+  const response = await axios(apiUrl);
 
-    const data: ProductFetchResponseType = response.data;
+  const data: ProductFetchResponseType = response.data;
 
-    return (
-      <div className="w-full flex flex-col">
-        <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-between mb-4 gap-3">
-          <p>
-            Products Found: {data.total} {data.total === 1 ? "item" : "items"}
-          </p>
-          <div className="flex flex-col md:flex-row gap-3">
-            <ProductSort />
-            <ProductLimit />
-          </div>
-        </div>
-        <div className="flex flex-col justify-between h-full">
-          <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
-            {data?.products.map((item, index) => (
-              <ProductCard cardData={item} key={index} />
-            ))}
-          </div>
-          <div className="w-full flex-center">
-            <ProductPagination total={data.total} limit={10} />
-          </div>
+  return (
+    <div className="w-full flex flex-col">
+      <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-between mb-4 gap-3">
+        <p>
+          Products Found: {data.total} {data.total === 1 ? "item" : "items"}
+        </p>
+        <div className="flex flex-col md:flex-row gap-3">
+          <ProductSort />
+          <ProductLimit />
         </div>
       </div>
-    );
-  } catch (error) {
-    console.log(error);
-  }
+      <div className="flex flex-col justify-between h-full">
+        <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
+          {data?.products.map((item, index) => (
+            <ProductCard cardData={item} key={index} />
+          ))}
+        </div>
+        <div className="w-full flex-center">
+          <ProductPagination
+            total={data.total}
+            limit={10}
+            pageQuery={pageQuery}
+          />
+        </div>
+      </div>
+    </div>
+  );
+  // } catch (error) {
+  //   console.log(error);
+  // }
 }

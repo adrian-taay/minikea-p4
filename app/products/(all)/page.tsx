@@ -4,11 +4,11 @@ import DisplayProducts, {
 } from "../../_shared/display-products/display-products";
 import { randomProductIdArray } from "@/utils/randomProductIdArray";
 import { Suspense } from "react";
-import ProductSkeleton from "../_components/product-skeleton";
 import CategoryNav from "../_components/category-nav";
 import ProductsContainer from "../_components/products-container";
 import Image from "next/image";
 import { category_all } from "@/app/_shared/constants/images";
+import ProductsContainerSkeleton from "../_components/products-container-skeleton";
 
 export const metadata: Metadata = {
   title: "Browse All Products | Minikea",
@@ -66,18 +66,19 @@ export default async function ProductsPage({
   return (
     <section
       className="w-full max-w-screen-2xl mx-auto"
-      id={Math.random().toString()}
+      key={Math.random().toString()}
     >
       {ImageBanner}
       <div className="w-full flex p-4 lg:p-8">
         <div className="hidden md:block md:w-2/5 lg:w-1/4 xl:w-1/5">
           <CategoryNav />
         </div>
-        <Suspense fallback={<ProductSkeleton />}>
+        <Suspense fallback={<ProductsContainerSkeleton />}>
           <ProductsContainer
             determineSkip={determineSkip}
             limit={limit}
             addSortQuery={addSortQuery}
+            pageQuery={Number(pageQuery)}
           />
         </Suspense>
       </div>
