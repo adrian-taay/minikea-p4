@@ -42,9 +42,12 @@ export default async function ProductsContainer({
         </div>
       </div>
       <div className="flex flex-col justify-between h-full">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid gap-8 xs:grid-cols-2 xs:gap-4 py-4 lg:grid-cols-4 xl:grid-cols-5">
           {data?.products.map((item, index) => (
-            <ProductCard cardData={item} key={index} />
+            <ProductCard
+              cardData={item}
+              key={index}
+            />
           ))}
         </div>
         <div className="w-full flex-center">

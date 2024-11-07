@@ -26,7 +26,10 @@ export default function ProductCard({
 
   const CartWishlistWrapper = (
     <div className="absolute right-4 top-4 flex-center flex-col gap-3">
-      <QuickAddButton item={cardData} qty={1} />
+      <QuickAddButton
+        item={cardData}
+        qty={1}
+      />
       <ToggleWishlistButton cardData={cardData} />
       <ToggleTempWishlistButton cardData={cardData} />
     </div>
@@ -41,13 +44,13 @@ export default function ProductCard({
           fill
           sizes="350px"
           className="rounded-sm object-cover bg-center hover:scale-125 transition-transform ease-in-out bg-stone-200"
-          loading="lazy"
+          // loading="lazy"
+          priority
         />
       </div>
       <Link
         href={`/products/${cardData.category}/${slug}`}
-        className="font-bold"
-      >
+        className="font-bold">
         {ProductTitle}
       </Link>
       {CartWishlistWrapper}
