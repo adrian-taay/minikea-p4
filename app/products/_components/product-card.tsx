@@ -18,7 +18,7 @@ export default function ProductCard({
     <div className="flex flex-col items-start my-3">
       <span className="uppercase font-light">{cardData.brand}</span>
       <span className="text-xl">{cardData.title}</span>
-      <span className="font-light text-xl mt-2">
+      <span className="font-light text-xl mt-1">
         $ {cardData.price.toFixed(2)}
       </span>
     </div>
@@ -36,22 +36,24 @@ export default function ProductCard({
   );
 
   return (
-    <div className="relative w-full flex flex-col items-start">
-      <div className="relative w-full aspect-square overflow-hidden">
-        <Image
-          src={cardData.images[0]}
-          alt={cardData.title}
-          fill
-          sizes="350px"
-          className="rounded-sm object-cover bg-center hover:scale-125 transition-transform ease-in-out bg-stone-200"
-          // loading="lazy"
-          priority
-        />
-      </div>
+    <div className="relative">
       <Link
         href={`/products/${cardData.category}/${slug}`}
         className="font-bold">
-        {ProductTitle}
+        <div className="relative w-full flex flex-col items-start">
+          <div className="relative w-full aspect-square overflow-hidden">
+            <Image
+              src={cardData.images[0]}
+              alt={cardData.title}
+              fill
+              sizes="350px"
+              className="rounded-sm object-cover bg-center hover:scale-125 transition-transform ease-in-out bg-stone-200"
+              // loading="lazy"
+              priority
+            />
+          </div>
+          {ProductTitle}
+        </div>
       </Link>
       {CartWishlistWrapper}
     </div>

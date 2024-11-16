@@ -34,8 +34,11 @@ export default async function SearchResults({
     <div className="w-full lg:w-3/4 mx-auto h-auto space-y-4">
       {TotalProductsFound}
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {products.map((item) => (
-          <SearchCard key={item.id} item={item} />
+        {products.map(item => (
+          <SearchCard
+            key={item.id}
+            item={item}
+          />
         ))}
       </div>
       {totalFetchedProducts <= Number(limit) ? null : ShowMoreProductsWrapper}
@@ -43,8 +46,8 @@ export default async function SearchResults({
   );
 
   const EnterKeyword = (
-    <div className="w-full lg:w-3/4 mx-auto flex justify-center items-center py-20 border border-dashed text-neutral-200 rounded-lg">
-      Products go here
+    <div className="w-full lg:w-3/4 mx-auto flex justify-center items-center py-20 border border-dashed text-neutral-400 rounded-lg">
+      Enter any keyword
     </div>
   );
 

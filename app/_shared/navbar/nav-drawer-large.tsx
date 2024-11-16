@@ -23,7 +23,7 @@ import { productCategoryLinks } from "./menuLinks";
 import Link from "next/link";
 import { ProductSearchBar } from "./product-search-bar";
 import Image from "next/image";
-import { search_splash } from "../constants/images";
+// import { search_splash } from "../constants/images";
 
 const titillium = Titillium_Web({
   weight: ["400", "600", "700"],
@@ -35,10 +35,13 @@ export default function NavDrawerLarge() {
   const searchBarRef = useRef<HTMLInputElement>(null);
 
   const SearchSection = (
-    <div className="w-1/2 mx-auto text-center space-y-8 py-8 border bg-white/80 z-10">
+    <div className="w-1/2 mx-auto text-center space-y-8 py-8 border bg-white z-10">
       <h1 className="text-2xl">Search Our Products</h1>
       <div className="w-7/12 mx-auto">
-        <ProductSearchBar ref={searchBarRef} onClose={onClose} />
+        <ProductSearchBar
+          ref={searchBarRef}
+          onClose={onClose}
+        />
       </div>
     </div>
   );
@@ -46,9 +49,12 @@ export default function NavDrawerLarge() {
   const TabbedCategories = (
     <div className="text-center">
       <h1 className="text-2xl mb-4">Search By Category</h1>
-      <Tabs align="center" position="relative" variant="unstyled">
+      <Tabs
+        align="center"
+        position="relative"
+        variant="unstyled">
         <TabList>
-          {productCategoryLinks.map((item) => (
+          {productCategoryLinks.map(item => (
             <Tab key={item.groupTitle}>{item.groupTitle}</Tab>
           ))}
         </TabList>
@@ -59,14 +65,13 @@ export default function NavDrawerLarge() {
           borderRadius="1px"
         />
         <TabPanels>
-          {productCategoryLinks.map((item) => (
+          {productCategoryLinks.map(item => (
             <TabPanel key={item.groupTitle}>
               <div className="w-full flex-center flex-wrap gap-8 mt-4">
                 {item.links.map((item, index) => (
                   <div
                     key={index}
-                    className="relative flex flex-col h-full shadow-md"
-                  >
+                    className="relative flex flex-col h-full shadow-md">
                     <div className="relative h-full aspect-square w-[150px] lg:w-[200px]">
                       <Image
                         src={item.img}
@@ -79,8 +84,7 @@ export default function NavDrawerLarge() {
                     <Link
                       href={`/products/${item.href}`}
                       className="absolute w-full h-full z-10 text-white flex items-center justify-center bg-neutral-700/40 font-semibold text-lg"
-                      onClick={onClose}
-                    >
+                      onClick={onClose}>
                       {item.title}
                     </Link>
                   </div>
@@ -97,8 +101,7 @@ export default function NavDrawerLarge() {
     <>
       <button
         onClick={onOpen}
-        className="flex-start gap-2 hover:bg-stone-50 px-3 py-2 rounded-md"
-      >
+        className="flex-start gap-2 hover:bg-stone-50 px-3 py-2 rounded-md">
         <CiSearch size={20} />
         <span className="text-sm">Browse Products</span>
       </button>
@@ -107,8 +110,7 @@ export default function NavDrawerLarge() {
         placement="top"
         isFullHeight
         onClose={onClose}
-        initialFocusRef={searchBarRef}
-      >
+        initialFocusRef={searchBarRef}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -121,20 +123,19 @@ export default function NavDrawerLarge() {
                 "-space-y-2",
                 titillium.className,
                 "tracking-widest"
-              )}
-            >
+              )}>
               <span className="font-semibold text-3xl">MINIKEA</span>
               <span className="font-light">Superstore</span>
             </div>
           </DrawerHeader>
-          <DrawerBody className="relative w-full flex flex-col justify-center gap-5">
-            <Image
+          <DrawerBody className="relative w-full flex flex-col justify-center gap-5 bg-stone-100">
+            {/* <Image
               src={search_splash}
               alt="Search splash image"
               fill
               sizes="0px, (min-width) 100vw"
               className="object-cover bg-center absolute opacity-40"
-            />
+            /> */}
             {SearchSection}
             {TabbedCategories}
           </DrawerBody>

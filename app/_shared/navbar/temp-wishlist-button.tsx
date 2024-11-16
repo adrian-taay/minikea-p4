@@ -21,11 +21,13 @@ import { GoHeart } from "react-icons/go";
 
 export default function TempWishlistDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
-  const tempWishlist = useUserStore((state) => state.tempWishlist);
+  const isLoggedIn = useUserStore(state => state.isLoggedIn);
+  const tempWishlist = useUserStore(state => state.tempWishlist);
 
   const TempWishlistButton = (
-    <div onClick={onOpen} className="relative max-xs:hidden cursor-pointer">
+    <div
+      onClick={onOpen}
+      className="relative max-xs:hidden cursor-pointer">
       <GoHeart size={24} />
       {tempWishlist.length > 0 && (
         <Badge
@@ -33,8 +35,7 @@ export default function TempWishlistDrawer() {
           textColor="#E5E5E5"
           bg="#404040"
           rounded="full"
-          className="absolute -top-1 -right-1"
-        >
+          className="absolute -top-1.5 -right-1">
           {tempWishlist.length}
         </Badge>
       )}
@@ -45,22 +46,25 @@ export default function TempWishlistDrawer() {
     <>
       {!isLoggedIn && TempWishlistButton}
       {!isLoggedIn && (
-        <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md">
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          size="md">
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>Your Wishlist</DrawerHeader>
 
             <DrawerBody className="flex flex-col gap-3">
-              {tempWishlist.map((item) => {
+              {tempWishlist.map(item => {
                 const slug = createSlug(item);
                 const lowStock = item.stock < 10;
 
                 return (
                   <div
                     className="w-full relative flex gap-3 justify-between border rounded-md"
-                    key={item.id}
-                  >
+                    key={item.id}>
                     <Image
                       src={item.thumbnail}
                       width={100}
@@ -71,8 +75,7 @@ export default function TempWishlistDrawer() {
                     <div className="w-full flex flex-col items-start flex-1 py-1">
                       <Link
                         href={`/products/${item.category}/${slug}`}
-                        className="font-semibold text-lg"
-                      >
+                        className="font-semibold text-lg">
                         {item.title}
                       </Link>
                       <div className="text-sm">
@@ -83,7 +86,10 @@ export default function TempWishlistDrawer() {
                       </div>
                     </div>
                     <div className="absolute right-4 bottom-4">
-                      <QuickAddButton item={item} qty={1} />
+                      <QuickAddButton
+                        item={item}
+                        qty={1}
+                      />
                     </div>
                   </div>
                 );
@@ -100,8 +106,7 @@ export default function TempWishlistDrawer() {
                 textColor="#E5E5E5"
                 bg="#404040"
                 _hover={{ bg: "#535353" }}
-                className="place-self-start"
-              >
+                className="place-self-start">
                 <Link href={"/login"}>Sign in</Link>
               </Button>
             </DrawerFooter>

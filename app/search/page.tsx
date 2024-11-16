@@ -19,13 +19,16 @@ export default function SearchPage({
   };
 }) {
   const query = searchParams?.q || "";
-  const limit = searchParams?.limit || "6";
+  const limit = searchParams?.limit || "10";
 
   return (
     <div className="w-full flex flex-col items-center gap-8 p-4 md:p-8 max-w-screen-2xl mx-auto">
       <SearchBar />
       <div className="flex-1 w-full">
-        <SearchResults query={query} limit={limit} />
+        <SearchResults
+          query={query}
+          limit={limit}
+        />
       </div>
       <div className="w-full lg:w-3/4">
         <WishlistItemView />
